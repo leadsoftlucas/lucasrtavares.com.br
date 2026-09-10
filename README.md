@@ -82,9 +82,8 @@ Após publicar, rodar o validador de compartilhamento do LinkedIn e do WhatsApp 
 
 **Pendências conhecidas:**
 
-- `robots.txt` e `sitemap.xml` ainda não existem.
 - A versão em inglês não tem URL própria — se um dia for servida em `/en/`, os três `hreflang` (`pt-BR`, `en`, `x-default`) devem ser adicionados.
-- Sem analytics instalado — não há como medir qual dos oito caminhos de lead converte. Recomendação: marcar links de divulgação com `utm_source`.
+- Google Tag Manager (`GTM-59KJ4PPC`) e Google Analytics (`G-16LSSW03WS`) já estão instalados, mas nenhum evento é disparado nos 8 cartões de lead — ainda não dá para medir qual caminho converte. Falta marcar os links com `utm_source`/evento de clique.
 
 ## 📬 Contato
 
