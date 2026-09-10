@@ -28,8 +28,7 @@ Meta secundária: ser bem indexado no Google **e** facilmente lido por LLMs, par
 ## 📁 Estrutura de arquivos
 
 ```
-Lucas Tavares.dc.html   # arquivo-fonte de trabalho (Claude Design)
-index.html              # versão publicada, gerada a partir do arquivo acima — os dois são mantidos idênticos
+index.html              # versão publicada
 support.js              # runtime de renderização
 image-slot.js           # componente de imagem arrastável
 assets/                 # logotipos, bandeiras, fundos vetoriais, capas de artigo, fotos de evento, avatar, capa social
@@ -37,8 +36,6 @@ _ds/                    # design system RavenDB (tokens e bundle)
 CNAME                   # domínio customizado do GitHub Pages
 LICENSE                 # MIT
 ```
-
-> `Lucas Tavares.dc.html` é o arquivo-fonte. Qualquer alteração de conteúdo ou layout deve ser feita nele primeiro e depois espelhada em `index.html`, que é o que o GitHub Pages efetivamente serve.
 
 ## ▶️ Rodar localmente
 
