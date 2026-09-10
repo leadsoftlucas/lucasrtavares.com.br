@@ -24,6 +24,8 @@ Meta secundária: ser bem indexado no Google **e** facilmente lido por LLMs, par
 - **i18n em estado de cliente.** Dois dicionários completos (PT/EN) no próprio arquivo; a troca de bandeira reescreve a página inteira em uma única URL — por isso não há `hreflang` (apontar para uma rota `/en/` inexistente geraria erro no Search Console).
 - **`<image-slot>`** (`image-slot.js`) — componente de imagem com arrastar-e-soltar, usado nas capas de artigo e fotos de evento.
 - **Design system RavenDB**, carregado de `_ds/` (tokens de cor, tipografia Montserrat, gradientes de marca).
+- **Analytics**: Google Tag Manager (`GTM-59KJ4PPC`) + Google Analytics 4 (`G-16LSSW03WS`). Cada um dos 8 cartões de lead carrega `data-lead-group`/`data-lead-title`, usados pelo GTM para disparar o evento `clique_whatsapp` por clique — sem esses atributos não dá para saber qual caminho de lead converte.
+- **Aviso de cookies (LGPD)**: faixa fixa no rodapé (bilíngue, segue o idioma escolhido), com preferência salva em `localStorage`.
 
 ## 📁 Estrutura de arquivos
 
@@ -34,6 +36,8 @@ image-slot.js           # componente de imagem arrastável
 assets/                 # logotipos, bandeiras, fundos vetoriais, capas de artigo, fotos de evento, avatar, capa social
 _ds/                    # design system RavenDB (tokens e bundle)
 CNAME                   # domínio customizado do GitHub Pages
+robots.txt              # regras de rastreamento (inclui crawlers de IA)
+sitemap.xml             # mapa do site (URL única)
 LICENSE                 # MIT
 ```
 
@@ -83,7 +87,7 @@ Após publicar, rodar o validador de compartilhamento do LinkedIn e do WhatsApp 
 **Pendências conhecidas:**
 
 - A versão em inglês não tem URL própria — se um dia for servida em `/en/`, os três `hreflang` (`pt-BR`, `en`, `x-default`) devem ser adicionados.
-- Google Tag Manager (`GTM-59KJ4PPC`) e Google Analytics (`G-16LSSW03WS`) já estão instalados, mas nenhum evento é disparado nos 8 cartões de lead — ainda não dá para medir qual caminho converte. Falta marcar os links com `utm_source`/evento de clique.
+- O evento `clique_whatsapp` ainda não está marcado como conversão no GA4 (Configurar → Eventos → marcar como conversão).
 
 ## 📬 Contato
 
