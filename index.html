@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
+<link rel="stylesheet" href="_ds/ravendb-brand-019ddeb7-441b-7c80-bd14-e4b89ff07b2b/styles.css">
 <title>Lucas Resende Tavares — Sales Engineer · RavenDB</title>
 <link rel="icon" type="image/svg+xml" href="assets/lambda.svg">
 <link rel="apple-touch-icon" href="https://lucasrtavares.com.br/assets/og-cover.jpg">
@@ -171,12 +167,18 @@
 <meta name="twitter:title" content="Lucas Resende Tavares — Sales Engineer · RavenDB">
 <meta name="twitter:description" content="Dados, arquitetura e o custo real da complexidade. Sales Engineer na RavenDB e autor de 17 pacotes .NET open source.">
 <meta name="twitter:image" content="https://lucasrtavares.com.br/assets/og-cover.jpg">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
 <link rel="stylesheet" href="_ds/ravendb-brand-019ddeb7-441b-7c80-bd14-e4b89ff07b2b/styles.css">
 <script src="_ds/ravendb-brand-019ddeb7-441b-7c80-bd14-e4b89ff07b2b/_ds_bundle.js"></script>
 <script src="./image-slot.js"></script>
 <style>
   html { scroll-behavior: smooth; }
   @media (prefers-reduced-motion: reduce) { [data-reveal] { opacity: 1 !important; transform: none !important; } }
+  @media print { [data-reveal] { opacity: 1 !important; transform: none !important; } }
   header nav::-webkit-scrollbar { display: none; }
   body { margin: 0; background: #F7F5FA; }
   section[id] { scroll-margin-top: 68px; }
@@ -1099,6 +1101,10 @@ class Component extends DCLogic {
           setTimeout(() => {
             el.style.opacity = '1';
             el.style.transform = 'none';
+            setTimeout(() => {
+              el.style.removeProperty('will-change');
+              el.style.removeProperty('transition');
+            }, 700);
           }, delay);
           this._io.unobserve(el);
         });
