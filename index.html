@@ -274,7 +274,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p style="margin: 0 0 34px; max-width: 66ch; font-size: 16px; font-weight: 450; line-height: 1.68; color: #3A3D42; text-wrap: pretty;">{{ t.leadLead }}</p>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(258px, 1fr)); gap: 14px;">
         <sc-for list="{{ leadCards }}" as="l" hint-placeholder-count="8">
-          <a href="{{ l.href }}" target="_blank" rel="noopener" style="display: flex; flex-direction: column; gap: 9px; padding: 22px; border-radius: 16px; background: #F9F9F9; border: 1px solid #E7E3EE; color: inherit;" style-hover="border-color: #388EE9; background: #fff; box-shadow: 0 16px 36px rgba(15,20,37,.10); transform: translateY(-2px);">
+          <a href="{{ l.href }}" target="_blank" rel="noopener" data-lead-group="{{ l.group }}" data-lead-title="{{ l.t }}" style="display: flex; flex-direction: column; gap: 9px; padding: 22px; border-radius: 16px; background: #F9F9F9; border: 1px solid #E7E3EE; color: inherit;" style-hover="border-color: #388EE9; background: #fff; box-shadow: 0 16px 36px rgba(15,20,37,.10); transform: translateY(-2px);">
             <span style="font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #7B51FF;">{{ l.group }}</span>
             <h3 style="margin: 0; font-size: 15px; line-height: 1.35; font-weight: 700; letter-spacing: -0.02em; color: #0F1425; text-wrap: pretty;">{{ l.t }}</h3>
             <p style="margin: 0; font-size: 13px; font-weight: 450; line-height: 1.55; color: #3A3D42; flex: 1; text-wrap: pretty;">{{ l.d }}</p>
@@ -1243,6 +1243,48 @@ class Component extends DCLogic {
   }
 }
 
+</script>
+
+<!-- Cookie consent notice (LGPD) -->
+<div id="cookie-consent" style="display:none; position:fixed; left:0; right:0; bottom:0; z-index:9999; background:#0F1425; color:#fff; font-family: Montserrat, Arial, sans-serif; box-shadow: 0 -8px 24px rgba(0,0,0,.25);">
+  <div style="max-width:1120px; margin:0 auto; padding:18px 20px; display:flex; flex-wrap:wrap; align-items:center; gap:16px; justify-content:space-between;">
+    <p id="cookie-consent-text" style="margin:0; font-size:13px; line-height:1.6; color:#D9DEEA; flex:1 1 320px;">
+      Este site usa cookies de análise (Google Analytics/Tag Manager) para entender como os visitantes chegam e navegam. Ao continuar, você concorda com esse uso.
+    </p>
+    <button id="cookie-consent-accept" type="button" style="flex:0 0 auto; padding:10px 22px; border:none; border-radius:999px; background:#388EE9; color:#fff; font-family:inherit; font-size:13px; font-weight:700; cursor:pointer;">
+      Entendi
+    </button>
+  </div>
+</div>
+<script>
+(function () {
+  var KEY = 'lrt-cookie-consent';
+  try {
+    if (localStorage.getItem(KEY) === '1') return;
+  } catch (e) {}
+
+  var lang = 'pt';
+  try { lang = localStorage.getItem('lrt-lang') === 'en' ? 'en' : 'pt'; } catch (e) {}
+
+  var COPY = {
+    pt: { text: 'Este site usa cookies de análise (Google Analytics/Tag Manager) para entender como os visitantes chegam e navegam. Ao continuar, você concorda com esse uso.', btn: 'Entendi' },
+    en: { text: 'This site uses analytics cookies (Google Analytics/Tag Manager) to understand how visitors arrive and navigate. By continuing, you agree to this use.', btn: 'Got it' }
+  };
+
+  var el = document.getElementById('cookie-consent');
+  var textEl = document.getElementById('cookie-consent-text');
+  var btn = document.getElementById('cookie-consent-accept');
+  if (!el || !textEl || !btn) return;
+
+  textEl.textContent = COPY[lang].text;
+  btn.textContent = COPY[lang].btn;
+  el.style.display = 'block';
+
+  btn.addEventListener('click', function () {
+    try { localStorage.setItem(KEY, '1'); } catch (e) {}
+    el.style.display = 'none';
+  });
+})();
 </script>
 </body>
 </html>
