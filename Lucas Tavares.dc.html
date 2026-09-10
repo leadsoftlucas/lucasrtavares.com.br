@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Lucas Resende Tavares — Sales Engineer · RavenDB</title>
+<link rel="icon" type="image/svg+xml" href="assets/lambda.svg">
+<link rel="apple-touch-icon" href="assets/og-cover.jpg">
+<meta name="description" content="Lucas Resende Tavares — Sales Engineer na RavenDB. Escrevo e falo sobre dados, arquitetura, IA sobre sistemas legados e o custo real da complexidade. 17 pacotes .NET open source, 208 mil downloads no NuGet.">
+<meta name="author" content="Lucas Resende Tavares">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Lucas Resende Tavares">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:title" content="Lucas Resende Tavares — Sales Engineer · RavenDB">
+<meta property="og:description" content="Dados, arquitetura e o custo real da complexidade. Sales Engineer na RavenDB, autor de 17 pacotes .NET open source e palestrante no Brasil e nos EUA.">
+<meta property="og:image" content="assets/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Lucas Resende Tavares — Sales Engineer na RavenDB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lucas Resende Tavares — Sales Engineer · RavenDB">
+<meta name="twitter:description" content="Dados, arquitetura e o custo real da complexidade. Sales Engineer na RavenDB e autor de 17 pacotes .NET open source.">
+<meta name="twitter:image" content="assets/og-cover.jpg">
+<link rel="stylesheet" href="_ds/ravendb-brand-019ddeb7-441b-7c80-bd14-e4b89ff07b2b/styles.css">
+<script src="_ds/ravendb-brand-019ddeb7-441b-7c80-bd14-e4b89ff07b2b/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #F7F5FA; }
+  a { color: #388EE9; text-decoration: none; }
+  a:hover { color: #1CC8EE; }
+  ::selection { background: #1CC8EE; color: #0F1425; }
+  @keyframes lrt-marquee { from { transform: translate3d(0,0,0); } to { transform: translate3d(-50%,0,0); } }
+  @keyframes lrt-drift { from { background-position: 0 0; } to { background-position: -1600px -300px; } }
+</style>
+</helmet>
+
+<div style="font-family: Montserrat, sans-serif; background: #F7F5FA; color: #0F1425; overflow-x: hidden;">
+
+  <header style="position: sticky; top: 0; z-index: 40; background: rgba(15,20,37,.88); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.10);">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 12px 20px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+      <a href="#top" style="display: flex; align-items: center; gap: 10px; color: #fff;">
+        <img src="assets/lambda.svg" alt="Lambda" style="height: 26px; width: auto; display: block;">
+        <span style="font-weight: 700; font-size: 15px; letter-spacing: -0.02em; color: #fff;">Lucas R. Tavares</span>
+      </a>
+      <div style="display: flex; align-items: center; gap: 8px; padding-left: 14px; border-left: 1px solid rgba(255,255,255,.14);">
+        <button type="button" onClick="{{ setPt }}" title="Português" style="{{ flagPt }}">
+          <img src="assets/flag-br.png" alt="Português" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </button>
+        <button type="button" onClick="{{ setEn }}" title="English" style="{{ flagEn }}">
+          <img src="assets/flag-us.png" alt="English" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </button>
+      </div>
+      <nav style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-left: auto;">
+        <a href="#sobre" style="font-size: 13px; font-weight: 500; color: rgba(255,255,255,.78);" style-hover="color: #1CC8EE;">{{ t.nav.about }}</a>
+        <a href="#trajetoria" style="font-size: 13px; font-weight: 500; color: rgba(255,255,255,.78);" style-hover="color: #1CC8EE;">{{ t.nav.path }}</a>
+        <a href="#codigo" style="font-size: 13px; font-weight: 500; color: rgba(255,255,255,.78);" style-hover="color: #1CC8EE;">{{ t.nav.code }}</a>
+        <a href="#palcos" style="font-size: 13px; font-weight: 500; color: rgba(255,255,255,.78);" style-hover="color: #1CC8EE;">{{ t.nav.stages }}</a>
+        <a href="#artigos" style="font-size: 13px; font-weight: 500; color: rgba(255,255,255,.78);" style-hover="color: #1CC8EE;">{{ t.nav.writing }}</a>
+        <a href="#contato" style="font-size: 13px; font-weight: 500; color: rgba(255,255,255,.78);" style-hover="color: #1CC8EE;">{{ t.nav.contact }}</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="top" style="position: relative; background: #0F1425; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background-image: url('assets/cosmic-bg.svg'); background-size: cover; background-position: center;"></div>
+    <div style="position: absolute; inset: 0; background: linear-gradient(100deg, rgba(7,11,24,.92) 0%, rgba(7,31,114,.42) 50%, rgba(7,11,24,.15) 100%);"></div>
+    <div style="position: relative; max-width: 1120px; margin: 0 auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; align-items: end;">
+      <div style="padding: clamp(56px, 8vw, 104px) 0 clamp(48px, 7vw, 96px);">
+        <a href="https://ravendb.net" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px 7px 8px; border-radius: 999px; background: rgba(255,255,255,.08); border: 1px solid rgba(28,200,238,.35); margin-bottom: 26px; color: #9FE9FA;" style-hover="border-color: #1CC8EE; background: rgba(28,200,238,.16); color: #fff;">
+          <img src="assets/ravendb-r-mark.png" alt="RavenDB" style="height: 20px; width: auto; display: block;">
+          <span style="font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: inherit;">{{ t.hero.overline }}</span>
+        </a>
+        <h1 style="margin: 0 0 16px; font-size: clamp(38px, 6vw, 68px); line-height: 1.02; font-weight: 800; letter-spacing: -0.03em; color: #fff; text-wrap: balance;">{{ t.hero.title }}</h1>
+        <p style="margin: 0 0 22px; font-size: clamp(17px, 2.2vw, 22px); line-height: 1.35; font-weight: 600; letter-spacing: -0.02em; background: linear-gradient(90deg, #1CC8EE 0%, #388EE9 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">{{ t.hero.role }}</p>
+        <p style="margin: 0 0 28px; max-width: 54ch; font-size: 16px; line-height: 1.65; color: rgba(255,255,255,.82); text-wrap: pretty;">{{ t.hero.lead }}</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 26px;">
+          <a href="{{ waLink }}" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 24px; border-radius: 999px; background: linear-gradient(135deg, #388EE9 0%, #1CC8EE 100%); color: #06121F; font-size: 14px; font-weight: 700; letter-spacing: -0.01em; box-shadow: 0 0 40px rgba(28,200,238,.35);" style-hover="opacity: .88;">{{ t.hero.cta1 }}</a>
+          <a href="https://www.linkedin.com/in/lucasrtavares/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 24px; border-radius: 999px; border: 1px solid rgba(255,255,255,.32); color: #fff; font-size: 14px; font-weight: 600;" style-hover="border-color: #1CC8EE; color: #1CC8EE;">{{ t.hero.cta2 }}</a>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 12px; color: rgba(255,255,255,.52);">
+          <span style="letter-spacing: .12em; text-transform: uppercase; font-weight: 600;">{{ t.hero.mailLabel }}</span>
+          <a href="mailto:lucas.tavares@ravendb.net" style="color: rgba(255,255,255,.68); border-bottom: 1px solid rgba(255,255,255,.22);" style-hover="color: #1CC8EE;">lucas.tavares@ravendb.net</a>
+        </div>
+      </div>
+      <div style="position: relative; display: flex; justify-content: center; align-items: flex-end; min-height: 320px;">
+        <div style="position: absolute; bottom: 0; width: min(420px, 88%); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(28,200,238,.42) 0%, rgba(123,81,255,.18) 45%, rgba(15,20,37,0) 72%);"></div>
+        <img src="assets/lucas-tavares.png" alt="Lucas Resende Tavares" style="position: relative; display: block; width: auto; max-width: 100%; height: clamp(340px, 42vw, 560px); object-fit: contain; object-position: bottom; filter: drop-shadow(0 24px 60px rgba(0,0,0,.55));">
+      </div>
+    </div>
+    <div style="height: 4px; background: linear-gradient(90deg, #1CC8EE 0%, #388EE9 50%, #7B51FF 100%);"></div>
+  </section>
+
+  <section style="background: #fff; border-bottom: 1px solid #E7E3EE;">
+    <div style="max-width: 1120px; margin: 0 auto; padding: clamp(44px, 6vw, 72px) 20px;">
+      <p style="margin: 0 0 28px; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #999D9E;">{{ t.metricsTitle }}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
+        <sc-for list="{{ t.metrics }}" as="m" hint-placeholder-count="3">
+          <div style="padding: 26px; border-radius: 20px; background: #F9F9F9; border: 1px solid #E7E3EE;">
+            <p style="margin: 0 0 10px; font-size: clamp(24px, 3vw, 32px); font-weight: 800; letter-spacing: -0.03em; color: #0C2FA5;">{{ m.v }}</p>
+            <p style="margin: 0 0 8px; font-size: 13px; font-weight: 700; color: #0F1425;">{{ m.k }}</p>
+            <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #545557; text-wrap: pretty;">{{ m.d }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" style="background: #F7F5FA; background-image: url('assets/dot-grid.svg'); background-size: 26px;">
+    <div style="max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) 20px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(28px, 5vw, 64px); align-items: start;">
+        <div>
+          <p style="margin: 0 0 14px; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #388EE9;">{{ t.aboutOverline }}</p>
+          <h2 style="margin: 0 0 20px; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.1; font-weight: 700; letter-spacing: -0.03em; color: #0F1425; text-wrap: balance;">{{ t.aboutTitle }}</h2>
+          <div style="width: 72px; height: 4px; border-radius: 2px; background: linear-gradient(90deg, #10d9e8 0%, #1458f5 100%);"></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 18px;">
+          <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #545557; text-wrap: pretty;">{{ t.about1 }}</p>
+          <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #545557; text-wrap: pretty;">{{ t.about2 }}</p>
+          <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #545557; text-wrap: pretty;">{{ t.about3 }}</p>
+          <div style="margin-top: 6px; padding: 24px 26px; border-radius: 16px; background: linear-gradient(135deg, rgba(56,142,233,.10) 0%, rgba(123,81,255,.08) 100%); border: 1px solid rgba(56,142,233,.28);">
+            <p style="margin: 0 0 10px; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #0C2FA5;">{{ t.missionOverline }}</p>
+            <p style="margin: 0 0 12px; font-size: 16px; line-height: 1.7; color: #3A3D42; text-wrap: pretty;">{{ t.mission1 }}</p>
+            <p style="margin: 0; font-size: 16px; line-height: 1.7; color: #3A3D42; text-wrap: pretty;">{{ t.mission2 }}</p>
+          </div>
+          <blockquote style="margin: 8px 0 0; padding: 22px 26px; border-radius: 16px; background: #fff; border: 1px solid #E7E3EE; box-shadow: 0 4px 12px rgba(15,20,37,.05);">
+            <p style="margin: 0; font-size: 16px; line-height: 1.6; font-weight: 600; letter-spacing: -0.01em; color: #0F1425; text-wrap: pretty;">{{ t.aboutQuote }}</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: #0F1425; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background-image: url('assets/deep-blue-bg.svg'); background-size: cover; background-position: center; opacity: .85;"></div>
+    <div style="position: relative; max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) 20px;">
+      <h2 style="margin: 0 0 12px; font-size: clamp(26px, 3.2vw, 38px); line-height: 1.15; font-weight: 700; letter-spacing: -0.03em; color: #fff; text-wrap: balance;">{{ t.servicesTitle }}</h2>
+      <p style="margin: 0 0 40px; max-width: 62ch; font-size: 16px; line-height: 1.65; color: rgba(255,255,255,.72); text-wrap: pretty;">{{ t.servicesLead }}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px;">
+        <sc-for list="{{ t.services }}" as="s" hint-placeholder-count="4">
+          <div style="padding: 26px; border-radius: 18px; background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.12);" style-hover="border-color: rgba(28,200,238,.55);">
+            <p style="margin: 0 0 14px; font-size: 11px; font-weight: 700; letter-spacing: .18em; color: #63FFA6;">{{ s.n }}</p>
+            <h3 style="margin: 0 0 10px; font-size: 17px; font-weight: 700; letter-spacing: -0.02em; color: #fff;">{{ s.t }}</h3>
+            <p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,.68); text-wrap: pretty;">{{ s.d }}</p>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top: 44px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.14);">
+        <p style="margin: 0 0 16px; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: rgba(255,255,255,.45);">{{ t.stackTitle }}</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+          <sc-for list="{{ t.stack }}" as="chip" hint-placeholder-count="10">
+            <span style="padding: 7px 14px; border-radius: 999px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); font-size: 13px; font-weight: 500; color: rgba(255,255,255,.88);">{{ chip }}</span>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trajetoria" style="background: #fff;">
+    <div style="max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) 20px;">
+      <h2 style="margin: 0 0 12px; font-size: clamp(26px, 3.2vw, 38px); line-height: 1.15; font-weight: 700; letter-spacing: -0.03em; color: #0F1425;">{{ t.pathTitle }}</h2>
+      <p style="margin: 0 0 44px; max-width: 62ch; font-size: 16px; line-height: 1.65; color: #545557; text-wrap: pretty;">{{ t.pathLead }}</p>
+      <div style="display: flex; flex-direction: column; gap: 0;">
+        <sc-for list="{{ t.timeline }}" as="job" hint-placeholder-count="6">
+          <div style="display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: clamp(14px, 3vw, 36px); padding: 24px 0; border-top: 1px solid #E7E3EE;">
+            <div>
+              <p style="margin: 0 0 6px; font-size: 14px; font-weight: 700; letter-spacing: -0.01em; color: #388EE9;">{{ job.period }}</p>
+              <p style="margin: 0; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #999D9E;">{{ job.place }}</p>
+            </div>
+            <div>
+              <h3 style="margin: 0 0 8px; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: #0F1425;">{{ job.role }}</h3>
+              <p style="margin: 0; font-size: 15px; line-height: 1.65; color: #545557; text-wrap: pretty;">{{ job.d }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px;">
+        <div style="padding: 22px 24px; border-radius: 16px; background: #F9F9F9; border: 1px solid #E7E3EE;">
+          <p style="margin: 0 0 8px; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #999D9E;">{{ t.eduTitle }}</p>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #0F1425; font-weight: 600;">{{ t.edu }}</p>
+        </div>
+        <div style="padding: 22px 24px; border-radius: 16px; background: #F9F9F9; border: 1px solid #E7E3EE;">
+          <p style="margin: 0 0 8px; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #999D9E;">{{ t.langTitle }}</p>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #0F1425; font-weight: 600;">{{ t.langs }}</p>
+        </div>
+        <div style="padding: 22px 24px; border-radius: 16px; background: #F9F9F9; border: 1px solid #E7E3EE;">
+          <p style="margin: 0 0 8px; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #999D9E;">{{ t.baseTitle }}</p>
+          <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #0F1425; font-weight: 600;">{{ t.base }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: linear-gradient(135deg, #071F72 0%, #0F1425 100%);">
+    <div style="max-width: 1120px; margin: 0 auto; padding: clamp(48px, 7vw, 88px) 20px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: clamp(28px, 5vw, 56px); align-items: center;">
+        <div style="display: flex; align-items: center; gap: 22px;">
+          <img src="assets/lambda.svg" alt="Lambda LeadSoft" style="height: clamp(90px, 12vw, 140px); width: auto; display: block; filter: drop-shadow(0 0 30px rgba(28,200,238,.45));">
+          <div style="width: 1px; align-self: stretch; background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.28) 50%, rgba(255,255,255,0) 100%);"></div>
+          <div>
+            <p style="margin: 0 0 6px; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #63FFA6;">{{ t.leadsoft.overline }}</p>
+            <p style="margin: 0; font-size: clamp(20px, 2.6vw, 28px); font-weight: 700; letter-spacing: -0.02em; color: #fff;">{{ t.leadsoft.title }}</p>
+          </div>
+        </div>
+        <div>
+          <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.7; color: rgba(255,255,255,.80); text-wrap: pretty;">{{ t.leadsoft.body }}</p>
+          <p style="margin: 0 0 22px; font-size: 14px; line-height: 1.7; color: rgba(255,255,255,.58); text-wrap: pretty;">{{ t.leadsoft.clients }}</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+            <a href="https://leadsoft.inf.br" target="_blank" rel="noopener" style="font-size: 13px; font-weight: 600; color: #1CC8EE; border-bottom: 1px solid rgba(28,200,238,.4);" style-hover="color: #63FFA6;">leadsoft.inf.br</a>
+            <a href="https://www.nuget.org/profiles/lucastavares" target="_blank" rel="noopener" style="font-size: 13px; font-weight: 600; color: rgba(255,255,255,.72); border-bottom: 1px solid rgba(255,255,255,.22);" style-hover="color: #1CC8EE;">{{ t.leadsoft.nuget }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="codigo" style="background: linear-gradient(180deg, #EEF2FC 0%, #F7F5FA 55%, #EDF1FB 100%); border-bottom: 1px solid #E1E6F2;">
+    <div style="max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) 20px clamp(28px, 4vw, 40px);">
+      <p style="margin: 0 0 14px; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #388EE9;">{{ t.ossOverline }}</p>
+      <h2 style="margin: 0 0 14px; font-size: clamp(26px, 3.2vw, 38px); line-height: 1.15; font-weight: 700; letter-spacing: -0.03em; color: #0F1425; text-wrap: balance;">{{ t.ossTitle }}</h2>
+      <p style="margin: 0 0 30px; max-width: 64ch; font-size: 16px; line-height: 1.65; color: #545557; text-wrap: pretty;">{{ t.ossLead }}</p>
+      <div style="position: relative; overflow: hidden; border-radius: 22px; background: linear-gradient(120deg, #0F1425 0%, #071F72 62%, #0C2FA5 100%); padding: clamp(24px, 4vw, 34px); display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 24px;">
+        <div style="position: absolute; inset: 0; background-image: url('assets/cosmic-bg.svg'); background-size: cover; background-position: 50% 40%; opacity: .55;"></div>
+        <div style="position: relative;">
+          <p style="margin: 0; font-size: clamp(30px, 3.6vw, 42px); font-weight: 800; letter-spacing: -0.03em; color: #fff;">208.855</p>
+          <p style="margin: 6px 0 0; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #9FE9FA;">{{ t.ossDownloads }}</p>
+        </div>
+        <div style="position: relative;">
+          <p style="margin: 0; font-size: clamp(30px, 3.6vw, 42px); font-weight: 800; letter-spacing: -0.03em; color: #fff;">17</p>
+          <p style="margin: 6px 0 0; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #9FE9FA;">{{ t.ossPackages }}</p>
+        </div>
+        <div style="position: relative;">
+          <p style="margin: 0; font-size: clamp(30px, 3.6vw, 42px); font-weight: 800; letter-spacing: -0.03em; color: #63FFA6;">MIT</p>
+          <p style="margin: 6px 0 0; font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #9FE9FA;">{{ t.ossLicense }}</p>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1120px; margin: 0 auto; padding: 0 20px clamp(40px, 6vw, 64px);">
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px;">
+        <sc-for list="{{ chips }}" as="chip" hint-placeholder-count="5">
+          <button type="button" onClick="{{ chip.onClick }}" style="{{ chip.style }}">
+            <span>{{ chip.label }}</span>
+            <span style="opacity: .62; font-variant-numeric: tabular-nums;">{{ chip.count }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(272px, 1fr)); gap: 16px;">
+        <sc-for list="{{ packagesShown }}" as="pkg" hint-placeholder-count="9">
+          <div style="display: flex; flex-direction: column; gap: 14px; padding: 22px; border-radius: 18px; background: #fff; border: 1px solid #E1E6F2; box-shadow: 0 2px 10px rgba(15,20,37,.05);" style-hover="border-color: #388EE9; box-shadow: 0 18px 40px rgba(15,20,37,.12); transform: translateY(-2px);">
+            <div style="display: flex; align-items: flex-start; gap: 12px;">
+              <sc-if value="{{ pkg.isCore }}" hint-placeholder-val="{{ true }}">
+                <span style="flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px; background: rgba(12,47,165,.10); display: flex; align-items: center; justify-content: center;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0C2FA5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"></path><path d="M3 12l9 4.5L21 12"></path><path d="M3 16.5 12 21l9-4.5"></path></svg>
+                </span>
+              </sc-if>
+              <sc-if value="{{ pkg.isBr }}" hint-placeholder-val="{{ true }}">
+                <span style="flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px; background: rgba(14,159,110,.12); display: flex; align-items: center; justify-content: center;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0E9F6E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                </span>
+              </sc-if>
+              <sc-if value="{{ pkg.isCloud }}" hint-placeholder-val="{{ true }}">
+                <span style="flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px; background: rgba(123,81,255,.12); display: flex; align-items: center; justify-content: center;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7B51FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97 6 6 0 0 0-11.66-1.4A4 4 0 0 0 6.5 19h11Z"></path></svg>
+                </span>
+              </sc-if>
+              <sc-if value="{{ pkg.isSec }}" hint-placeholder-val="{{ true }}">
+                <span style="flex: 0 0 auto; width: 44px; height: 44px; border-radius: 12px; background: rgba(0,150,190,.12); display: flex; align-items: center; justify-content: center;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0096BE" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5.5c0 4.3 2.9 8.2 7 9.5 4.1-1.3 7-5.2 7-9.5V6l-7-3Z"></path><path d="m9.5 12 1.8 1.8 3.4-3.4"></path></svg>
+                </span>
+              </sc-if>
+              <div style="min-width: 0; flex: 1;">
+                <p style="margin: 0; font-size: 10px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: #999D9E;">{{ pkg.catLabel }}</p>
+                <p style="margin: 3px 0 0; font-size: 13px; font-weight: 700; letter-spacing: -0.01em; color: #0F1425; overflow-wrap: anywhere; line-height: 1.35;">{{ pkg.short }}</p>
+              </div>
+            </div>
+            <p style="margin: 0; font-size: 13px; line-height: 1.55; color: #545557; flex: 1; text-wrap: pretty;">{{ pkg.d }}</p>
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: #EEF2FC; color: #0C2FA5; font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"></path><path d="m7 11 5 5 5-5"></path><path d="M5 20h14"></path></svg>
+                <span>{{ pkg.downloads }}</span>
+              </span>
+              <span style="padding: 5px 11px; border-radius: 999px; background: #F4F4F6; color: #545557; font-size: 11px; font-weight: 700; font-variant-numeric: tabular-nums;">v{{ pkg.version }}</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 2px; border-top: 1px solid #EEF0F6;">
+              <a href="{{ pkg.nuget }}" target="_blank" rel="noopener" style="margin-top: 12px; padding: 7px 14px; border-radius: 999px; background: #0F1425; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .04em;" style-hover="background: #0C2FA5;">NuGet</a>
+              <sc-if value="{{ pkg.repo }}" hint-placeholder-val="{{ true }}">
+                <a href="{{ pkg.repo }}" target="_blank" rel="noopener" style="margin-top: 12px; padding: 7px 14px; border-radius: 999px; border: 1px solid #D9DEEA; color: #545557; font-size: 11px; font-weight: 700; letter-spacing: .04em;" style-hover="border-color: #0F1425; color: #0F1425;">GitHub</a>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <div style="max-width: 1120px; margin: 0 auto; padding: 0 20px clamp(48px, 7vw, 80px); display: flex; flex-wrap: wrap; gap: 12px;">
+      <a href="https://www.nuget.org/profiles/lucastavares" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; height: 46px; padding: 0 22px; border-radius: 999px; background: linear-gradient(135deg, #388EE9 0%, #1CC8EE 100%); color: #06121F; font-size: 13px; font-weight: 700;" style-hover="opacity: .88;">{{ t.ossCtaNuget }}</a>
+      <a href="https://github.com/orgs/LeadSoft-Solucoes-Web/repositories" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; height: 46px; padding: 0 22px; border-radius: 999px; border: 1px solid #0F1425; color: #0F1425; font-size: 13px; font-weight: 700;" style-hover="background: #0F1425; color: #fff;">{{ t.ossCtaGithub }}</a>
+    </div>
+  </section>
+
+  <section id="palcos" style="background: #0F1425; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background-image: url('assets/cosmic-bg.svg'); background-size: cover; background-position: 50% 20%; opacity: .85;"></div>
+    <div style="position: relative; max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) 20px;">
+      <p style="margin: 0 0 14px; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #63FFA6;">{{ t.eventsOverline }}</p>
+      <h2 style="margin: 0 0 14px; font-size: clamp(26px, 3.2vw, 38px); line-height: 1.15; font-weight: 700; letter-spacing: -0.03em; color: #fff; text-wrap: balance;">{{ t.eventsTitle }}</h2>
+      <p style="margin: 0 0 40px; max-width: 62ch; font-size: 16px; line-height: 1.65; color: rgba(255,255,255,.74); text-wrap: pretty;">{{ t.eventsLead }}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px;">
+        <sc-for list="{{ t.events }}" as="ev" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);">
+            <div style="position: relative; height: 150px; background: rgba(0,0,0,.25);">
+              <image-slot id="{{ ev.slot }}" shape="rect" src="{{ ev.photo }}" placeholder="{{ ev.slotHint }}"></image-slot>
+            </div>
+            <div style="padding: 20px; display: flex; flex-direction: column; gap: 8px;">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <img src="{{ ev.flag }}" alt="" style="width: 22px; height: 22px; border-radius: 5px; display: block;">
+                <span style="font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #9FE9FA;">{{ ev.date }}</span>
+              </div>
+              <h3 style="margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -0.02em; color: #fff; text-wrap: pretty;">{{ ev.name }}</h3>
+              <p style="margin: 0; font-size: 13px; line-height: 1.55; color: rgba(255,255,255,.66);">{{ ev.place }}</p>
+              <p style="margin: 4px 0 0; font-size: 13px; line-height: 1.55; color: rgba(255,255,255,.80);">{{ ev.role }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="videos" style="background: #fff;">
+    <div style="max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 96px) 20px;">
+      <p style="margin: 0 0 14px; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #388EE9;">{{ t.videoOverline }}</p>
+      <h2 style="margin: 0 0 14px; font-size: clamp(26px, 3.2vw, 38px); line-height: 1.15; font-weight: 700; letter-spacing: -0.03em; color: #0F1425; text-wrap: balance;">{{ t.videoTitle }}</h2>
+      <p style="margin: 0 0 36px; max-width: 62ch; font-size: 16px; line-height: 1.65; color: #545557; text-wrap: pretty;">{{ t.videoLead }}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 380px)); gap: 20px;">
+        <sc-for list="{{ t.videos }}" as="v" hint-placeholder-count="3">
+          <a href="{{ v.url }}" target="_blank" rel="noopener" style="display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; background: #F9F9F9; border: 1px solid #E7E3EE; color: inherit;" style-hover="border-color: #388EE9; box-shadow: 0 18px 40px rgba(15,20,37,.12);">
+            <div style="position: relative; aspect-ratio: 16 / 9; background: #0F1425;">
+              <img src="{{ v.thumb }}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+              <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 54px; height: 38px; border-radius: 10px; background: rgba(15,20,37,.78); display: flex; align-items: center; justify-content: center;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              </span>
+            </div>
+            <div style="padding: 20px; display: flex; flex-direction: column; gap: 8px; flex: 1;">
+              <span style="font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #7B51FF;">{{ v.channel }}</span>
+              <sc-if value="{{ v.title }}" hint-placeholder-val="{{ true }}">
+                <h3 style="margin: 0; font-size: 16px; line-height: 1.35; font-weight: 700; letter-spacing: -0.02em; color: #0F1425; text-wrap: pretty;">{{ v.title }}</h3>
+              </sc-if>
+              <sc-if value="{{ v.d }}" hint-placeholder-val="{{ true }}">
+                <p style="margin: 0; font-size: 13px; line-height: 1.55; color: #545557; flex: 1; text-wrap: pretty;">{{ v.d }}</p>
+              </sc-if>
+              <span style="margin-top: auto; align-self: flex-start; font-size: 12px; font-weight: 700; color: #0C2FA5;">{{ t.videoWatch }}</span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+      <div style="margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px;">
+        <a href="https://www.youtube.com/@LucasResendeTavares" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 20px; border-radius: 999px; border: 1px solid #D2D2D2; color: #0F1425; font-size: 13px; font-weight: 700;" style-hover="border-color: #388EE9; color: #0C2FA5;">
+          <img src="assets/youtube.png" alt="" style="width: 22px; height: 22px; border-radius: 5px;">
+          <span>{{ t.videoCtaMine }}</span>
+        </a>
+        <a href="https://www.youtube.com/@ravendb_net" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 20px; border-radius: 999px; border: 1px solid #D2D2D2; color: #0F1425; font-size: 13px; font-weight: 700;" style-hover="border-color: #388EE9; color: #0C2FA5;">
+          <img src="assets/ravendb-r-mark.png" alt="" style="width: 20px; height: 20px; object-fit: contain;">
+          <span>{{ t.videoCtaRaven }}</span>
+        </a>
+        <a href="https://github.com/LeadSoft-Solucoes-Web/leadsoft-tdcsp2024-ravendb-datamodel" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; height: 46px; padding: 0 20px; border-radius: 999px; border: 1px solid #D2D2D2; color: #0F1425; font-size: 13px; font-weight: 700;" style-hover="border-color: #388EE9; color: #0C2FA5;">{{ t.videoCtaRepo }}</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="artigos" style="background: #F7F5FA; background-image: url('assets/dot-grid.svg'); background-size: 26px;">
+    <div style="max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) 20px;">
+      <div style="display: flex; flex-wrap: wrap; gap: clamp(20px, 4vw, 48px); align-items: flex-end; margin-bottom: 40px;">
+        <div style="flex: 1 1 380px; min-width: 0;">
+          <h2 style="margin: 0 0 12px; font-size: clamp(26px, 3.2vw, 38px); line-height: 1.15; font-weight: 700; letter-spacing: -0.03em; color: #0F1425; text-wrap: balance;">{{ t.articlesTitle }}</h2>
+          <p style="margin: 0; max-width: 62ch; font-size: 16px; line-height: 1.65; color: #545557; text-wrap: pretty;">{{ t.articlesLead }}</p>
+        </div>
+        <div style="flex: 0 0 auto; position: relative; width: clamp(190px, 24vw, 250px); height: clamp(190px, 24vw, 250px); border-radius: 24px; overflow: hidden; background: linear-gradient(160deg, #0F1425 0%, #071F72 60%, #0C2FA5 100%); box-shadow: 0 18px 40px rgba(15,20,37,.16);">
+          <div style="position: absolute; inset: 0; background-image: url('assets/cosmic-bg.svg'); background-size: cover; background-position: 40% 60%; opacity: .8;"></div>
+          <img src="assets/avatar-bust.png" alt="Lucas Tavares — avatar" style="position: absolute; left: 52%; bottom: 0; transform: translateX(-50%); height: 96%; width: auto; display: block; filter: drop-shadow(0 12px 24px rgba(0,0,0,.45));">
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px;">
+        <sc-for list="{{ t.articles }}" as="a" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; border-radius: 20px; overflow: hidden; background: #fff; border: 1px solid #E7E3EE; box-shadow: 0 4px 12px rgba(15,20,37,.05); height: 100%;" style-hover="border-color: #388EE9; box-shadow: 0 18px 40px rgba(15,20,37,.12);">
+            <div style="position: relative; aspect-ratio: 1200 / 630; background: #0F1425;">
+              <image-slot id="{{ a.slot }}" shape="rect" src="{{ a.cover }}" placeholder="Capa do artigo"></image-slot>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px; padding: 26px; flex: 1;">
+              <span style="font-size: 10px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: #7B51FF;">{{ a.tag }}</span>
+              <h3 style="margin: 0; font-size: 18px; line-height: 1.35; font-weight: 700; letter-spacing: -0.02em; color: #0F1425; text-wrap: pretty;">
+                <a href="{{ a.url }}" target="_blank" rel="noopener" style="color: inherit;" style-hover="color: #0C2FA5;">{{ a.title }}</a>
+              </h3>
+              <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #545557; text-wrap: pretty; flex: 1;">{{ a.d }}</p>
+              <a href="{{ a.url }}" target="_blank" rel="noopener" style="align-self: flex-start; font-size: 13px; font-weight: 700; color: #0C2FA5; border-bottom: 1px solid rgba(12,47,165,.3);" style-hover="color: #1CC8EE; border-color: #1CC8EE;">{{ t.articleRead }}</a>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="margin-top: 28px; display: flex; justify-content: flex-start;">
+        <a href="https://www.linkedin.com/in/lucasrtavares/recent-activity/articles/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 24px; border-radius: 999px; border: 1px solid #388EE9; color: #0C2FA5; font-size: 14px; font-weight: 700; background: #fff;" style-hover="background: #388EE9; color: #fff;">{{ t.articlesCta }}</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" style="background: #0F1425; position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background-image: url('assets/cosmic-bg.svg'); background-size: cover; background-position: 50% 70%; opacity: .9;"></div>
+    <div style="position: relative; max-width: 1120px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) 20px;">
+      <h2 style="margin: 0 0 12px; font-size: clamp(28px, 3.6vw, 42px); line-height: 1.1; font-weight: 700; letter-spacing: -0.03em; color: #fff; text-wrap: balance;">{{ t.contactTitle }}</h2>
+      <p style="margin: 0 0 40px; max-width: 58ch; font-size: 16px; line-height: 1.65; color: rgba(255,255,255,.75); text-wrap: pretty;">{{ t.contactLead }}</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px;">
+        <a href="https://www.linkedin.com/in/lucasrtavares/" target="_blank" rel="noopener" style="display: flex; flex-direction: column; gap: 14px; padding: 28px; border-radius: 20px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); color: inherit;" style-hover="border-color: #1CC8EE; background: rgba(255,255,255,.10);">
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <span style="position: relative; width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex: 0 0 auto; background: linear-gradient(160deg, #388EE9 0%, #071F72 100%); border: 2px solid rgba(28,200,238,.5);">
+              <img src="assets/avatar-head.png" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+            </span>
+            <div style="min-width: 0;">
+              <p style="margin: 0; font-size: 15px; font-weight: 700; letter-spacing: -0.02em; color: #fff;">Lucas R. Tavares</p>
+              <p style="margin: 2px 0 0; font-size: 12px; color: rgba(255,255,255,.6);">{{ t.contactLinkedinRole }}</p>
+            </div>
+            <img src="assets/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px; display: block; border-radius: 8px; margin-left: auto;">
+          </div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,.68);">{{ t.contactLinkedin }}</p>
+          <span style="align-self: flex-start; padding: 8px 18px; border-radius: 999px; background: #1CC8EE; color: #06121F; font-size: 13px; font-weight: 700;">{{ t.contactLinkedinCta }}</span>
+        </a>
+        <a href="{{ waLink }}" target="_blank" rel="noopener" style="display: flex; flex-direction: column; gap: 14px; padding: 28px; border-radius: 20px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); color: inherit;" style-hover="border-color: #63FFA6; background: rgba(255,255,255,.10);">
+          <span style="width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #388EE9 0%, #1CC8EE 100%); font-size: 20px; font-weight: 800; color: #06121F;">W</span>
+          <h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: #fff;">WhatsApp</h3>
+          <p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,.68);">{{ t.contactWa }}</p>
+          <span style="font-size: 13px; font-weight: 600; color: #1CC8EE;">+55 41 99182-1569</span>
+        </a>
+        <div style="display: flex; flex-direction: column; gap: 14px; padding: 28px; border-radius: 20px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14);">
+          <img src="assets/ravendb-r-mark.png" alt="RavenDB" style="width: 42px; height: 42px; object-fit: contain; display: block;">
+          <h3 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: #fff;">{{ t.contactMailTitle }}</h3>
+          <p style="margin: 0; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,.68);">{{ t.contactMail }}</p>
+          <a href="mailto:lucas.tavares@ravendb.net" style="font-size: 13px; font-weight: 600; color: rgba(255,255,255,.7); border-bottom: 1px solid rgba(255,255,255,.22); align-self: flex-start;" style-hover="color: #1CC8EE;">lucas.tavares@ravendb.net</a>
+        </div>
+      </div>
+      <div style="margin-top: 22px; padding: clamp(24px, 4vw, 34px); border-radius: 22px; background: rgba(255,255,255,.055); border: 1px solid rgba(28,200,238,.30); display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; align-items: center;">
+        <div style="display: flex; align-items: center; gap: 18px;">
+          <img src="assets/ravendb-r-mark.png" alt="RavenDB" style="width: 56px; height: 56px; object-fit: contain; display: block;">
+          <div>
+            <p style="margin: 0 0 6px; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: #63FFA6;">{{ t.followOverline }}</p>
+            <p style="margin: 0; font-size: clamp(19px, 2.4vw, 24px); font-weight: 700; letter-spacing: -0.02em; color: #fff; text-wrap: balance;">{{ t.followTitle }}</p>
+          </div>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: flex-start;">
+          <a href="https://ravendb.net" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 999px; background: linear-gradient(135deg, #388EE9 0%, #1CC8EE 100%); color: #06121F; font-size: 14px; font-weight: 700;" style-hover="opacity: .88;">{{ t.followSite }}</a>
+          <a href="https://www.linkedin.com/company/ravendb/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 999px; border: 1px solid rgba(255,255,255,.34); color: #fff; font-size: 14px; font-weight: 700;" style-hover="border-color: #1CC8EE; color: #1CC8EE;">
+            <img src="assets/linkedin.png" alt="" style="width: 22px; height: 22px; border-radius: 5px; display: block;">
+            <span>{{ t.followLinkedin }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: #06090F; border-top: 1px solid rgba(255,255,255,.10);">
+    <div style="max-width: 1120px; margin: 0 auto; padding: 40px 20px; display: flex; flex-wrap: wrap; gap: 24px; align-items: center; justify-content: space-between;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="assets/lambda.svg" alt="Lambda" style="height: 30px; width: auto; display: block;">
+        <div>
+          <p style="margin: 0; font-size: 14px; font-weight: 700; color: #fff;">lucasrtavares.com.br</p>
+          <p style="margin: 2px 0 0; font-size: 12px; color: rgba(255,255,255,.45);">{{ t.footerNote }}</p>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+        <a href="https://ravendb.net" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(28,200,238,.4); color: #9FE9FA; font-size: 12px; font-weight: 700;" style-hover="background: rgba(28,200,238,.14); color: #fff;">
+          <img src="assets/ravendb-r-mark.png" alt="" style="height: 16px; width: auto; display: block;">
+          <span>ravendb.net</span>
+        </a>
+        <a href="https://www.linkedin.com/company/ravendb/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; height: 34px; padding: 0 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.22); color: rgba(255,255,255,.72); font-size: 12px; font-weight: 700;" style-hover="border-color: #1CC8EE; color: #1CC8EE;">RavenDB · LinkedIn</a>
+        <a href="https://github.com/leadsoftlucas" target="_blank" rel="noopener" title="GitHub" style="display: block;" style-hover="opacity: .7;"><img src="assets/github.png" alt="GitHub" style="width: 30px; height: 30px; display: block; border-radius: 8px;"></a>
+        <a href="https://www.youtube.com/@LucasResendeTavares" target="_blank" rel="noopener" title="YouTube" style="display: block;" style-hover="opacity: .7;"><img src="assets/youtube.png" alt="YouTube" style="width: 30px; height: 30px; display: block; border-radius: 8px;"></a>
+        <a href="https://www.linkedin.com/in/lucasrtavares/" target="_blank" rel="noopener" title="LinkedIn" style="display: block;" style-hover="opacity: .7;"><img src="assets/linkedin.png" alt="LinkedIn" style="width: 30px; height: 30px; display: block; border-radius: 8px;"></a>
+        <a href="mailto:eu@lucasrtavares.com.br" style="font-size: 12px; color: rgba(255,255,255,.42); border-bottom: 1px solid rgba(255,255,255,.16);" style-hover="color: #1CC8EE;">eu@lucasrtavares.com.br</a>
+      </div>
+    </div>
+  </footer>
+
+  <a href="{{ waLink }}" target="_blank" rel="noopener" title="WhatsApp" style="position: fixed; right: 20px; bottom: 20px; z-index: 60; display: inline-flex; align-items: center; gap: 10px; height: 56px; padding: 0 22px; border-radius: 999px; background: linear-gradient(135deg, #388EE9 0%, #1CC8EE 100%); color: #06121F; font-size: 14px; font-weight: 700; letter-spacing: -0.01em; box-shadow: 0 10px 30px rgba(15,20,37,.35), 0 0 40px rgba(28,200,238,.35);" style-hover="opacity: .9;">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.25-8.24 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.17c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.78.97-.14.16-.29.18-.54.06-.25-.13-1.05-.39-1.99-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.13-.56-1.35-.77-1.84-.2-.49-.4-.42-.55-.43h-.47c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03s.87 2.35.99 2.51c.12.16 1.71 2.61 4.15 3.66.58.25 1.03.4 1.39.51.58.19 1.11.16 1.53.1.47-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.15-1.18-.06-.11-.22-.17-.47-.29Z"></path></svg>
+    <span>WhatsApp</span>
+  </a>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const ICON = n => 'https://api.nuget.org/v3-flatcontainer/' + n.toLowerCase() + '/' + PKG_VER[n] + '/icon';
+const NUGET = n => 'https://www.nuget.org/packages/' + n;
+const GH = r => 'https://github.com/LeadSoft-Solucoes-Web/' + r;
+const PKG_VER = {
+  'LeadSoft.Common.Library': '10.0.5',
+  'LeadSoft.Common.GlobalDomain': '10.0.16',
+  'LeadSoft.Common.DataAccess': '10.0.3',
+  'LeadSoft.Adapter.BrasilAPI': '10.0.5',
+  'LeadSoft.Adapter.ViaCep': '10.0.6',
+  'LeadSoft.Adapter.IBGE': '10.1.1',
+  'LeadSoft.Adapter.Email': '10.0.1',
+  'LeadSoft.Adapter.RavenDBIdentity': '10.0.2',
+  'LeadSoft.Adapter.Aws.SecretsManager': '10.1.7',
+  'LeadSoft.Adapter.Azure.EntraID': '10.0.8',
+  'LeadSoft.Adapter.Google.ReCaptcha': '10.2.8',
+  'LeadSoft.Adapter.Google.Workspace': '10.1.0',
+  'LeadSoft.Adapter.Aws.S3': '10.0.0'
+};
+const PKG_META = [
+  { name: 'LeadSoft.Common.Library', downloads: '48.460', repo: 'leadsoft-library' },
+  { name: 'LeadSoft.Common.GlobalDomain', downloads: '41.474', repo: 'leadsoft-global-domain' },
+  { name: 'LeadSoft.Common.DataAccess', downloads: '24.498', repo: null },
+  { name: 'LeadSoft.Adapter.BrasilAPI', downloads: '18.574', repo: 'leadsoft-adapter-brasilapi' },
+  { name: 'LeadSoft.Adapter.ViaCep', downloads: '16.993', repo: 'leadsoft-adapter-viacep' },
+  { name: 'LeadSoft.Adapter.IBGE', downloads: '16.382', repo: 'leadsoft-adapter-ibge' },
+  { name: 'LeadSoft.Adapter.Email', downloads: '5.242', repo: null },
+  { name: 'LeadSoft.Adapter.RavenDBIdentity', downloads: '2.370', repo: null },
+  { name: 'LeadSoft.Adapter.Aws.SecretsManager', downloads: '1.277', repo: 'leadsoft-adapter-aws' },
+  { name: 'LeadSoft.Adapter.Azure.EntraID', downloads: '1.206', repo: 'leadsoft-adapter-azure' },
+  { name: 'LeadSoft.Adapter.Google.ReCaptcha', downloads: '952', repo: 'leadsoft-adapter-google' },
+  { name: 'LeadSoft.Adapter.Google.Workspace', downloads: '723', repo: 'leadsoft-adapter-google' },
+  { name: 'LeadSoft.Adapter.Aws.S3', downloads: '154', repo: 'leadsoft-adapter-aws' }
+];
+const PKG_DESC_PT = [
+  'Canivete suíço de extensões, middlewares, enumeradores e utilitários para acelerar qualquer aplicação .NET.',
+  'Entidades e classes de domínio global reaproveitáveis — o alicerce de DDD que eu repito em todo projeto.',
+  'Camada de acesso a dados com suporte a múltiplos bancos, pensada para trocar de provedor sem reescrever o repositório.',
+  'Adapter .NET testável para os serviços públicos da BrasilAPI, orientado a IHttpClientFactory.',
+  'Consulta de CEP via ViaCEP com camada leve, injetável e pronta para testes.',
+  'Integração com as APIs públicas do IBGE: municípios, estados e dados geográficos.',
+  'Serviços de e-mail transacional com configuração por Dependency Injection.',
+  'ASP.NET Identity rodando sobre RavenDB — autenticação em documentos, sem tabela relacional.',
+  'AWS Secrets Manager via Dependency Injection: segredos fora do appsettings.',
+  'Single sign-on com Azure Entra ID configurado em poucas linhas.',
+  'Google reCAPTCHA validado no backend, com política e limiar configuráveis.',
+  'Disparo de e-mail e integrações com Google Workspace a partir de contas de serviço.',
+  'Upload, download e presigned URLs no AWS S3 via Dependency Injection.'
+];
+const PKG_DESC_EN = [
+  'A Swiss-army knife of extensions, middlewares, enumerators and utilities to speed up any .NET application.',
+  'Reusable global-domain entities and classes — the DDD foundation I carry into every project.',
+  'Data-access layer with multi-database support, built to swap providers without rewriting the repository.',
+  'Testable .NET adapter for BrasilAPI public services, built around IHttpClientFactory.',
+  'Brazilian postal-code lookup through ViaCEP with a light, injectable, test-ready layer.',
+  'Integration with the Brazilian IBGE public APIs: cities, states and geographic data.',
+  'Transactional e-mail services configured through Dependency Injection.',
+  'ASP.NET Identity running on RavenDB — authentication as documents, no relational tables.',
+  'AWS Secrets Manager through Dependency Injection: secrets out of appsettings.',
+  'Single sign-on with Azure Entra ID configured in a few lines.',
+  'Google reCAPTCHA validated on the backend, with configurable policy and threshold.',
+  'E-mail delivery and Google Workspace integrations from service accounts.',
+  'Upload, download and presigned URLs on AWS S3 through Dependency Injection.'
+];
+const PKG_CAT = ['core','core','core','br','br','br','sec','sec','cloud','cloud','cloud','cloud','cloud'];
+const CATS = {
+  pt: { all: 'Todos', core: 'Núcleo .NET', br: 'APIs do Brasil', cloud: 'Nuvem', sec: 'Identidade & e-mail' },
+  en: { all: 'All', core: '.NET core', br: 'Brazilian APIs', cloud: 'Cloud', sec: 'Identity & e-mail' }
+};
+const buildPackages = (descs, lang) => PKG_META.map((p, i) => {
+  const cat = PKG_CAT[i];
+  return {
+    name: p.name,
+    short: p.name.replace('LeadSoft.', ''),
+    cat,
+    catLabel: CATS[lang][cat],
+    isCore: cat === 'core', isBr: cat === 'br', isCloud: cat === 'cloud', isSec: cat === 'sec',
+    downloads: p.downloads,
+    n: Number(p.downloads.replace(/\./g, '')),
+    version: PKG_VER[p.name],
+    d: descs[i],
+    nuget: NUGET(p.name),
+    repo: p.repo ? GH(p.repo) : null
+  };
+}).sort((a, b) => b.n - a.n);
+
+const A1 = 'https://www.linkedin.com/pulse/ningu%C3%A9m-te-disse-que-d%C3%A1-pra-ter-ia-sem-migrar-seu-de-resende-tavares-jrzxf/';
+const A2 = 'https://www.linkedin.com/pulse/ravendb-ai-segmenta%C3%A7%C3%A3o-unificada-em-tempo-real-e-por-resende-tavares-r7pnf/';
+const A3 = 'https://www.linkedin.com/pulse/li%C3%A7%C3%B5es-de-quem-processa-4-do-pib-por-que-agilidade-%C3%A9-resende-tavares-4slnf/';
+const A4 = 'https://www.linkedin.com/pulse/quando-simplificar-exige-coragem-o-pre%C3%A7o-oculto-das-resende-tavares-kyehf/';
+const A5 = 'https://www.linkedin.com/pulse/pare-de-usar-class-para-tudo-c-um-guia-simples-e-que-resende-tavares-tmg4f/';
+const A6 = 'https://www.linkedin.com/pulse/por-qu%C3%AA-falo-tanto-sobre-ravendb-lucas-resende-tavares-96yef/';
+
+const PT = {
+  nav: { about: 'Sobre', path: 'Trajetória', code: 'Código', stages: 'Palcos', writing: 'Artigos', contact: 'Contato' },
+  hero: {
+    overline: 'Sales Engineer · RavenDB Ltd',
+    title: 'Lucas Resende Tavares',
+    role: 'Arquiteto de Soluções & Sales Engineer na RavenDB',
+    lead: 'Quase duas décadas escrevendo software em .NET e modelando dados — dos cursores em Delphi à busca vetorial sobre documentos. Hoje ajudo times de engenharia e decisores técnicos a trocar complexidade por previsibilidade, performance e produtividade.',
+    cta1: 'Falar no WhatsApp',
+    cta2: 'Perfil no LinkedIn',
+    mailLabel: 'Contato oficial'
+  },
+  metricsTitle: 'Resultados que sustentam a conversa',
+  metrics: [
+    { v: '4–8 h → 40 s', k: 'Procedures críticas', d: 'Reestruturação lógica com table functions e eliminação de cursores — sem alterar a modelagem de dados nem criar novos índices.' },
+    { v: '1,8 min → 600 ms', k: 'DaaS no setor automotivo', d: 'Recomendação técnica remodelada em RavenDB com Full-Text Search. O tempo já inclui a autenticação.' },
+    { v: '45 dias', k: 'Arquitetura refeita', d: 'Auditoria de um projeto frágil, convertido inteiro para o modelo de documentos. Na primeira sexta-feira já compilava.' }
+  ],
+  aboutOverline: 'Sobre mim',
+  aboutTitle: 'Da rigidez relacional à liberdade dos documentos',
+  about1: 'Nasci em Belo Horizonte e moro em Curitiba desde 2015. Comecei a programar em 2009, mergulhado em Delphi, Firebird e SQL Server, e passei os primeiros anos aprendendo a entender o dado para otimizar o negócio — não o contrário.',
+  about2: 'Em 2018 fui contratado para auditar um projeto que precisava ir ao ar em 30 dias e estava com a arquitetura frágil. O cliente tinha uma restrição inegociável: RavenDB, um banco do qual eu nunca tinha ouvido falar. Em uma semana refiz a estrutura inteira em documentos. Foi o fim da novela das migrations e dos joins infinitos.',
+  about3: 'De lá para cá, apliquei RavenDB em projetos críticos de performance, publiquei bibliotecas abertas para o ecossistema e levei o tema para palcos como o TDC. Em 2024, na Developer Week, conheci pessoalmente Oren Eini e David Baruc — e em agosto de 2025 entrei oficialmente para o time da RavenDB Ltd.',
+  missionOverline: 'No que eu acredito',
+  mission1: 'O que eu escrevo tem sempre o mesmo fio condutor: quase toda conta cara de tecnologia é conta de complexidade. Cinco ferramentas para manter uma coisa de pé, um serviço que cai e derruba outros três, uma fatura de nuvem que sobe sem ninguém saber apontar o motivo. Simplificar exige coragem — e quase sempre é a decisão mais rentável que um time técnico pode tomar.',
+  mission2: 'Por isso defendo dados em documentos, busca textual e vetorial na mesma camada, e IA sobre o legado sem projeto de migração. Não é modismo: é o caminho que já vi funcionar em produção, em escala e sob pressão. Minha missão é ajudar empresas a tomar decisões de tecnologia que as tornem mais lucrativas — com aplicações mais rápidas, mais simples e mais inteligentes.',
+  aboutQuote: 'Não defendo o RavenDB porque trabalho lá. Trabalho lá porque escolhi o RavenDB como ferramenta de confiança durante quase uma década, enfrentando problemas reais de produção.',
+  servicesTitle: 'Como eu trabalho com times técnicos',
+  servicesLead: 'Sales Engineer, na prática, é engenharia antes de ser venda. Chego junto do time, entendo a dor e mostro — com código rodando — se o RavenDB resolve. Quando não resolve, eu digo.',
+  services: [
+    { n: '01', t: 'Diagnóstico de arquitetura', d: 'Leitura do modelo atual, dos gargalos de consulta e do custo operacional que ninguém consegue explicar na fatura.' },
+    { n: '02', t: 'Prova de conceito real', d: 'POC com os seus dados e o seu caso de uso, com benchmark comparando o caminho atual e o modelo de documentos.' },
+    { n: '03', t: 'Modelagem orientada a documentos', d: 'Como sair do relacional sem recriar o relacional dentro do JSON: agregados, índices, projeções e Full-Text Search.' },
+    { n: '04', t: 'Legado sem parar a operação', d: 'Integração com o que já existe via CDC, ETL e replicação — adicionando IA e busca inteligente sem tocar no sistema antigo.' }
+  ],
+  stackTitle: 'Stack e especialidades',
+  stack: ['RavenDB', '.NET / C#', 'Arquitetura de software', 'Domain-Driven Design', 'REST APIs de alta performance', 'gRPC', 'Modelagem de dados', 'Full-Text & Vector Search', 'SQL Server', 'Entity Framework', 'NHibernate', 'Delphi', 'Firebird'],
+  pathTitle: 'Trajetória',
+  pathLead: 'Da bancada de suporte ao time global da RavenDB — sempre com o dado no centro da decisão.',
+  timeline: [
+    { period: '2025 — Atual', place: 'RavenDB Ltd', role: 'Arquiteto de Soluções · Sales Engineer', d: 'Apoio técnico e comercial a empresas que avaliam ou escalam o RavenDB: modelagem, provas de conceito, performance, migração de legado e recursos de IA. Atuação com clientes no Brasil e no exterior.' },
+    { period: '2018 — 2025', place: 'LeadSoft Soluções Web', role: 'Fundador, CEO e Desenvolvedor Backend .NET', d: 'Fundei e liderei uma software house especializada em software sob medida e alta performance, parceira oficial do RavenDB no Brasil. Conduzi times, contratos e arquitetura para clientes como Castrol Brasil, ECX Pay, Inforlube e Ebbi Tecnologia.' },
+    { period: '2015 — 2018', place: 'Mastertech Sistemas', role: 'Desenvolvedor Pleno · Delphi e .NET C#', d: 'Evolução de produtos de gestão empresarial, integrações e manutenção de bases relacionais em produção.' },
+    { period: '2013 — 2015', place: 'Banco Bonsucesso · BHS', role: 'Desenvolvedor Jr. · Delphi e .NET C#', d: 'Otimização de queries e scripts em SQL Server, revisão de merges e versionamento, além de desenvolvimento .NET com NHibernate.' },
+    { period: '2011 — 2013', place: 'Leadmec Indústria e Comércio', role: 'Desenvolvedor Delphi Jr. · DBA', d: 'Levantamento de requisitos, análise sistêmica e criação do ERP interno em Delphi 2010, com administração da base Firebird.' },
+    { period: '2009 — 2011', place: 'Arquimedes Informática', role: 'Desenvolvedor Delphi · estágio e trainee', d: 'Primeiros anos de carreira: suporte, manutenção de sistemas e a descoberta de que performance é uma decisão de projeto.' }
+  ],
+  eduTitle: 'Formação',
+  edu: 'Análise e Desenvolvimento de Sistemas — Faculdade Cotemig (2010–2015)',
+  langTitle: 'Idiomas',
+  langs: 'Português (nativo) · Inglês (fluente, técnico e conversação)',
+  baseTitle: 'Base',
+  base: 'Curitiba, Paraná — atendimento remoto e presencial, Brasil e exterior',
+  leadsoft: {
+    overline: 'Capítulo anterior',
+    title: 'LeadSoft Soluções Web',
+    body: 'Entre 2018 e 2025 fundei e liderei a LeadSoft, software house de Curitiba especializada em soluções sob medida e parceira oficial do RavenDB no Brasil. Foi lá que a teoria virou prática comercial: contratos, times, prazos e a responsabilidade de sustentar o que eu mesmo arquitetava.',
+    clients: 'Clientes como Castrol Brasil, ECX Pay, Inforlube e Ebbi Tecnologia — e bibliotecas open source publicadas para facilitar padrões como Repository e Guids dentro do ecossistema Raven.',
+    nuget: 'Pacotes no NuGet'
+  },
+  articlesTitle: 'Escrevo sobre dados, arquitetura e o custo real da complexidade',
+  articlesLead: 'Textos publicados no LinkedIn, sempre com código, número e demo aberta quando possível.',
+  articlesCta: 'Ver todos os artigos no LinkedIn',
+  articleRead: 'Ler no LinkedIn',
+  articles: [
+    { slot: 'art-1', cover: 'assets/cover-ai-legacy.jpg', tag: 'Legado + IA', title: 'Ninguém te disse que dá pra ter IA sem migrar seu banco de dados', d: 'Simulei um sistema legado que ninguém pode desligar — um SQL Server com anos de histórico — e liguei IA, busca inteligente e um agente conversacional em cima dele, ao vivo, com o CDC do RavenDB. Sem tocar em uma linha do que já existia, e com a demo aberta pra qualquer um testar.', url: A1 },
+    { slot: 'art-2', cover: 'assets/cover-segment.jpg', tag: 'RavenDB + IA', title: 'RavenDB + AI: segmentação unificada em tempo real', d: 'Documentos, busca textual e busca vetorial na mesma consulta. Por que manter banco, motor de busca e vetor em três produtos diferentes custa caro — e o que muda quando tudo isso vive na mesma camada de dados.', url: A2 },
+    { slot: 'art-3', cover: 'assets/cover-pib.jpg', tag: 'Escala e agilidade', title: 'Lições de quem processa 4% do PIB', d: 'O que aprendi construindo e operando software em uma escala em que indisponibilidade tem preço imediato — e por que agilidade, ali, não é discurso: é o que separa o sistema que aguenta do que trava.', url: A3 },
+    { slot: 'art-4', cover: 'assets/cover-simplify.jpg', tag: 'Arquitetura', title: 'Quando simplificar exige coragem: o preço oculto da complexidade', d: 'Cada ferramenta a mais na arquitetura tem um custo que não aparece na fatura: time refém, integrações frágeis, ninguém sabendo explicar direito o que foi modernizado. Simplificar é decisão técnica — e política.', url: A4 },
+    { slot: 'art-5', cover: 'assets/cover-csharp.jpg', tag: 'C# na prática', title: 'Pare de usar class para tudo no C#: um guia simples', d: 'Quando class, struct e record realmente mudam alocação, performance e o desenho da sua aplicação — explicado sem academicismo, do jeito que resolve no código do dia a dia.', url: A5 },
+    { slot: 'art-6', cover: 'assets/cover-why-raven.jpg', tag: 'Manifesto', title: 'Por quê falo tanto sobre RavenDB', d: 'A história por trás da escolha: o que me fez sair do relacional por convicção, não por modismo, e por que passei a defender publicamente uma stack de dados mais simples.', url: A6 }
+  ],
+  ossOverline: 'Código aberto',
+  ossTitle: 'Bibliotecas que eu escrevi, publiquei e mantenho',
+  ossLead: 'Pacotes .NET open source sob licença MIT, usados em produção por mim e por outros times. Nasceram de dores reais: repositório genérico, identidade em RavenDB, integrações com APIs públicas brasileiras e com AWS, Azure e Google.',
+  ossDownloads: 'Downloads no NuGet',
+  ossPackages: 'Pacotes publicados',
+  ossLicense: 'Licença open source',
+  ossCtaNuget: 'Ver perfil no NuGet',
+  ossCtaGithub: 'Ver repositórios no GitHub',
+  eventsOverline: 'Palcos e feiras',
+  eventsTitle: 'Onde eu estive, conversando com quem constrói',
+  eventsLead: 'Conferências e feiras de tecnologia no Brasil e nos Estados Unidos — palestrando, demonstrando ao vivo e ouvindo os problemas reais de quem opera dados em escala.',
+  events: [
+    { slot: 'ev-dwsf-2024', photo: 'assets/ev-devweek.jpg', slotHint: 'Foto do evento', flag: 'assets/flag-us.png', date: 'Fev 2024', name: 'Developer Week', place: 'San Francisco, EUA', role: 'Encontro com David Baruc, Oren Eini e o time RavenDB — o ponto de virada da minha carreira.' },
+    { slot: 'ev-tdc-2024', photo: 'assets/ev-tdc.jpg', slotHint: 'Foto do evento', flag: 'assets/flag-br.png', date: 'Set 2024', name: 'TDC São Paulo', place: 'São Paulo, Brasil', role: 'Palestra e workshop: NoSQL — um pequeno passo na modelagem, um grande salto em eficiência.' },
+    { slot: 'ev-ignite-2025', photo: 'assets/ev-ignite.jpg', slotHint: 'Foto do evento', flag: 'assets/flag-us.png', date: 'Nov 2025', name: 'Microsoft Ignite', place: 'San Francisco, EUA', role: 'Primeira feira já no time RavenDB, com foco em arquitetura .NET e dados na nuvem.' },
+    { slot: 'ev-techex-2026', photo: 'assets/ev-techex.jpg', slotHint: 'Foto do evento', flag: 'assets/flag-us.png', date: 'Mai 2026', name: 'TechEx North America', place: 'San Jose, EUA', role: 'Demos ao vivo no estande do RavenDB para times de dados e IA do Vale do Silício.' }
+  ],
+  videoOverline: 'Vídeos',
+  videoTitle: 'Conteúdo técnico em vídeo',
+  videoLead: 'Palestras, workshops e demonstrações — modelagem de dados, performance e RavenDB na prática.',
+  videos: [
+    { url: 'https://www.youtube.com/watch?v=6wBQ2GiSmv8', thumb: 'https://i.ytimg.com/vi/6wBQ2GiSmv8/hqdefault.jpg', channel: 'Canal RavenDB', title: 'NoSQL: um pequeno passo na modelagem, um grande salto em eficiência', d: 'Demonstração ao vivo no TDC São Paulo 2024: como pequenas mudanças de modelagem geram ganhos massivos de performance.' },
+    { url: 'https://www.youtube.com/watch?v=fOh9h4nFNOk&list=PLIGNkjr48KTrQrGuyZD_tD2o3QSGInkkj', thumb: 'https://i.ytimg.com/vi/fOh9h4nFNOk/hqdefault.jpg', channel: 'Playlist · meu canal', title: 'RavenDB na prática, em português', d: 'Série de vídeos públicos sobre RavenDB: modelagem orientada a documentos, consultas, índices e o que muda quando você sai do relacional.' }
+  ],
+  videoCtaMine: 'Meu canal no YouTube',
+  videoWatch: 'Assistir no YouTube →',
+  videoCtaRaven: 'Canal do RavenDB',
+  videoCtaRepo: 'Código do workshop TDC 2024',
+  contactLinkedinRole: 'Sales Engineer · RavenDB',
+  contactLinkedinCta: 'Conectar no LinkedIn',
+  followOverline: 'RavenDB oficial',
+  followTitle: 'Siga o RavenDB e acompanhe o produto de perto',
+  followSite: 'Site oficial: ravendb.net',
+  followLinkedin: 'RavenDB no LinkedIn',
+  contactTitle: 'Vamos conversar',
+  contactLead: 'Se você lida com dados, arquitetura ou decide orçamento de tecnologia, provavelmente temos assunto. Escolha o canal que preferir.',
+  contactLinkedin: 'Trajetória completa, artigos e o que estou publicando agora.',
+  contactWa: 'Resposta rápida, direto comigo. Ideal para agendar uma conversa técnica.',
+  contactMailTitle: 'E-mail RavenDB',
+  contactMail: 'Para propostas, provas de conceito e assuntos formais.',
+  footerNote: 'Sales Engineer na RavenDB · Curitiba, Brasil'
+};
+
+const EN = {
+  nav: { about: 'About', path: 'Career', code: 'Open source', stages: 'Stages', writing: 'Writing', contact: 'Contact' },
+  hero: {
+    overline: 'Sales Engineer · RavenDB Ltd',
+    title: 'Lucas Resende Tavares',
+    role: 'Solutions Architect & Sales Engineer at RavenDB',
+    lead: 'Nearly two decades writing .NET software and modeling data — from Delphi cursors to vector search over documents. Today I help engineering teams and technical decision-makers trade complexity for predictability, performance and productivity.',
+    cta1: 'Talk on WhatsApp',
+    cta2: 'LinkedIn profile',
+    mailLabel: 'Official contact'
+  },
+  metricsTitle: 'Numbers behind the conversation',
+  metrics: [
+    { v: '4–8 h → 40 s', k: 'Critical procedures', d: 'Logic rebuilt with table functions and cursors removed — without changing the data model or adding a single new index.' },
+    { v: '1.8 min → 600 ms', k: 'Automotive DaaS', d: 'Technical recommendation engine remodeled on RavenDB with Full-Text Search. Authentication included in that response time.' },
+    { v: '45 days', k: 'Architecture rebuilt', d: 'A fragile project audited and fully converted to the document model. It was compiling cleanly by the end of the first week.' }
+  ],
+  aboutOverline: 'About me',
+  aboutTitle: 'From relational rigidity to document freedom',
+  about1: 'Born in Belo Horizonte, based in Curitiba since 2015. I started coding in 2009, deep in Delphi, Firebird and SQL Server, and spent those early years learning to understand the data in order to optimize the business — not the other way around.',
+  about2: 'In 2018 I was hired to audit a project that had to ship in 30 days on a fragile architecture. The client had one non-negotiable constraint: RavenDB, a database I had never heard of. In a single week I rebuilt the whole structure around documents. That was the end of the migration soap opera and the endless joins.',
+  about3: 'Since then I have applied RavenDB to performance-critical projects, published open source libraries for the ecosystem and taken the topic to stages such as TDC. In 2024, at Developer Week, I met Oren Eini and David Baruc in person — and in August 2025 I officially joined the RavenDB Ltd team.',
+  missionOverline: 'What I believe',
+  mission1: 'Everything I write follows the same thread: almost every expensive technology bill is a complexity bill. Five tools to keep one thing running, a service that fails and takes three others down, a cloud invoice nobody can explain. Simplifying takes courage — and it is usually the most profitable decision a technical team can make.',
+  mission2: 'That is why I argue for document data, text and vector search in the same layer, and AI on top of legacy systems with no migration project. It is not a trend: it is what I have seen work in production, at scale and under pressure. My mission is to help companies make technology decisions that make them more profitable — with faster, simpler and smarter applications.',
+  aboutQuote: 'I do not advocate for RavenDB because I work there. I work there because I chose RavenDB as my tool of trust for almost a decade, solving real production problems with it.',
+  servicesTitle: 'How I work with technical teams',
+  servicesLead: 'Sales engineering is engineering first. I sit with your team, understand the pain, and show — with running code — whether RavenDB solves it. When it does not, I say so.',
+  services: [
+    { n: '01', t: 'Architecture diagnosis', d: 'A read on your current model, your query bottlenecks and the operational cost nobody can quite explain on the invoice.' },
+    { n: '02', t: 'A real proof of concept', d: 'A POC on your data and your use case, benchmarked against the path you are on today.' },
+    { n: '03', t: 'Document-oriented modeling', d: 'How to leave relational behind without rebuilding it inside JSON: aggregates, indexes, projections and Full-Text Search.' },
+    { n: '04', t: 'Legacy without downtime', d: 'Integration with what already exists through CDC, ETL and replication — adding AI and smart search without touching the old system.' }
+  ],
+  stackTitle: 'Stack and specialties',
+  stack: ['RavenDB', '.NET / C#', 'Software architecture', 'Domain-Driven Design', 'High-performance REST APIs', 'gRPC', 'Data modeling', 'Full-Text & Vector Search', 'SQL Server', 'Entity Framework', 'NHibernate', 'Delphi', 'Firebird'],
+  pathTitle: 'Career',
+  pathLead: 'From the support bench to RavenDB’s global team — always with data at the center of the decision.',
+  timeline: [
+    { period: '2025 — Present', place: 'RavenDB Ltd', role: 'Solutions Architect · Sales Engineer', d: 'Technical and commercial support for companies evaluating or scaling RavenDB: modeling, proofs of concept, performance, legacy migration and AI features. Working with clients in Brazil and abroad.' },
+    { period: '2018 — 2025', place: 'LeadSoft Soluções Web', role: 'Founder, CEO and .NET Backend Developer', d: 'Founded and led a software house focused on custom software and high performance, official RavenDB partner in Brazil. Ran teams, contracts and architecture for clients such as Castrol Brazil, ECX Pay, Inforlube and Ebbi Tecnologia.' },
+    { period: '2015 — 2018', place: 'Mastertech Sistemas', role: 'Mid-level Developer · Delphi and .NET C#', d: 'Evolution of enterprise management products, integrations and maintenance of relational databases in production.' },
+    { period: '2013 — 2015', place: 'Banco Bonsucesso · BHS', role: 'Junior Developer · Delphi and .NET C#', d: 'SQL Server query and script optimization, merge review and version control, plus .NET development with NHibernate.' },
+    { period: '2011 — 2013', place: 'Leadmec Industry & Trade', role: 'Junior Delphi Developer · DBA', d: 'Requirements gathering, systems analysis and building the internal ERP in Delphi 2010, including Firebird database administration.' },
+    { period: '2009 — 2011', place: 'Arquimedes Informática', role: 'Delphi Developer · intern and trainee', d: 'The first years: support, system maintenance and the discovery that performance is a design decision.' }
+  ],
+  eduTitle: 'Education',
+  edu: 'Systems Analysis and Development — Faculdade Cotemig (2010–2015)',
+  langTitle: 'Languages',
+  langs: 'Portuguese (native) · English (fluent, technical and conversational)',
+  baseTitle: 'Based in',
+  base: 'Curitiba, Brazil — remote and on-site, in Brazil and abroad',
+  leadsoft: {
+    overline: 'Previous chapter',
+    title: 'LeadSoft Soluções Web',
+    body: 'Between 2018 and 2025 I founded and led LeadSoft, a Curitiba-based software house specialized in custom solutions and the official RavenDB partner in Brazil. That is where theory became commercial practice: contracts, teams, deadlines and the responsibility of supporting what I had architected myself.',
+    clients: 'Clients such as Castrol Brazil, ECX Pay, Inforlube and Ebbi Tecnologia — plus open source libraries published to make patterns like Repository and Guids easier inside the Raven ecosystem.',
+    nuget: 'NuGet packages'
+  },
+  articlesTitle: 'I write about data, architecture and the real cost of complexity',
+  articlesLead: 'Articles published on LinkedIn — always with code, numbers and an open demo whenever possible.',
+  articlesCta: 'See all articles on LinkedIn',
+  articles: [
+    { slot: 'art-1', cover: 'assets/cover-ai-legacy.jpg', tag: 'Legacy + AI', title: 'Nobody told you that you can have AI without migrating your database', d: 'I simulated a legacy system nobody is allowed to shut down — a SQL Server with years of history — and layered AI, smart search and a conversational agent on top of it, live, through RavenDB CDC. Without touching a single line of what was already there, with an open demo anyone can try. In Portuguese.', url: A1 },
+    { slot: 'art-2', cover: 'assets/cover-segment.jpg', tag: 'RavenDB + AI', title: 'RavenDB + AI: real-time unified segmentation', d: 'Documents, text search and vector search in one query. Why keeping database, search engine and vector store as three separate products gets expensive — and what changes when they all live in the same data layer. In Portuguese.', url: A2 },
+    { slot: 'art-3', cover: 'assets/cover-pib.jpg', tag: 'Scale and agility', title: 'Lessons from processing 4% of a country’s GDP', d: 'What I learned building and running software at a scale where downtime has an immediate price — and why agility there is not a slogan. In Portuguese.', url: A3 },
+    { slot: 'art-4', cover: 'assets/cover-simplify.jpg', tag: 'Architecture', title: 'When simplifying takes courage: the hidden price of complexity', d: 'Every extra tool in the architecture carries a cost that never shows up on the invoice: a team held hostage, fragile integrations, nobody able to explain what was modernized. In Portuguese.', url: A4 },
+    { slot: 'art-5', cover: 'assets/cover-csharp.jpg', tag: 'C# in practice', title: 'Stop using class for everything in C#: a simple guide', d: 'When class, struct and record actually change allocation, performance and the shape of your application — explained without academic detours. In Portuguese.', url: A5 },
+    { slot: 'art-6', cover: 'assets/cover-why-raven.jpg', tag: 'Manifesto', title: 'Why I talk so much about RavenDB', d: 'The story behind the choice: what made me leave relational out of conviction rather than fashion, and why I started publicly arguing for a simpler data stack. In Portuguese.', url: A6 },
+  ],
+  articleRead: 'Read on LinkedIn',
+  ossOverline: 'Open source',
+  ossTitle: 'Libraries I wrote, published and maintain',
+  ossLead: 'MIT-licensed open source .NET packages, running in production for me and for other teams. They came out of real pain: generic repositories, identity on RavenDB, and integrations with Brazilian public APIs plus AWS, Azure and Google.',
+  ossDownloads: 'NuGet downloads',
+  ossPackages: 'Published packages',
+  ossLicense: 'Open source license',
+  ossCtaNuget: 'View NuGet profile',
+  ossCtaGithub: 'View GitHub repositories',
+  eventsOverline: 'Stages and expos',
+  eventsTitle: 'Where I have been, talking to the people who build',
+  eventsLead: 'Technology conferences and expos in Brazil and the United States — speaking, running live demos and listening to the real problems of teams operating data at scale.',
+  events: [
+    { slot: 'ev-dwsf-2024', photo: 'assets/ev-devweek.jpg', slotHint: 'Drop an event photo', flag: 'assets/flag-us.png', date: 'Feb 2024', name: 'Developer Week', place: 'San Francisco, USA', role: 'Met David Baruc, Oren Eini and the RavenDB team in person — the turning point of my career.' },
+    { slot: 'ev-tdc-2024', photo: 'assets/ev-tdc.jpg', slotHint: 'Drop an event photo', flag: 'assets/flag-br.png', date: 'Sep 2024', name: 'TDC São Paulo', place: 'São Paulo, Brazil', role: 'Talk and workshop: NoSQL — a small step in modeling, a giant leap in efficiency.' },
+    { slot: 'ev-ignite-2025', photo: 'assets/ev-ignite.jpg', slotHint: 'Drop an event photo', flag: 'assets/flag-us.png', date: 'Nov 2025', name: 'Microsoft Ignite', place: 'San Francisco, USA', role: 'First expo already on the RavenDB team, focused on .NET architecture and data in the cloud.' },
+    { slot: 'ev-techex-2026', photo: 'assets/ev-techex.jpg', slotHint: 'Drop an event photo', flag: 'assets/flag-us.png', date: 'May 2026', name: 'TechEx North America', place: 'San Jose, USA', role: 'Live demos at the RavenDB booth for Silicon Valley data and AI teams.' }
+  ],
+  videoOverline: 'Video',
+  videoTitle: 'Technical content on video',
+  videoLead: 'Talks, workshops and demos — data modeling, performance and RavenDB in practice.',
+  videos: [
+    { url: 'https://www.youtube.com/watch?v=6wBQ2GiSmv8', thumb: 'https://i.ytimg.com/vi/6wBQ2GiSmv8/hqdefault.jpg', channel: 'RavenDB channel', title: 'NoSQL: a small step in modeling, a giant leap in efficiency', d: 'Live demo at TDC São Paulo 2024: how small modeling changes produce massive performance gains. Talk in Portuguese.' },
+    { url: 'https://www.youtube.com/watch?v=fOh9h4nFNOk&list=PLIGNkjr48KTrQrGuyZD_tD2o3QSGInkkj', thumb: 'https://i.ytimg.com/vi/fOh9h4nFNOk/hqdefault.jpg', channel: 'Playlist · my channel', title: 'RavenDB in practice, in Portuguese', d: 'A public video series on RavenDB: document-oriented modeling, queries, indexes and what changes when you leave the relational world.' }
+  ],
+  videoCtaMine: 'My YouTube channel',
+  videoCtaRaven: 'RavenDB channel',
+  videoCtaRepo: 'TDC 2024 workshop code',
+  contactLinkedinRole: 'Sales Engineer · RavenDB',
+  contactLinkedinCta: 'Connect on LinkedIn',
+  followOverline: 'Official RavenDB',
+  followTitle: 'Follow RavenDB and keep up with the product',
+  followSite: 'Official site: ravendb.net',
+  followLinkedin: 'RavenDB on LinkedIn',
+  contactTitle: 'Let’s talk',
+  contactLead: 'If you deal with data, architecture or technology budgets, we probably have something to discuss. Pick the channel you prefer.',
+  contactLinkedin: 'Full career history, articles and whatever I am publishing right now.',
+  contactWa: 'Fast answers, straight to me. Best for scheduling a technical conversation.',
+  contactMailTitle: 'RavenDB e-mail',
+  contactMail: 'For proposals, proofs of concept and formal matters.',
+  footerNote: 'Sales Engineer at RavenDB · Curitiba, Brazil'
+};
+
+const ARTICLES_URL = 'https://www.linkedin.com/in/lucasrtavares/recent-activity/articles/';
+
+class Component extends DCLogic {
+  state = { lang: 'pt' };
+
+  componentDidMount() {
+    try {
+      const saved = localStorage.getItem('lrt-lang');
+      if (saved === 'pt' || saved === 'en') this.setState({ lang: saved });
+    } catch (e) {}
+  }
+
+  pick(lang) {
+    this.setState({ lang });
+    try { localStorage.setItem('lrt-lang', lang); } catch (e) {}
+    if (typeof document !== 'undefined') document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+  }
+
+  flagStyle(active) {
+    return {
+      width: 34, height: 34, padding: 0, borderRadius: 9, cursor: 'pointer',
+      overflow: 'hidden', display: 'block', background: 'transparent',
+      border: active ? '2px solid #1CC8EE' : '2px solid rgba(255,255,255,.18)',
+      opacity: active ? 1 : 0.55,
+      boxShadow: active ? '0 0 16px rgba(28,200,238,.45)' : 'none',
+      transition: 'opacity 200ms cubic-bezier(.2,.7,.2,1), border-color 200ms cubic-bezier(.2,.7,.2,1)'
+    };
+  }
+
+  renderVals() {
+    const lang = this.state.lang;
+    const dict = lang === 'en' ? EN : PT;
+    const t = dict;
+    const msg = lang === 'en'
+      ? 'Hi Lucas! I came from your website and I would like to talk about RavenDB.'
+      : 'Olá, Lucas! Vim pelo seu site e gostaria de falar sobre RavenDB.';
+    const packages = buildPackages(lang === 'en' ? PKG_DESC_EN : PKG_DESC_PT, lang === 'en' ? 'en' : 'pt');
+    const cat = this.state.cat || 'all';
+    const chipBase = 'display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 999px; white-space: nowrap; font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: .02em; cursor: pointer; transition: all .15s ease; ';
+    const chips = ['all', 'core', 'br', 'cloud', 'sec'].map(key => ({
+      key,
+      label: CATS[lang === 'en' ? 'en' : 'pt'][key],
+      count: key === 'all' ? packages.length : packages.filter(p => p.cat === key).length,
+      onClick: () => this.setState({ cat: key }),
+      style: chipBase + (cat === key
+        ? 'background: #0F1425; color: #fff; border: 1px solid #0F1425;'
+        : 'background: rgba(255,255,255,.7); color: #545557; border: 1px solid #D9DEEA;')
+    }));
+    return {
+      t,
+      lang,
+      chips,
+      packagesShown: cat === 'all' ? packages : packages.filter(p => p.cat === cat),
+      badgeLocale: lang === 'en' ? 'en_US' : 'pt_BR',
+      waLink: 'https://wa.me/5541991821569?text=' + encodeURIComponent(msg),
+      setPt: () => this.pick('pt'),
+      setEn: () => this.pick('en'),
+      flagPt: this.flagStyle(lang === 'pt'),
+      flagEn: this.flagStyle(lang === 'en')
+    };
+  }
+}
+
+</script>
+</body>
+</html>
