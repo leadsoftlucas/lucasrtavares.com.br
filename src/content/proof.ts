@@ -117,7 +117,7 @@ export const proof: Record<Lang, ProofContent> = {
       {
         name: 'ravendb-sales-assistant-demo',
         url: 'https://github.com/leadsoftlucas/ravendb-sales-assistant-demo',
-        text: 'Assistente de vendas com IA sobre RavenDB (fase 2). [confirmar descrição]',
+        text: 'API que integra a OpenAI (ChatGPT) e guarda o histórico da conversa no RavenDB, feita para demonstrar a integração rapidamente (fase 2). Eu não sabia que o RavenDB estava prestes a lançar o AI Agents e construí algo parecido por conta própria.',
       },
       {
         name: 'Workshop TDC 2024',
@@ -245,7 +245,7 @@ export const proof: Record<Lang, ProofContent> = {
       {
         name: 'ravendb-sales-assistant-demo',
         url: 'https://github.com/leadsoftlucas/ravendb-sales-assistant-demo',
-        text: 'AI sales assistant on RavenDB (phase 2). [confirm description]',
+        text: 'API that integrates OpenAI (ChatGPT) and stores the conversation history in RavenDB, built to demonstrate the integration quickly (phase 2). I had no idea RavenDB was about to launch AI Agents, and built something similar on my own.',
       },
       {
         name: 'TDC 2024 workshop',
