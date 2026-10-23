@@ -82,6 +82,7 @@ const pages = [
   }
   .inner {
     position: relative;
+    text-align: center;
     padding-top: clamp(48px, 8vw, 96px);
     padding-bottom: clamp(56px, 8vw, 110px);
   }
@@ -106,7 +107,7 @@ const pages = [
     color: #fff;
   }
   .lead {
-    margin: 0 0 28px;
+    margin: 0 auto 28px;
     max-width: 58ch;
     font-size: 17px;
     line-height: 1.6;
@@ -114,7 +115,8 @@ const pages = [
   }
   .console {
     max-width: 560px;
-    margin: 0 0 24px;
+    margin: 0 auto 24px;
+    text-align: left;
     border-radius: 14px;
     background: rgba(6, 9, 15, 0.82);
     border: 1px solid rgba(255, 255, 255, 0.14);
@@ -178,6 +180,7 @@ const pages = [
   .suggest {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     gap: 12px;
     margin-bottom: 20px;
@@ -188,7 +191,7 @@ const pages = [
     color: rgba(255, 255, 255, 0.85);
   }
   .raven {
-    margin: 0 0 24px;
+    margin: 0 auto 24px;
     max-width: 60ch;
     font-size: 15px;
     line-height: 1.6;
@@ -197,6 +200,7 @@ const pages = [
   .links {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 12px;
   }
   [hidden] {
