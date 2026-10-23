@@ -30,6 +30,9 @@ function linkBrands(html: string): string {
     .join('');
 }
 
+/** Em producao os marcadores pendentes ([adicionar], [LINK a informar]...) somem; no dev ficam em amarelo. */
+const hideTodos = import.meta.env.PROD && import.meta.env.PUBLIC_SHOW_TODO !== 'true';
+
 export function renderInline(text: string): string {
   return linkBrands(escapeHtml(text)
     .replace(/\[([^\]]+)\]\(mailto:([^)\s]+)\)/g, '<a href="mailto:$2">$1</a>')
@@ -39,5 +42,6 @@ export function renderInline(text: string): string {
     )
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-    .replace(TODO_PATTERN, (m) => `<span class="todo">${m}</span>`));
+    .replace(TODO_PATTERN, (m) => (hideTodos ? '' : `<span class="todo">${m}</span>`))
+    .trim());
 }

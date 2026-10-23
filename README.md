@@ -61,7 +61,7 @@ O número pessoal do Lucas **nunca** entra neste repositório.
 | `check:links` | links e recursos internos existem, 1 H1, `lang`, `canonical`, JSON-LD válido, imagens com `alt` |
 | `check:brand` | todo "LeadSoft" no texto leva a https://leadsoft.inf.br |
 | `check:seo` | `robots.txt`, `sitemap.xml` (8 URLs com hreflang) e `llms.txt` coerentes com as páginas |
-| `check:placeholders` | lista os marcadores amarelos pendentes (`[adicionar]`, `[LINK a informar]`); `--strict` falha se houver |
+| `check:placeholders` | lista os marcadores pendentes no código (`[adicionar]`, `[LINK a informar]`); **em produção eles são removidos do HTML** (`PUBLIC_SHOW_TODO=true` os mostra); `--strict` falha se houver |
 
 **Lighthouse CI** (`npx @lhci/cli autorun`, configurado em `lighthouserc.json`): as 8 páginas, 3 execuções cada, mínimo de **0,98** em desempenho, acessibilidade, boas práticas e SEO.
 

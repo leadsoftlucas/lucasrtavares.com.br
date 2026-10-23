@@ -76,7 +76,7 @@ const talks = c.talks.filter((t) => config.showG1 || !t.g1);
           <li><a href={m.url} download>{m.label}</a></li>
         ))}
       </ul>
-      <p class="note" set:html={renderInline(c.materialsTodo)} />
+      {renderInline(c.materialsTodo) && <p class="note" set:html={renderInline(c.materialsTodo)} />}
       <h3 class="sub">{c.rulesTitle}</h3>
       <ul class="rules">
         {c.rules.map((r) => <li set:html={renderInline(r)} />)}
