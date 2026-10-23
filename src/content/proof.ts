@@ -130,7 +130,7 @@ export const proof: Record<Lang, ProofContent> = {
       {
         date: '26/03/2024',
         name: 'Castrol · Turbo Mode ON',
-        place: 'Brasil',
+        place: 'Mogi das Cruzes, Brasil',
         role: 'Pré-lançamento do app do Trocador Castrol para todos os distribuidores da Castrol do Brasil',
       },
       { date: '09/2024', name: 'TDC São Paulo', place: 'São Paulo, Brasil', role: 'Palestra e workshop de NoSQL e modelagem' },
@@ -242,7 +242,7 @@ export const proof: Record<Lang, ProofContent> = {
       {
         date: '2024-03-26',
         name: 'Castrol · Turbo Mode ON',
-        place: 'Brazil',
+        place: 'Mogi das Cruzes, Brazil',
         role: 'Pre-launch of the Castrol Trocador app, for all Castrol distributors in Brazil',
       },
       { date: '2024-09', name: 'TDC São Paulo', place: 'São Paulo, Brazil', role: 'Talk and workshop on NoSQL and data modeling' },

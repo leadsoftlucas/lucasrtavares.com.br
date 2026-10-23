@@ -301,7 +301,7 @@ export const pt = {
     {
       date: 'Mar 2024',
       name: 'Castrol · Turbo Mode ON',
-      place: 'Brasil',
+      place: 'Mogi das Cruzes, Brasil',
       role: 'Palestra de pré-lançamento do app do Trocador Castrol (Android e iOS), para todos os distribuidores da Castrol do Brasil.',
     },
     {

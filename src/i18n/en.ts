@@ -303,7 +303,7 @@ export const en: typeof pt = {
     {
       date: 'Mar 2024',
       name: 'Castrol · Turbo Mode ON',
-      place: 'Brazil',
+      place: 'Mogi das Cruzes, Brazil',
       role: 'Pre-launch talk for the Castrol Trocador app (Android and iOS), for all Castrol distributors in Brazil.',
     },
     {
