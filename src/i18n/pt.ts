@@ -304,6 +304,12 @@ export const pt = {
       role: 'Palestra e workshop: NoSQL — um pequeno passo na modelagem, um grande salto em eficiência.',
     },
     {
+      date: 'Out 2024',
+      name: 'FAE · Semana do Empreendedor',
+      place: 'Brasil',
+      role: 'Palestra "O efeito borboleta no empreender", para estudantes: da pergunta a um professor à RavenDB, e por que prestar atenção nas sutilezas da faculdade.',
+    },
+    {
       date: 'Nov 2025',
       name: 'Microsoft Ignite',
       place: 'San Francisco, EUA',

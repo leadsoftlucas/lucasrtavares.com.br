@@ -19,6 +19,11 @@ export const events: EventData[] = [
     flag: 'assets/flag-br.png',
   },
   {
+    slot: 'ev-fae-2024',
+    photo: 'assets/ev-fae.jpg',
+    flag: 'assets/flag-br.png',
+  },
+  {
     slot: 'ev-ignite-2025',
     photo: 'assets/ev-ignite.jpg',
     flag: 'assets/flag-us.png',

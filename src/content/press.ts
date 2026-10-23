@@ -108,7 +108,7 @@ export const press: Record<Lang, PressContent> = {
       {
         title: 'O efeito borboleta no empreender',
         summary:
-          'A história da pergunta que fiz a um professor na faculdade e do que ela virou, para inspirar estudantes a prestarem atenção nas sutilezas do que acontece na graduação. Já apresentada na Semana do Empreendedorismo da FAE (07/10/2024).',
+          'A história da pergunta que fiz a um professor na faculdade e do que ela virou, para inspirar estudantes a prestarem atenção nas sutilezas do que acontece na graduação. Já apresentada na Semana do Empreendedor da FAE (07/10/2024).',
         format: 'Palestra para estudantes e eventos de empreendedorismo',
       },
       {
@@ -206,7 +206,7 @@ export const press: Record<Lang, PressContent> = {
       {
         title: 'The butterfly effect in entrepreneurship (O efeito borboleta no empreender)',
         summary:
-          'The story of a question I asked a professor in college and what it became, to inspire students to pay attention to the subtleties of what happens at university. Already given at FAE\'s Entrepreneurship Week (Oct 7, 2024).',
+          'The story of a question I asked a professor in college and what it became, to inspire students to pay attention to the subtleties of what happens at university. Already given at FAE\'s Entrepreneur Week (Oct 7, 2024).',
         format: 'Talk for students and entrepreneurship events',
       },
       {

@@ -65,6 +65,17 @@ function paragraphText(s: (typeof sections)[number], index: number) {
                     ))}
                   </div>
                 );
+              if ('gallery' in b)
+                return (
+                  <div class="gallery">
+                    {b.gallery.map((g) => (
+                      <figure class="tall">
+                        <img src={g.src} alt={g.alt} loading="lazy" width="880" height="1173" />
+                        <figcaption>{g.caption}</figcaption>
+                      </figure>
+                    ))}
+                  </div>
+                );
               if ('image' in b)
                 return (
                   <figure>
@@ -356,6 +367,22 @@ function paragraphText(s: (typeof sections)[number], index: number) {
     color: rgba(255, 255, 255, 0.6);
   }
 
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 16px;
+    margin: 8px 0 26px;
+  }
+  .gallery figure {
+    margin: 0;
+  }
+  .gallery figure img {
+    aspect-ratio: 3 / 4;
+    object-position: 50% 30%;
+  }
+  .chapter:not(.dark) figcaption {
+    color: var(--muted);
+  }
   .beliefs {
     list-style: none;
     margin: 6px 0 0;

@@ -8,6 +8,7 @@ export type Block =
   | { quote: string; cite?: string }
   | { stats: Array<{ v: string; k: string }> }
   | { image: { src: string; alt: string; caption: string } }
+  | { gallery: Array<{ src: string; alt: string; caption: string }> }
   | { beliefs: string[] };
 
 export type Tone = 'cool' | 'warm' | 'dark';
@@ -150,10 +151,24 @@ export const history: Record<Lang, HistoryContent> = {
         tone: 'cool',
         blocks: [
           {
-            p: 'Essa história virou palestra. Em **7 de outubro de 2024**, na Semana do Empreendedorismo da **FAE**, contei tudo isso aos estudantes em *LeadSoft: o efeito borboleta no empreender*: uma pergunta feita a um professor, um banco que eu só conheceria anos depois e o que aconteceu a partir daí.',
+            p: 'Essa história virou palestra. Em **7 de outubro de 2024**, na Semana do Empreendedor da **FAE**, contei tudo isso aos estudantes em *O efeito borboleta no empreender*: uma pergunta feita a um professor, um banco que eu só conheceria anos depois e o que aconteceu a partir daí.',
           },
           {
             p: 'O objetivo era inspirar os estudantes a prestarem atenção nas sutilezas do que acontece na faculdade e em como isso pode ter resultados inesperados no futuro.',
+          },
+          {
+            gallery: [
+              {
+                src: '/assets/fae-palestra.jpg',
+                alt: 'Lucas no palco da FAE, com o slide de abertura da palestra O efeito borboleta no empreender e a marca LeadSoft Soluções Web',
+                caption: 'FAE · Semana do Empreendedor · 07/10/2024',
+              },
+              {
+                src: '/assets/fae-slide-devweek.jpg',
+                alt: 'Lucas falando ao microfone; no slide, a foto com Oren Eini e o texto Peguei um avião e fui até a Developer Week',
+                caption: 'No slide: a ida à Developer Week, com o Oren',
+              },
+            ],
           },
         ],
       },
@@ -334,10 +349,24 @@ export const history: Record<Lang, HistoryContent> = {
         tone: 'cool',
         blocks: [
           {
-            p: 'That story became a talk. On **October 7, 2024**, during the Entrepreneurship Week at **FAE**, I told students all of this in *LeadSoft: o efeito borboleta no empreender* ("the butterfly effect in entrepreneurship"): a question asked to a professor, a database I would only get to know years later and everything that followed.',
+            p: 'That story became a talk. On **October 7, 2024**, during the Entrepreneur Week at **FAE**, I told students all of this in *O efeito borboleta no empreender* (the butterfly effect in entrepreneurship): a question asked to a professor, a database I would only get to know years later and everything that followed.',
           },
           {
             p: 'The goal was to inspire students to pay attention to the subtleties of what happens in college and to how they can lead to unexpected results in the future.',
+          },
+          {
+            gallery: [
+              {
+                src: '/assets/fae-palestra.jpg',
+                alt: 'Lucas on the FAE stage, with the opening slide of the talk O efeito borboleta no empreender and the LeadSoft Soluções Web brand',
+                caption: 'FAE · Entrepreneur Week · Oct 7, 2024',
+              },
+              {
+                src: '/assets/fae-slide-devweek.jpg',
+                alt: 'Lucas speaking into a microphone; the slide shows a photo with Oren Eini and the text I got on a plane and went to Developer Week',
+                caption: 'On the slide: the trip to Developer Week, with Oren',
+              },
+            ],
           },
         ],
       },

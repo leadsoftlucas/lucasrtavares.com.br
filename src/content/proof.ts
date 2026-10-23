@@ -129,9 +129,9 @@ export const proof: Record<Lang, ProofContent> = {
       { date: '09/2024', name: 'TDC São Paulo', place: 'São Paulo, Brasil', role: 'Palestra e workshop de NoSQL e modelagem' },
       {
         date: '07/10/2024',
-        name: 'FAE · Semana do Empreendedorismo',
+        name: 'FAE · Semana do Empreendedor',
         place: 'Brasil',
-        role: 'Palestra *LeadSoft: o efeito borboleta no empreender*, para estudantes',
+        role: 'Palestra *O efeito borboleta no empreender*, para estudantes',
       },
       { date: '11/2025', name: 'Microsoft Ignite', place: 'San Francisco, EUA', role: 'Primeira feira no time RavenDB' },
       { date: '05/2026', name: 'TechEx North America', place: 'San Jose, EUA', role: 'Demonstrações ao vivo no estande' },
@@ -234,9 +234,9 @@ export const proof: Record<Lang, ProofContent> = {
       { date: '2024-09', name: 'TDC São Paulo', place: 'São Paulo, Brazil', role: 'Talk and workshop on NoSQL and data modeling' },
       {
         date: '2024-10-07',
-        name: 'FAE · Entrepreneurship Week',
+        name: 'FAE · Entrepreneur Week',
         place: 'Brazil',
-        role: 'Talk *LeadSoft: o efeito borboleta no empreender* (the butterfly effect in entrepreneurship), for students',
+        role: 'Talk *O efeito borboleta no empreender* (the butterfly effect in entrepreneurship), for students',
       },
       { date: '2025-11', name: 'Microsoft Ignite', place: 'San Francisco, USA', role: 'First trade show on the RavenDB team' },
       { date: '2026-05', name: 'TechEx North America', place: 'San Jose, USA', role: 'Live demos at the booth' },

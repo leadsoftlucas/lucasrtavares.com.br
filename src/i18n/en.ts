@@ -306,6 +306,12 @@ export const en: typeof pt = {
       role: 'Talk and workshop: NoSQL — a small step in modeling, a giant leap in efficiency.',
     },
     {
+      date: 'Oct 2024',
+      name: 'FAE · Entrepreneur Week',
+      place: 'Brazil',
+      role: 'Talk "O efeito borboleta no empreender" (the butterfly effect in entrepreneurship), for students: from a question to a professor to RavenDB, and why to pay attention to the subtleties of college.',
+    },
+    {
       date: 'Nov 2025',
       name: 'Microsoft Ignite',
       place: 'San Francisco, USA',
