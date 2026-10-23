@@ -129,3 +129,13 @@ a:hover {
     transform: none !important;
   }
 }
+
+/* Marcadores de pendencia ([adicionar], [LINK a informar]): ficam visiveis ate o Lucas preencher. */
+.todo {
+  padding: 0 4px;
+  border-radius: 4px;
+  background: #fff3bf;
+  color: #5f4b00;
+  font-style: normal;
+  font-weight: 600;
+}

@@ -17,8 +17,12 @@ interface Props {
   twitterDescription?: string;
   /** Pre-carrega o fundo do hero (so a home). */
   preloadHero?: boolean;
+  /** false nas paginas internas. */
+  onHome?: boolean;
+  /** og:type (profile na home, article/website nas demais). */
+  ogType?: string;
 }
-const { lang, paths = homePath } = Astro.props;
+const { lang, paths = homePath, onHome = true, ogType = 'profile' } = Astro.props;
 const t = dictionaries[lang];
 const title = Astro.props.title ?? t.meta.title;
 const description = Astro.props.description ?? t.meta.description;
@@ -56,7 +60,7 @@ const gtagScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLa
     <meta name="geo.region" content="BR-PR" />
     <meta name="geo.placename" content="Curitiba, Paraná, Brasil" />
     <slot name="head" />
-    <meta property="og:type" content="profile" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Lucas Resende Tavares" />
     <meta property="og:locale" content={t.meta.ogLocale} />
@@ -76,7 +80,7 @@ const gtagScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLa
     {gtm && (
       <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${config.gtmId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     )}
-    <Header lang={lang} paths={paths} />
+    <Header lang={lang} paths={paths} onHome={onHome} />
     <main>
       <slot />
     </main>

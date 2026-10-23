@@ -1,0 +1,112 @@
+---
+import { type Lang, routes, homePath } from '../i18n';
+import { config } from '../config';
+import { history } from '../content/history';
+import { renderInline } from '../lib/inline';
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import CtaCards from './CtaCards.astro';
+import JsonLd from './JsonLd.astro';
+import { pageJsonLd } from '../data/jsonld';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = history[lang];
+const showG1 = config.showG1;
+const sections = c.sections.filter((s) => showG1 || !s.g1);
+const paths = routes.story;
+const gateOpen = '<!-- GATE-G1 -->';
+const gateClose = '<!-- /GATE-G1 -->';
+---
+<Base lang={lang} paths={{ pt: paths.pt, en: paths.en }} title={c.meta.title} description={c.meta.description} ogType="article" onHome={false}>
+  <JsonLd slot="head" data={pageJsonLd('story', lang, c.meta.title)} />
+  <PageHero title={c.h1} lead={c.lead} />
+  <article class="story">
+    <div class="wrap inner">
+      {sections.map((s) => (
+        <section id={s.id} class="block">
+          {s.g1 && <Fragment set:html={gateOpen} />}
+          <h2>{s.h2}</h2>
+          {s.paras?.map((p, i) => {
+            const last = i === (s.paras?.length ?? 0) - 1;
+            const text = !showG1 && last && s.withoutG1Tail ? `${p} ${s.withoutG1Tail}` : p;
+            return <p set:html={renderInline(text)} />;
+          })}
+          {s.list && (
+            <ul>
+              {s.list.map((item) => <li set:html={renderInline(item)} />)}
+            </ul>
+          )}
+          {s.g1 && <Fragment set:html={gateClose} />}
+        </section>
+      ))}
+      <div class="more">
+        <a href={routes.proof[lang]} class="btn btn-grad">{c.proof}</a>
+        <a href={homePath[lang]} class="btn btn-line-dark">{c.back}</a>
+      </div>
+    </div>
+  </article>
+  <CtaCards lang={lang} title={c.ctaTitle} />
+</Base>
+
+<style>
+  .story {
+    background: var(--band-cool);
+  }
+  .inner {
+    padding-top: clamp(44px, 6vw, 80px);
+    padding-bottom: clamp(44px, 6vw, 80px);
+  }
+  .block {
+    max-width: 70ch;
+    margin: 0 auto clamp(30px, 4vw, 46px);
+  }
+  h2 {
+    margin: 0 0 14px;
+    font-size: clamp(22px, 2.6vw, 30px);
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .block :global(p),
+  .block :global(li) {
+    font-size: 17px;
+    font-weight: 450;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .block :global(p) {
+    margin: 0 0 14px;
+  }
+  .block :global(strong) {
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .block :global(a) {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .block :global(a:hover) {
+    color: var(--ink);
+  }
+  ul {
+    margin: 0;
+    padding-left: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .more {
+    max-width: 70ch;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+</style>

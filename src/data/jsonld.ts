@@ -2,7 +2,7 @@
 // Sem ProfessionalService e sem priceRange. O telefone do Person e o numero RavenDB-focado ja usado no site;
 // o numero pessoal nunca entra e o da LeadSoft nao entra em dados estruturados.
 import { config } from '../config';
-import type { Lang } from '../i18n';
+import { routes, type Lang } from '../i18n';
 
 const site = config.siteUrl;
 const telephone = '+55-41-99182-1569';
@@ -133,5 +133,34 @@ export function homeJsonLd(lang: Lang) {
         primaryImageOfPage: `${site}/assets/og-cover-v2.jpg`,
       },
     ],
+  };
+}
+
+type PageKind = 'story' | 'proof' | 'press';
+const pageTypes: Record<PageKind, string> = { story: 'AboutPage', proof: 'CollectionPage', press: 'WebPage' };
+
+/** JSON-LD das paginas internas (doc 06, secao 2). `name` e o titulo da pagina no idioma. */
+export function pageJsonLd(kind: PageKind, lang: Lang, name: string) {
+  const url = `${site}${routes[kind][lang]}`;
+  const personId = `${site}/#lucas`;
+  return {
+    '@context': 'https://schema.org',
+    '@type': pageTypes[kind],
+    '@id': `${url}#page`,
+    url,
+    name,
+    inLanguage: lang === 'pt' ? 'pt-BR' : 'en',
+    about: { '@id': personId },
+    isPartOf: { '@id': `${site}/#website` },
+    ...(kind === 'proof' && {
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: lang === 'pt' ? '17 pacotes .NET no NuGet' : '17 .NET packages on NuGet', url: 'https://www.nuget.org/profiles/lucastavares' },
+          { '@type': 'ListItem', position: 2, name: 'ravendb-demo', url: 'https://github.com/leadsoftlucas/ravendb-demo' },
+          { '@type': 'ListItem', position: 3, name: 'ravendb-sales-assistant-demo', url: 'https://github.com/leadsoftlucas/ravendb-sales-assistant-demo' },
+        ],
+      },
+    }),
   };
 }

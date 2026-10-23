@@ -11,7 +11,7 @@ const t = dictionaries[Astro.props.lang].music;
 <div class="music">
   <p class="text" set:html={renderInline(t.text)} />
   <div class="player" data-spotify-frame>
-    <a href={spotifyTrackUrl} target="_blank" rel="noopener" class="cover" data-spotify-src={spotifyEmbedUrl} data-title={t.title} aria-label={`${t.play}: ${t.title}`}>
+    <a href={spotifyTrackUrl} target="_blank" rel="noopener" class="cover" data-spotify-src={spotifyEmbedUrl} data-title={t.title}>
       <div class="bg-cosmic bg"></div>
       <img src="/assets/lambda.svg" alt="" width="64" height="64" loading="lazy" class="mark" />
       <div class="info">

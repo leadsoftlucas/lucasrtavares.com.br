@@ -1,0 +1,68 @@
+---
+import { renderInline } from '../lib/inline';
+
+interface Props {
+  overline?: string;
+  title: string;
+  lead?: string;
+}
+const { overline, title, lead } = Astro.props;
+---
+<section class="hero">
+  <div class="bg-cosmic bg"></div>
+  <div class="wrap inner">
+    {overline && <p class="overline">{overline}</p>}
+    <h1>{title}</h1>
+    {lead && <p class="lead" set:html={renderInline(lead)} />}
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    background: var(--bg-dark);
+    overflow: hidden;
+  }
+  .bg {
+    background-position: center;
+    opacity: 0.9;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--cyan) 0%, var(--blue-link) 50%, var(--purple) 100%);
+  }
+  .inner {
+    position: relative;
+    padding-top: clamp(48px, 7vw, 88px);
+    padding-bottom: clamp(44px, 6vw, 80px);
+  }
+  .overline {
+    color: #63ffa6;
+  }
+  h1 {
+    margin: 0 0 18px;
+    max-width: 22ch;
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #fff;
+    text-wrap: balance;
+  }
+  .lead {
+    margin: 0;
+    max-width: 62ch;
+    font-size: clamp(16px, 2vw, 19px);
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.82);
+    text-wrap: pretty;
+  }
+  .lead :global(em) {
+    font-style: italic;
+  }
+</style>

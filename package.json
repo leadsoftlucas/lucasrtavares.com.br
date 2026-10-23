@@ -11,7 +11,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check:i18n": "node scripts/check-i18n.ts"
+    "check:i18n": "node scripts/check-i18n.ts",
+    "check:placeholders": "node scripts/check-placeholders.mjs",
+    "check:links": "node scripts/check-links.mjs"
   },
   "dependencies": {
     "astro": "^7.4.2"

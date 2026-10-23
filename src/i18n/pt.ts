@@ -11,6 +11,7 @@ export const pt = {
     ogLocale: 'pt_BR',
   },
   nav: {
+    home: '← Início',
     about: 'Sobre',
     story: 'História',
     proof: 'Provas',
@@ -231,6 +232,7 @@ export const pt = {
   langs: 'Português (nativo) · Inglês (fluente, técnico e conversação)',
   baseTitle: 'Base',
   base: 'Curitiba, Paraná — atendimento remoto e presencial, Brasil e exterior',
+  baseFocus: 'Foco: Américas, Europa e Oceania',
   leadsoft: {
     overline: 'Capítulo anterior',
     title: 'LeadSoft Soluções Web',

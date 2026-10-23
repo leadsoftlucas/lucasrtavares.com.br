@@ -13,6 +13,7 @@ export const en: typeof pt = {
     ogLocale: 'en_US',
   },
   nav: {
+    home: '← Home',
     about: 'About',
     story: 'Story',
     proof: 'Proof',
@@ -233,6 +234,7 @@ export const en: typeof pt = {
   langs: 'Portuguese (native) · English (fluent, technical and conversational)',
   baseTitle: 'Based in',
   base: 'Curitiba, Brazil — remote and on-site, in Brazil and abroad',
+  baseFocus: 'Focus: the Americas, Europe and Oceania',
   leadsoft: {
     overline: 'Previous chapter',
     title: 'LeadSoft Soluções Web',

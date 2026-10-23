@@ -1,34 +1,38 @@
 ---
-import { dictionaries, routes, type Lang } from '../i18n';
+import { dictionaries, routes, homePath, type Lang } from '../i18n';
 import LangSwitch from './LangSwitch.astro';
 
 interface Props {
   lang: Lang;
   paths?: Record<Lang, string>;
+  /** false nas paginas internas: as ancoras apontam para a home. */
+  onHome?: boolean;
 }
-const { lang, paths } = Astro.props;
+const { lang, paths, onHome = true } = Astro.props;
+const base = onHome ? '' : homePath[lang];
 const t = dictionaries[lang];
 const links = [
-  ['#falar', t.nav.talk],
-  ['#sobre', t.nav.about],
+  ...(onHome ? [] : ([[homePath[lang], t.nav.home]] as const)),
+  [base + '#falar', t.nav.talk],
+  [base + '#sobre', t.nav.about],
   [routes.story[lang], t.nav.story],
   [routes.proof[lang], t.nav.proof],
-  ['#trajetoria', t.nav.path],
-  ['#codigo', t.nav.code],
-  ['#palcos', t.nav.stages],
-  ['#artigos', t.nav.writing],
-  ['#contato', t.nav.contact],
+  [base + '#trajetoria', t.nav.path],
+  [base + '#codigo', t.nav.code],
+  [base + '#palcos', t.nav.stages],
+  [base + '#artigos', t.nav.writing],
+  [base + '#contato', t.nav.contact],
 ] as const;
 ---
 <header>
   <div class="bar">
-    <a href="#top" class="brand">
+    <a href={onHome ? '#top' : homePath[lang]} class="brand">
       <img src="/assets/lambda.svg" alt={t.brandAlt} height="26" />
       <span>Lucas R. Tavares</span>
     </a>
     <LangSwitch lang={lang} paths={paths} />
     <nav>
-      {links.map(([href, label], i) => <a href={href} class:list={{ primary: i === 0 }}>{label}</a>)}
+      {links.map(([href, label], i) => <a href={href} class:list={{ primary: i === (onHome ? 0 : 1) }}>{label}</a>)}
     </nav>
   </div>
 </header>

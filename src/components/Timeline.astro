@@ -8,9 +8,9 @@ interface Props {
 const t = dictionaries[Astro.props.lang];
 const cotemigUrl = 'https://cotemig.com.br/ensino/faculdade-cotemig/';
 const facts = [
-  { title: t.eduTitle, text: t.edu, edu: true },
-  { title: t.langTitle, text: t.langs, edu: false },
-  { title: t.baseTitle, text: t.base, edu: false },
+  { kind: 'edu', title: t.eduTitle, text: t.edu },
+  { kind: 'lang', title: t.langTitle, text: t.langs },
+  { kind: 'base', title: t.baseTitle, text: t.base, extra: t.baseFocus },
 ];
 ---
 <section id="trajetoria">
@@ -33,14 +33,18 @@ const facts = [
     </div>
     <div class="facts">
       {facts.map((fact) => (
-        <div class:list={['fact', { edu: fact.edu }]}>
+        <div class:list={['fact', fact.kind, { dark: fact.kind !== 'edu' }]}>
+          {fact.kind === 'lang' && <img class="art" src="/assets/flags-blend.svg" alt="" aria-hidden="true" loading="lazy" />}
+          {fact.kind === 'base' && <img class="art" src="/assets/world-dots.svg" alt="" aria-hidden="true" loading="lazy" />}
+          {fact.kind !== 'edu' && <span class="veil"></span>}
           <p class="ft">{fact.title}</p>
-          {fact.edu && (
+          {fact.kind === 'edu' && (
             <a href={cotemigUrl} target="_blank" rel="noopener" class="cotemig" aria-label="Cotemig">
               <img src="/assets/cotemig-logo.svg" alt="Cotemig" width="72" height="40" loading="lazy" />
             </a>
           )}
           <p class="fv" set:html={renderInline(fact.text)} />
+          {fact.extra && <p class="focus">{fact.extra}</p>}
         </div>
       ))}
     </div>
@@ -114,6 +118,59 @@ const facts = [
   .d :global(a:hover) {
     color: var(--cyan);
     border-color: var(--cyan);
+  }
+  .fact {
+    position: relative;
+    overflow: hidden;
+  }
+  .fact > :not(.art):not(.veil) {
+    position: relative;
+  }
+  .art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .veil {
+    position: absolute;
+    inset: 0;
+  }
+  .fact.lang {
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+  .fact.lang .veil {
+    background: linear-gradient(135deg, rgba(15, 20, 37, 0.84) 0%, rgba(15, 20, 37, 0.6) 100%);
+  }
+  .fact.base {
+    background: linear-gradient(160deg, #071f72 0%, var(--bg-dark) 100%);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  .fact.base {
+    padding-bottom: calc(38.9% + 14px);
+  }
+  .fact.base .art {
+    inset: auto 0 0 0;
+    height: auto;
+    object-fit: contain;
+  }
+  .fact.base .veil {
+    background: linear-gradient(180deg, rgba(15, 20, 37, 0.35) 0%, rgba(15, 20, 37, 0) 45%);
+  }
+  .fact.dark .ft {
+    color: var(--cyan-soft);
+  }
+  .fact.dark .fv {
+    color: #fff;
+  }
+  .focus {
+    margin: 10px 0 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #63ffa6;
   }
   .fact.edu {
     background: linear-gradient(135deg, #071f72 0%, var(--bg-dark) 100%);
