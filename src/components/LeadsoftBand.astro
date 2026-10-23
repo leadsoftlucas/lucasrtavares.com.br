@@ -17,11 +17,11 @@ const t = dictionaries[Astro.props.lang];
         <div class="divider"></div>
         <div>
           <p class="overline">{t.leadsoft.overline}</p>
-          <p class="name">{t.leadsoft.title}</p>
+          <p class="name" set:html={renderInline(t.leadsoft.title)} />
         </div>
       </div>
       <div>
-        <p class="body">{t.leadsoft.body}</p>
+        <p class="body" set:html={renderInline(t.leadsoft.body)} />
         <p class="clients" set:html={renderInline(t.leadsoft.clients)} />
         <p class="svc">{t.leadsoft.services}</p>
         <a href={whatsappLink(t.leadsoft.waMsg, config.whatsappLeadsoft)} target="_blank" rel="noopener" class="wa">{t.leadsoft.waCta}</a>

@@ -37,7 +37,7 @@ export const history: Record<Lang, HistoryContent> = {
         id: 'incomodo',
         h2: 'O incômodo',
         paras: [
-          'Na faculdade, estudando orientação a objeto, eu olhava o banco de dados e não aceitava: *se dá para guardar o objeto na memória, por que não dá para guardá-lo no disco do jeito que ele é, em vez de transformá-lo em tabelas?* Perguntei ao meu professor de banco de dados avançado. A resposta, por volta de 2012, foi honesta: existiam estudos de bancos orientados a documentos, mas ainda nada concreto no mercado. Aquilo ficou na minha cabeça por seis anos.',
+          'Na faculdade, estudando orientação a objeto, eu olhava o banco de dados e não aceitava: *se dá para guardar o objeto na memória, por que não dá para guardá-lo no disco do jeito que ele é, em vez de transformá-lo em tabelas?* Perguntei ao meu professor de banco de dados avançado, o Gilberto. A resposta, por volta de 2012, foi honesta: existiam estudos de bancos orientados a documentos, mas ainda nada concreto no mercado. Aquilo ficou na minha cabeça por seis anos.',
         ],
       },
       {
@@ -120,7 +120,7 @@ export const history: Record<Lang, HistoryContent> = {
         id: 'itch',
         h2: 'The itch',
         paras: [
-          "In college, studying object orientation, I looked at databases and couldn't accept them: *if I can keep the object in memory, why can't I store it on disk as it is, instead of flattening it into tables?* I asked my advanced databases professor. Around 2012 the answer was honest: there was research on document-oriented databases, but nothing solid on the market yet. That stayed with me for six years.",
+          "In college, studying object orientation, I looked at databases and couldn't accept them: *if I can keep the object in memory, why can't I store it on disk as it is, instead of flattening it into tables?* I asked my advanced databases professor, Gilberto. Around 2012 the answer was honest: there was research on document-oriented databases, but nothing solid on the market yet. That stayed with me for six years.",
         ],
       },
       {

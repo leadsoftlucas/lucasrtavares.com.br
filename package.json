@@ -13,7 +13,8 @@
     "astro": "astro",
     "check:i18n": "node scripts/check-i18n.ts",
     "check:placeholders": "node scripts/check-placeholders.mjs",
-    "check:links": "node scripts/check-links.mjs"
+    "check:links": "node scripts/check-links.mjs",
+    "check:brand": "node scripts/check-brand-links.mjs"
   },
   "dependencies": {
     "astro": "^7.4.2"

@@ -22,7 +22,7 @@ const facts = [
         <div class="job">
           <div>
             <p class="period">{job.period}</p>
-            <p class="place">{job.place}</p>
+            <p class="place" set:html={renderInline(job.place)} />
           </div>
           <div>
             <h3>{job.role}</h3>

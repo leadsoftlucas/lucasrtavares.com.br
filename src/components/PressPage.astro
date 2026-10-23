@@ -44,7 +44,7 @@ const talks = c.talks.filter((t) => config.showG1 || !t.g1);
               <h3>{b.label}</h3>
               <button type="button" class="copy" data-copy data-done={c.copied} data-label={c.copy}>{c.copy}</button>
             </div>
-            <p data-bio-text>{b.text}</p>
+            <p data-bio-text set:html={renderInline(b.text)} />
           </article>
         ))}
       </div>

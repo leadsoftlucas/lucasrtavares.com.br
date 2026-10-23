@@ -28,7 +28,7 @@ const gateClose = '<!-- /GATE-G1 -->';
       {sections.map((s) => (
         <section id={s.id} class="block">
           {s.g1 && <Fragment set:html={gateOpen} />}
-          <h2>{s.h2}</h2>
+          <h2 set:html={renderInline(s.h2)} />
           {s.paras?.map((p, i) => {
             const last = i === (s.paras?.length ?? 0) - 1;
             const text = !showG1 && last && s.withoutG1Tail ? `${p} ${s.withoutG1Tail}` : p;

@@ -139,3 +139,14 @@ a:hover {
   font-style: normal;
   font-weight: 600;
 }
+
+/* "LeadSoft" sempre leva ao site da empresa; herda a cor do texto ao redor. */
+.brand-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+  text-underline-offset: 3px;
+}
+.brand-link:hover {
+  color: var(--cyan);
+}

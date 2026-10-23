@@ -2,7 +2,7 @@
 
 > Sales Engineer e Arquiteto de Soluções na RavenDB (Hibernating Rhinos Ltd.) e a ponte do RavenDB no Brasil. Programa desde 2007 e projeta software com RavenDB desde 2018. Autor de 17 pacotes .NET open source (mais de 208 mil downloads no NuGet) e palestrante no Brasil e nos EUA. Atende em português e inglês, a partir de Curitiba.
 
-Este site é pessoal e **não** é um canal oficial da RavenDB. O foco é o RavenDB. Desenvolvimento de software (.NET) e consultoria de tecnologia e de produto estão disponíveis sob demanda, sem destaque, na seção LeadSoft. A conversão acontece por WhatsApp (mensagens pré-preenchidas por assunto) ou e-mail.
+Este site é pessoal e **não** é um canal oficial da RavenDB. O foco é o RavenDB. Desenvolvimento de software (.NET) e consultoria de tecnologia e de produto estão disponíveis sob demanda, sem destaque, na seção [LeadSoft](https://leadsoft.inf.br). A conversão acontece por WhatsApp (mensagens pré-preenchidas por assunto) ou e-mail.
 
 ## O que ele faz
 - Avalia casos de uso e faz **prova de conceito** com RavenDB, com benchmark contra o caminho atual.
@@ -13,7 +13,7 @@ Este site é pessoal e **não** é um canal oficial da RavenDB. O foco é o Rave
 
 ## Quem é
 - Sales Engineer e Arquiteto de Soluções na RavenDB desde agosto de 2025.
-- Fundou e liderou a LeadSoft Soluções Web (2018–2025), software house de Curitiba; parceira oficial do RavenDB no Brasil entre 2024 e 2025.
+- Fundou e liderou a [LeadSoft Soluções Web](https://leadsoft.inf.br) (2018–2025), software house de Curitiba; parceira oficial do RavenDB no Brasil entre 2024 e 2025.
 - Bacharel em Sistemas de Informação (Faculdade Cotemig, 2010–2015); técnico em Informática (Colégio Cotemig, 2007–2009).
 
 ## Provas

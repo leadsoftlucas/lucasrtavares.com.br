@@ -86,7 +86,7 @@ export function homeJsonLd(lang: Lang) {
         },
         alumniOf: [
           { '@type': 'EducationalOrganization', name: 'Faculdade Cotemig' },
-          { '@type': 'Organization', name: 'LeadSoft Soluções Web' },
+          { '@type': 'Organization', name: 'LeadSoft Soluções Web', url: 'https://leadsoft.inf.br' },
         ],
         address: {
           '@type': 'PostalAddress',
