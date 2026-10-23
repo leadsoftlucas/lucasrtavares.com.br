@@ -25,7 +25,7 @@ export const pt = {
     overline: 'RavenDB Ltd · Brasil',
     title: 'Sua ponte com o RavenDB no Brasil',
     role: 'Lucas Resende Tavares · Sales Engineer e Arquiteto de Soluções na RavenDB',
-    lead: 'Sou o ponto de contato brasileiro do RavenDB. Avalio o seu caso com você, mostro em código se o banco resolve e, quando faz sentido, faço a ponte com o time comercial. Quase duas décadas em .NET e modelagem de dados por trás de cada resposta — e a franqueza de dizer quando a resposta é não.',
+    lead: 'Sou o ponto de contato brasileiro do RavenDB. Avalio o seu caso com você, mostro em código se o banco resolve e, quando faz sentido, faço a ponte com o time comercial. Atendo times técnicos, quem decide e quem é dono do negócio, no mundo todo, com foco nas Américas, na Europa e na Oceania. Quase duas décadas em .NET e modelagem de dados por trás de cada resposta — e a franqueza de dizer quando a resposta é não.',
     cta1: 'Falar no WhatsApp',
     cta2: 'Perfil no LinkedIn',
     mailLabel: 'Contato oficial',

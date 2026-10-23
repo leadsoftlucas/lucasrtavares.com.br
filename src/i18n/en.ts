@@ -27,7 +27,7 @@ export const en: typeof pt = {
     overline: 'Sales Engineer · RavenDB Ltd',
     title: 'Lucas Resende Tavares',
     role: 'Solutions Architect & Sales Engineer at RavenDB',
-    lead: 'Nearly two decades writing .NET software and modeling data — from Delphi cursors to vector search over documents. Today I help engineering teams and technical decision-makers trade complexity for predictability, performance and productivity.',
+    lead: 'Nearly two decades writing .NET software and modeling data — from Delphi cursors to vector search over documents. Today I help engineering teams, technical decision-makers and business owners trade complexity for predictability, performance and productivity, worldwide, with a focus on the Americas, Europe and Oceania.',
     cta1: 'Talk on WhatsApp',
     cta2: 'LinkedIn profile',
     mailLabel: 'Official contact',
