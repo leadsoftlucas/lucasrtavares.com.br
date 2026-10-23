@@ -2,12 +2,14 @@
 import { dictionaries, type Lang } from '../i18n';
 import { config, whatsappLink } from '../config';
 import { renderInline } from '../lib/inline';
+import { featuredQuote } from '../data/testimonials';
 import { links } from '../data/links';
 
 interface Props {
   lang: Lang;
 }
-const t = dictionaries[Astro.props.lang];
+const { lang } = Astro.props;
+const t = dictionaries[lang];
 ---
 <section>
   <div class="wrap inner">
@@ -23,6 +25,11 @@ const t = dictionaries[Astro.props.lang];
       <div>
         <p class="body" set:html={renderInline(t.leadsoft.body)} />
         <p class="clients" set:html={renderInline(t.leadsoft.clients)} />
+        <blockquote class="quote">
+          <p lang="pt-BR" set:html={renderInline(featuredQuote.pt)} />
+          {lang === 'en' && <p class="tr" set:html={renderInline(featuredQuote.en)} />}
+          <cite>{featuredQuote.name}, {featuredQuote.role[lang]}{lang === 'en' ? ' (translated from Portuguese)' : ''}</cite>
+        </blockquote>
         <p class="svc">{t.leadsoft.services}</p>
         <a href={whatsappLink(t.leadsoft.waMsg, config.whatsappLeadsoft)} target="_blank" rel="noopener" class="wa">{t.leadsoft.waCta}</a>
         <div class="links">
@@ -98,6 +105,29 @@ const t = dictionaries[Astro.props.lang];
   .clients :global(a:hover) {
     color: var(--cyan);
     border-color: var(--cyan);
+  }
+  .quote {
+    margin: 0 0 22px;
+    padding: 4px 0 4px 16px;
+    border-left: 3px solid var(--cyan);
+  }
+  .quote p {
+    margin: 0 0 6px;
+    font-size: 15px;
+    line-height: 1.6;
+    font-style: italic;
+    color: #fff;
+  }
+  .quote .tr {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.78);
+  }
+  .quote cite {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--cyan-soft);
   }
   .svc {
     margin: 0 0 10px;

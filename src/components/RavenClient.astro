@@ -1,0 +1,97 @@
+---
+import { renderInline } from '../lib/inline';
+
+interface Props {
+  title: string;
+  intro: string;
+  stats: Array<{ v: string; k: string }>;
+  readLabel: string;
+  articleUrl: string;
+  video: string;
+}
+const { title, intro, stats, readLabel, articleUrl, video } = Astro.props;
+---
+<div class="rc">
+  <h3>{title}</h3>
+  <p class="intro" set:html={renderInline(intro)} />
+  <div class="stats">
+    {stats.map((s) => (
+      <div class="stat">
+        <span class="v">{s.v}</span>
+        <span class="k">{s.k}</span>
+      </div>
+    ))}
+  </div>
+  <p class="links">
+    <a href={articleUrl} target="_blank" rel="noopener" class="btn btn-grad" style="--btn-h: 42px; --btn-fs: 13px;">{readLabel}</a>
+    <span class="video" set:html={renderInline(video)} />
+  </p>
+</div>
+
+<style>
+  .rc {
+    margin-top: 32px;
+    padding: clamp(22px, 3vw, 32px);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(120deg, var(--bg-dark) 0%, #071f72 62%, var(--blue) 100%);
+    color: #fff;
+  }
+  h3 {
+    margin: 0 0 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #63ffa6;
+  }
+  .intro {
+    margin: 0 0 22px;
+    max-width: 72ch;
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.85);
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 18px;
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .v {
+    font-size: clamp(26px, 3.2vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(90deg, var(--cyan-soft) 0%, #63ffa6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .k {
+    font-size: 13px;
+    line-height: 1.45;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .links {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+  }
+  .video {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.75);
+  }
+  .video :global(a) {
+    color: var(--cyan-soft);
+  }
+</style>

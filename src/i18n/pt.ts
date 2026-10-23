@@ -313,7 +313,7 @@ export const pt = {
     {
       date: 'Out 2024',
       name: 'FAE · Semana do Empreendedor',
-      place: 'Brasil',
+      place: 'Curitiba, Brasil',
       role: 'Palestra "O efeito borboleta no empreender", para estudantes: da pergunta a um professor à RavenDB, e por que prestar atenção nas sutilezas da faculdade.',
     },
     {

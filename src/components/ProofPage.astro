@@ -11,6 +11,8 @@ import Base from '../layouts/Base.astro';
 import PageHero from './PageHero.astro';
 import CtaCards from './CtaCards.astro';
 import JsonLd from './JsonLd.astro';
+import Testimonials from './Testimonials.astro';
+import RavenClient from './RavenClient.astro';
 
 interface Props {
   lang: Lang;
@@ -69,7 +71,7 @@ const t = dictionaries[lang];
   <section class="band warm" id="videos">
     <div class="wrap inner">
       <h2 class="h2">{c.videosTitle}</h2>
-      <div class="vids">
+      <div class="vids two">
         {t.videos.map((v, i) => (
           <a href={youtubeWatchUrl(videos[i].id)} target="_blank" rel="noopener" class="vid">
             <img src={youtubeThumbUrl(videos[i].id)} alt="" loading="lazy" width="480" height="360" />
@@ -80,7 +82,7 @@ const t = dictionaries[lang];
         ))}
       </div>
       <h3 class="sub">{c.interviewsTitle}</h3>
-      <div class="vids">
+      <div class="vids three">
         {interviewVideos.slice(0, 3).map((iv) => (
           <a href={interviewUrl(iv)} target="_blank" rel="noopener" class="vid">
             <img src={youtubeThumbUrl(iv.id)} alt="" loading="lazy" width="480" height="360" />
@@ -137,9 +139,9 @@ const t = dictionaries[lang];
         {clients.map((cl) => (
           <li><a href={cl.url} target="_blank" rel="noopener">{cl.name}</a></li>
         ))}
-        {c.clientsExtra.map((name) => <li><span>{name}</span></li>)}
       </ul>
-      <p class="extra" set:html={renderInline(c.testimonial)} />
+      <RavenClient title={c.ravenClient.title} intro={c.ravenClient.intro} stats={c.ravenClient.stats} readLabel={c.ravenClient.read} articleUrl={articles[2].url} video={c.ravenClient.video} />
+      <Testimonials lang={lang} title={c.testimonialsTitle} note={c.testimonialsNote} translatedLabel={c.translated} originalLabel={c.original} />
     </div>
   </section>
 
@@ -272,8 +274,21 @@ const t = dictionaries[lang];
   }
   .vids {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: 1fr;
     gap: 18px;
+  }
+  @media (min-width: 640px) {
+    .vids.two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .vids.three {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 960px) {
+    .vids.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
   .vid {
     display: flex;
@@ -291,6 +306,7 @@ const t = dictionaries[lang];
   }
   .vid img {
     width: 100%;
+    height: auto;
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: 10px;

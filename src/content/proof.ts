@@ -31,8 +31,17 @@ export interface ProofContent {
   eventsHead: [string, string, string, string];
   events: Array<{ date: string; name: string; place: string; role: string }>;
   clientsTitle: string;
-  clientsExtra: string[];
-  testimonial: string;
+  ravenClient: {
+    title: string;
+    intro: string;
+    stats: Array<{ v: string; k: string }>;
+    read: string;
+    video: string;
+  };
+  testimonialsTitle: string;
+  testimonialsNote: string;
+  translated: string;
+  original: string;
   ctaTitle: string;
   ctaNote: string;
   nuget: string;
@@ -137,7 +146,7 @@ export const proof: Record<Lang, ProofContent> = {
       {
         date: '07/10/2024',
         name: 'FAE · Semana do Empreendedor',
-        place: 'Brasil',
+        place: 'Curitiba, Brasil',
         role: 'Palestra *O efeito borboleta no empreender*, para estudantes',
       },
       { date: '11/2025', name: 'Microsoft Ignite', place: 'San Francisco, EUA', role: 'Primeira feira no time RavenDB' },
@@ -145,8 +154,24 @@ export const proof: Record<Lang, ProofContent> = {
       { date: '—', name: 'GDG Maringá', place: 'Maringá, Brasil', role: '*The Power of RavenDB* (vídeo)' },
     ],
     clientsTitle: 'Quem já confiou',
-    clientsExtra: ['Agrotis', 'Petra Oil (via Inforlube)'],
-    testimonial: 'Depoimentos: [adicionar 1 ou 2 frases curtas, assim que houver permissão]',
+    ravenClient: {
+      title: 'Cliente RavenDB: Invent Software',
+      intro:
+        'Conversei com Fábio Nascimento, CTO da Invent Software, cujos clientes incluem Ambev e grandes clubes de futebol, sobre como a empresa redesenhou a estratégia de dados com o RavenDB. Números relatados por ele na entrevista e publicados no meu artigo de 23/04/2026, sobre uma operação que, segundo o artigo, movimenta 4% do PIB brasileiro.',
+      stats: [
+        { v: '80%', k: 'de ganho no tempo de desenvolvimento e manutenção' },
+        { v: '38 mi', k: 'de registros em uma carga retroativa do REINF, em 10 horas (RavenDB com Kafka)' },
+        { v: '15–20%', k: 'de uso de CPU durante essa carga' },
+        { v: '20–30', k: 'tabelas relacionadas para uma NF-e no modelo SQL anterior' },
+      ],
+      read: 'Ler o artigo',
+      video: 'Entrevista completa em vídeo: [LINK a informar]',
+    },
+    testimonialsTitle: 'O que clientes da LeadSoft disseram',
+    testimonialsNote:
+      'Depoimentos recebidos pela LeadSoft entre 2018 e 2025, nas palavras de quem contratou. Mostram entrega, prazo e parceria; a LeadSoft foi a empresa que fundei e liderei antes de entrar na RavenDB.',
+    translated: '',
+    original: '',
     ctaTitle: 'Quer conversar sobre o seu caso com RavenDB?',
     ctaNote: 'Prefere e-mail? Escreva para',
     nuget: 'Ver todos os pacotes no NuGet',
@@ -249,7 +274,7 @@ export const proof: Record<Lang, ProofContent> = {
       {
         date: '2024-10-07',
         name: 'FAE · Entrepreneur Week',
-        place: 'Brazil',
+        place: 'Curitiba, Brazil',
         role: 'Talk *O efeito borboleta no empreender* (the butterfly effect in entrepreneurship), for students',
       },
       { date: '2025-11', name: 'Microsoft Ignite', place: 'San Francisco, USA', role: 'First trade show on the RavenDB team' },
@@ -257,8 +282,24 @@ export const proof: Record<Lang, ProofContent> = {
       { date: '—', name: 'GDG Maringá', place: 'Maringá, Brazil', role: '*The Power of RavenDB* (video)' },
     ],
     clientsTitle: 'Who has trusted me',
-    clientsExtra: ['Agrotis', 'Petra Oil (via Inforlube)'],
-    testimonial: 'Testimonials: [add 1 or 2 short sentences once there is permission]',
+    ravenClient: {
+      title: 'RavenDB client: Invent Software',
+      intro:
+        'I talked to Fábio Nascimento, CTO of Invent Software, whose clients include Ambev and major football clubs, about how the company redesigned its data strategy with RavenDB. Numbers reported by him in the interview and published in my April 23, 2026 article (in Portuguese), about an operation that, according to the article, moves 4% of Brazil\'s GDP.',
+      stats: [
+        { v: '80%', k: 'gain in development and maintenance time' },
+        { v: '38 mi', k: 'records in a retroactive REINF load, in 10 hours (RavenDB with Kafka)' },
+        { v: '15–20%', k: 'CPU usage during that load' },
+        { v: '20–30', k: 'related tables for one NF-e (invoice) in the previous SQL model' },
+      ],
+      read: 'Read the article',
+      video: 'Full interview on video: [link to be provided]',
+    },
+    testimonialsTitle: 'What LeadSoft clients said',
+    testimonialsNote:
+      'Testimonials received by LeadSoft between 2018 and 2025, in the words of the people who hired us. They show delivery, deadlines and partnership; LeadSoft is the company I founded and led before joining RavenDB. Translated from Portuguese; the original is one click away.',
+    translated: 'Translated from Portuguese',
+    original: 'Original in Portuguese',
     ctaTitle: 'Want to talk about your RavenDB case?',
     ctaNote: 'Prefer e-mail? Write to',
     nuget: 'See all packages on NuGet',

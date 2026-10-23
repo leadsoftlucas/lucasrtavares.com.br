@@ -23,8 +23,8 @@ function linkBrands(html: string): string {
       }
       if (depth > 0) return token;
       return token.replace(
-        /\bLeadSoft\b(?!\.[A-Za-z])/g,
-        `<a href="${LEADSOFT_URL}" target="_blank" rel="noopener" class="brand-link">LeadSoft</a>`,
+        /\bLeadSoft\b(?!\.[A-Za-z])/gi,
+        (name) => `<a href="${LEADSOFT_URL}" target="_blank" rel="noopener" class="brand-link">${name}</a>`,
       );
     })
     .join('');

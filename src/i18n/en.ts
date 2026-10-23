@@ -315,7 +315,7 @@ export const en: typeof pt = {
     {
       date: 'Oct 2024',
       name: 'FAE · Entrepreneur Week',
-      place: 'Brazil',
+      place: 'Curitiba, Brazil',
       role: 'Talk "O efeito borboleta no empreender" (the butterfly effect in entrepreneurship), for students: from a question to a professor to RavenDB, and why to pay attention to the subtleties of college.',
     },
     {
