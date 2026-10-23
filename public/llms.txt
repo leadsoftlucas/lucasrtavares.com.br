@@ -38,4 +38,4 @@ Este site é pessoal e **não** é um canal oficial da RavenDB. O foco é o Rave
 - YouTube: https://www.youtube.com/@LucasResendeTavares
 
 ## English summary
-Lucas Resende Tavares is a Sales Engineer and Solutions Architect at RavenDB and its bridge to Brazil. He has been programming since 2007 and has designed software exclusively on RavenDB since 2018. He authored 17 open-source .NET packages (200,000+ NuGet downloads) and speaks in Brazil and the US. This is a personal site, not an official RavenDB channel.
+Lucas Resende Tavares is a Sales Engineer and Solutions Architect at RavenDB and its bridge to Brazil. He has been programming since 2007 and has designed software with RavenDB since 2018, using other databases only when a client had a clear infrastructure constraint. He authored 17 open-source .NET packages (200,000+ NuGet downloads) and speaks in Brazil and the US. This is a personal site, not an official RavenDB channel.
