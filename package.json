@@ -14,7 +14,10 @@
     "check:i18n": "node scripts/check-i18n.ts",
     "check:placeholders": "node scripts/check-placeholders.mjs",
     "check:links": "node scripts/check-links.mjs",
-    "check:brand": "node scripts/check-brand-links.mjs"
+    "check:brand": "node scripts/check-brand-links.mjs",
+    "check:seo": "node scripts/check-seo.mjs",
+    "check": "npm run check:i18n && npm run check:links && npm run check:brand && npm run check:seo",
+    "verify": "npm run build && npm run check"
   },
   "dependencies": {
     "astro": "^7.4.2"

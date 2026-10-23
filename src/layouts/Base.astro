@@ -19,6 +19,8 @@ interface Props {
   preloadHero?: boolean;
   /** false nas paginas internas. */
   onHome?: boolean;
+  /** Pagina fora do indice (ex.: 404). */
+  noindex?: boolean;
   /** og:type (profile na home, article/website nas demais). */
   ogType?: string;
 }
@@ -40,7 +42,7 @@ const gtagScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLa
     {gtm && <script is:inline set:html={gtmScript} />}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {Astro.props.preloadHero && <link rel="preload" href="/assets/cosmic-bg.svg" as="image" fetchpriority="high" />}
+    {Astro.props.preloadHero && <link rel="preload" href="/assets/cosmic-bg.webp" as="image" type="image/webp" fetchpriority="high" />}
     {ga && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${config.gaId}`}></script>}
     {ga && <script is:inline set:html={gtagScript} />}
     <title>{title}</title>
@@ -51,7 +53,7 @@ const gtagScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLa
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
     <meta name="description" content={description} />
     <meta name="author" content="Lucas Resende Tavares" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <meta name="robots" content={Astro.props.noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
     <meta name="keywords" content={Astro.props.keywords ?? t.meta.keywords} />
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="pt-BR" href={abs(paths.pt)} />

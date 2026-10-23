@@ -31,8 +31,9 @@ for (const file of files) {
   if (h1 !== 1) problems.push(`${name}: ${h1} elementos <h1> (esperado 1)`);
   if (!/<html lang="(pt-BR|en)"/.test(html)) problems.push(`${name}: <html lang> ausente ou inesperado`);
   if (!/rel="canonical" href="https:\/\/[^"]+"/.test(html)) problems.push(`${name}: canonical ausente`);
+  const is404 = name === '404.html';
   const ld = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
-  if (ld.length === 0) problems.push(`${name}: sem JSON-LD`);
+  if (ld.length === 0 && !is404) problems.push(`${name}: sem JSON-LD`);
   for (const block of ld) {
     try {
       JSON.parse(block[1]);

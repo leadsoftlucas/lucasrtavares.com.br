@@ -59,7 +59,7 @@ a:hover {
 .bg-cosmic {
   position: absolute;
   inset: 0;
-  background-image: url('/assets/cosmic-bg.svg');
+  background-image: url('/assets/cosmic-bg.webp');
   background-size: cover;
 }
 .btn {
