@@ -1,0 +1,130 @@
+---
+import { dictionaries, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const t = dictionaries[Astro.props.lang];
+const facts = [
+  [t.eduTitle, t.edu],
+  [t.langTitle, t.langs],
+  [t.baseTitle, t.base],
+];
+---
+<section id="trajetoria">
+  <div class="wrap inner">
+    <h2>{t.pathTitle}</h2>
+    <p class="lead">{t.pathLead}</p>
+    <div class="jobs">
+      {t.timeline.map((job) => (
+        <div class="job">
+          <div>
+            <p class="period">{job.period}</p>
+            <p class="place">{job.place}</p>
+          </div>
+          <div>
+            <h3>{job.role}</h3>
+            <p class="d">{job.d}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="facts">
+      {facts.map(([title, text]) => (
+        <div class="fact">
+          <p class="ft">{title}</p>
+          <p class="fv">{text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background: #fff;
+  }
+  .inner {
+    padding-top: clamp(56px, 8vw, 104px);
+    padding-bottom: clamp(56px, 8vw, 104px);
+  }
+  h2 {
+    margin: 0 0 12px;
+    font-size: clamp(26px, 3.2vw, 38px);
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .lead {
+    margin: 0 0 44px;
+    color: var(--ink-soft);
+  }
+  .jobs {
+    display: flex;
+    flex-direction: column;
+  }
+  .job {
+    display: grid;
+    grid-template-columns: minmax(0, 150px) minmax(0, 1fr);
+    gap: clamp(14px, 3vw, 36px);
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+  }
+  .period {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--blue-link);
+  }
+  .place {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6c7075;
+  }
+  h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .d {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .facts {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
+  .fact {
+    padding: 22px 24px;
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+  }
+  .ft {
+    margin: 0 0 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #6c7075;
+  }
+  .fv {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+    font-weight: 600;
+  }
+</style>

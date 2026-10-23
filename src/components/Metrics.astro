@@ -1,0 +1,73 @@
+---
+import { dictionaries, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const t = dictionaries[Astro.props.lang];
+---
+<section>
+  <div class="wrap inner">
+    <p class="title">{t.metricsTitle}</p>
+    <div class="grid">
+      {t.metrics.map((m) => (
+        <div class="card">
+          <p class="v">{m.v}</p>
+          <p class="k">{m.k}</p>
+          <p class="d">{m.d}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+  }
+  .inner {
+    padding-top: clamp(44px, 6vw, 72px);
+    padding-bottom: clamp(44px, 6vw, 72px);
+  }
+  .title {
+    margin: 0 0 28px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #6c7075;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    padding: 26px;
+    border-radius: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+  }
+  .v {
+    margin: 0 0 10px;
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--blue);
+  }
+  .k {
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .d {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 450;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+</style>

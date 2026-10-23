@@ -1,0 +1,112 @@
+---
+import { dictionaries, type Lang } from '../i18n';
+import { links } from '../data/links';
+
+interface Props {
+  lang: Lang;
+}
+const t = dictionaries[Astro.props.lang];
+---
+<section>
+  <div class="wrap inner">
+    <div class="grid">
+      <div class="brand">
+        <img src="/assets/lambda.svg" alt={t.leadsoftLogoAlt} height="140" />
+        <div class="divider"></div>
+        <div>
+          <p class="overline">{t.leadsoft.overline}</p>
+          <p class="name">{t.leadsoft.title}</p>
+        </div>
+      </div>
+      <div>
+        <p class="body">{t.leadsoft.body}</p>
+        <p class="clients">{t.leadsoft.clients}</p>
+        <div class="links">
+          <a href={links.leadsoft} target="_blank" rel="noopener" class="l1">leadsoft.inf.br</a>
+          <a href={links.nugetProfile} target="_blank" rel="noopener" class="l2">{t.leadsoft.nuget}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background: linear-gradient(135deg, #071f72 0%, var(--bg-dark) 100%);
+  }
+  .inner {
+    padding-top: clamp(48px, 7vw, 88px);
+    padding-bottom: clamp(48px, 7vw, 88px);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(28px, 5vw, 56px);
+    align-items: center;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  .brand img {
+    height: clamp(90px, 12vw, 140px);
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 0 30px rgba(28, 200, 238, 0.45));
+  }
+  .divider {
+    width: 1px;
+    align-self: stretch;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.28) 50%, rgba(255, 255, 255, 0) 100%);
+  }
+  .overline {
+    margin: 0 0 6px;
+    color: #63ffa6;
+  }
+  .name {
+    margin: 0;
+    font-size: clamp(20px, 2.6vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .body {
+    margin: 0 0 16px;
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
+    text-wrap: pretty;
+  }
+  .clients {
+    margin: 0 0 22px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.58);
+    text-wrap: pretty;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .links a {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .l1 {
+    color: var(--cyan);
+    border-bottom: 1px solid rgba(28, 200, 238, 0.4);
+  }
+  .l1:hover {
+    color: #63ffa6;
+  }
+  .l2 {
+    color: rgba(255, 255, 255, 0.72);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  }
+  .l2:hover {
+    color: var(--cyan);
+  }
+</style>

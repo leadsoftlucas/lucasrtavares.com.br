@@ -1,0 +1,130 @@
+---
+import { dictionaries, type Lang } from '../i18n';
+import { events } from '../data/events';
+
+interface Props {
+  lang: Lang;
+}
+const t = dictionaries[Astro.props.lang];
+---
+<section id="palcos">
+  <div class="bg-cosmic bg"></div>
+  <div class="wrap inner">
+    <p class="overline green">{t.eventsOverline}</p>
+    <h2 class="h2">{t.eventsTitle}</h2>
+    <p class="lead">{t.eventsLead}</p>
+    <div class="grid">
+      {t.events.map((ev, i) => (
+        <div class="card">
+          <div class="photo">
+            <img src={`/${events[i].photo}`} alt="" loading="lazy" />
+          </div>
+          <div class="body">
+            <div class="when">
+              <img src={`/${events[i].flag}`} alt="" width="22" height="22" />
+              <span>{ev.date}</span>
+            </div>
+            <h3>{ev.name}</h3>
+            <p class="place">{ev.place}</p>
+            <p class="role">{ev.role}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .bg {
+    background-position: 50% 20%;
+    opacity: 0.85;
+  }
+  .inner {
+    position: relative;
+    padding-top: clamp(56px, 8vw, 96px);
+    padding-bottom: clamp(56px, 8vw, 96px);
+  }
+  .green {
+    color: #63ffa6;
+  }
+  .h2 {
+    color: #fff;
+  }
+  .lead {
+    margin: 0 0 40px;
+    color: rgba(255, 255, 255, 0.74);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .photo {
+    position: relative;
+    height: 150px;
+    background: rgba(0, 0, 0, 0.25);
+  }
+  .photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .when {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .when img {
+    width: 22px;
+    height: 22px;
+    border-radius: 5px;
+    display: block;
+  }
+  .when span {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cyan-soft);
+  }
+  h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-wrap: pretty;
+  }
+  .place {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.66);
+  }
+  .role {
+    margin: 4px 0 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.8);
+  }
+</style>

@@ -26,6 +26,90 @@ a {
 a:hover {
   color: var(--cyan);
 }
+/* Padroes que se repetem nas secoes da home (valores do index.html legado). */
+.wrap {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+.overline {
+  margin: 0 0 14px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.h2 {
+  margin: 0 0 14px;
+  font-size: clamp(26px, 3.2vw, 38px);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+.lead {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 16px;
+  font-weight: 450;
+  line-height: 1.65;
+  text-wrap: pretty;
+}
+.bg-cosmic {
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/cosmic-bg.svg');
+  background-size: cover;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: var(--btn-h, 46px);
+  padding: 0 var(--btn-px, 22px);
+  border-radius: var(--radius-pill);
+  font-size: var(--btn-fs, 13px);
+  font-weight: 700;
+}
+.btn-grad,
+.btn-grad:hover {
+  background: linear-gradient(135deg, var(--blue-link) 0%, var(--cyan) 100%);
+  color: #06121f;
+}
+.btn-grad:hover {
+  opacity: 0.88;
+}
+.btn-line-light {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-weight: 600;
+}
+.btn-line-light:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+.btn-line-dark {
+  border: 1px solid #d2d2d2;
+  color: var(--ink);
+}
+.btn-line-dark:hover {
+  border-color: var(--blue-link);
+  color: var(--blue);
+}
+.btn-dark,
+.btn-dark:hover {
+  color: #fff;
+}
+.btn-dark {
+  background: var(--ink);
+}
+.btn-dark:hover {
+  background: var(--blue);
+}
+.wa-icon {
+  flex: 0 0 auto;
+}
 ::selection {
   background: var(--cyan);
   color: var(--ink);

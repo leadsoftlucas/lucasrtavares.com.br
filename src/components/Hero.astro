@@ -1,0 +1,193 @@
+---
+import { dictionaries, type Lang } from '../i18n';
+import { config, whatsappLink } from '../config';
+import { links } from '../data/links';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = dictionaries[lang];
+const waLink = whatsappLink(t.waMessage);
+---
+<section id="top">
+  <div class="bg"></div>
+  <div class="shade"></div>
+  <div class="wrap grid">
+    <div class="copy">
+      <a href={links.ravendb} target="_blank" rel="noopener" class="badge">
+        <img src="/assets/ravendb-r-mark.png" alt="RavenDB — banco de dados de documentos" height="20" />
+        <span>{t.hero.overline}</span>
+      </a>
+      <h1>{t.hero.title}</h1>
+      <p class="role">{t.hero.role}</p>
+      <p class="lead-text">{t.hero.lead}</p>
+      <div class="ctas">
+        <a href={waLink} target="_blank" rel="noopener" class="btn btn-grad cta1" style="--btn-h: 48px; --btn-px: 24px; --btn-fs: 14px;">{t.hero.cta1}</a>
+        <a href={links.linkedin} target="_blank" rel="noopener" class="btn btn-line-light" style="--btn-h: 48px; --btn-px: 24px; --btn-fs: 14px; border-color: rgba(255,255,255,.32);">{t.hero.cta2}</a>
+      </div>
+      <div class="mail">
+        <span>{t.hero.mailLabel}</span>
+        <a href={`mailto:${config.emailRavendb}`}>{config.emailRavendb}</a>
+      </div>
+    </div>
+    <div class="photo">
+      <div class="glow"></div>
+      <img
+        src="/assets/lucas-tavares.png"
+        srcset="/assets/lucas-tavares-620.png 620w, /assets/lucas-tavares.png 1238w"
+        sizes="(max-width: 809px) 250px, (max-width: 1333px) 31vw, 412px"
+        width="1238"
+        height="1680"
+        alt="Lucas Resende Tavares"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
+  <div class="stripe"></div>
+</section>
+
+<style>
+  section {
+    position: relative;
+    background: var(--bg-dark);
+    overflow: hidden;
+  }
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/cosmic-bg.svg');
+    background-size: cover;
+    background-position: center;
+  }
+  .shade {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(100deg, rgba(7, 11, 24, 0.92) 0%, rgba(7, 31, 114, 0.42) 50%, rgba(7, 11, 24, 0.15) 100%);
+  }
+  .grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+    align-items: end;
+  }
+  .copy {
+    padding: clamp(56px, 8vw, 104px) 0 clamp(48px, 7vw, 96px);
+  }
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 14px 7px 8px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(28, 200, 238, 0.35);
+    margin-bottom: 26px;
+    color: var(--cyan-soft);
+  }
+  .badge:hover {
+    border-color: var(--cyan);
+    background: rgba(28, 200, 238, 0.16);
+    color: #fff;
+  }
+  .badge img {
+    height: 20px;
+    width: auto;
+    display: block;
+  }
+  .badge span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: inherit;
+  }
+  h1 {
+    margin: 0 0 16px;
+    font-size: clamp(38px, 6vw, 68px);
+    line-height: 1.02;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #fff;
+    text-wrap: balance;
+  }
+  .role {
+    margin: 0 0 22px;
+    font-size: clamp(17px, 2.2vw, 22px);
+    line-height: 1.35;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    background: linear-gradient(90deg, var(--cyan) 0%, var(--blue-link) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .lead-text {
+    margin: 0 0 28px;
+    max-width: 54ch;
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.82);
+    text-wrap: pretty;
+  }
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 26px;
+  }
+  .cta1 {
+    letter-spacing: -0.01em;
+    box-shadow: 0 0 40px rgba(28, 200, 238, 0.35);
+  }
+  .mail {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.52);
+  }
+  .mail span {
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .mail a {
+    color: rgba(255, 255, 255, 0.68);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  }
+  .mail a:hover {
+    color: var(--cyan);
+  }
+  .photo {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 320px;
+  }
+  .glow {
+    position: absolute;
+    bottom: 0;
+    width: min(420px, 88%);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(28, 200, 238, 0.42) 0%, rgba(123, 81, 255, 0.18) 45%, rgba(15, 20, 37, 0) 72%);
+  }
+  .photo img {
+    position: relative;
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: clamp(340px, 42vw, 560px);
+    object-fit: contain;
+    object-position: bottom;
+    filter: drop-shadow(0 24px 60px rgba(0, 0, 0, 0.55));
+  }
+  .stripe {
+    height: 4px;
+    background: linear-gradient(90deg, var(--cyan) 0%, var(--blue-link) 50%, var(--purple) 100%);
+  }
+</style>
