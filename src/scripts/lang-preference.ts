@@ -25,3 +25,5 @@ try {
     if (target) location.replace(target + location.hash);
   }
 } catch {}
+
+export {};

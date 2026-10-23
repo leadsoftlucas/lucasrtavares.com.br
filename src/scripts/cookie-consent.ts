@@ -17,3 +17,5 @@ if (banner && accept && !accepted) {
     banner.hidden = true;
   });
 }
+
+export {};
