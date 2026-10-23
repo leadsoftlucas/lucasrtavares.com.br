@@ -81,7 +81,7 @@ export const history: Record<Lang, HistoryContent> = {
         id: 'hoje',
         h2: 'Hoje',
         paras: [
-          'Sou **Sales Engineer e Arquiteto de Soluções na RavenDB**. Meu trabalho: **avaliar o seu caso com você**, **provar em código** se o banco resolve (e, quando não resolve, eu digo) e, quando faz sentido, **conectar você ao time comercial**. Em português, no seu fuso, com linha direta com a engenharia.',
+          'Sou **Sales Engineer e Arquiteto de Soluções na RavenDB**. Meu trabalho: **avaliar o seu caso com você**, **provar em código** se o banco resolve (e, quando não resolve, eu digo) e, quando faz sentido, **conectar você ao time comercial**. Em português ou em inglês, no seu fuso, em qualquer continente, com linha direta com a engenharia.',
         ],
       },
       {
@@ -164,7 +164,7 @@ export const history: Record<Lang, HistoryContent> = {
         id: 'today',
         h2: 'Today',
         paras: [
-          "I'm a **Sales Engineer and Solutions Architect at RavenDB**. My job: **evaluate your case with you**, **prove in code** whether the database solves it (and when it doesn't, I say so) and, when it makes sense, **connect you with the sales team**. In your language, in your time zone, with a direct line to engineering.",
+          "I'm a **Sales Engineer and Solutions Architect at RavenDB**. My job: **evaluate your case with you**, **prove in code** whether the database solves it (and when it doesn't, I say so) and, when it makes sense, **connect you with the sales team**. In Portuguese or English, in your time zone, on any continent, with a direct line to engineering.",
         ],
       },
       {

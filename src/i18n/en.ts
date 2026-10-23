@@ -90,7 +90,7 @@ export const en: typeof pt = {
   ],
   trust: [
     {
-      t: 'Your language, your time zone',
+      t: 'English or Portuguese, in your time zone',
       d: 'A technical conversation with no middle layer — an answer within the same business day.',
     },
     {

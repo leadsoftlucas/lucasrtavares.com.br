@@ -88,7 +88,7 @@ export const pt = {
   ],
   trust: [
     {
-      t: 'Português, no seu fuso',
+      t: 'Português ou inglês, no seu fuso',
       d: 'Conversa técnica sem intermediário e sem barreira de idioma — resposta no mesmo dia útil.',
     },
     {
