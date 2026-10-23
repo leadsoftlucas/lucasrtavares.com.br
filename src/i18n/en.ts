@@ -94,7 +94,7 @@ export const en: typeof pt = {
     },
     {
       t: 'Direct line to engineering',
-      d: 'When a question goes beyond me, it reaches the RavenDB engineering team in Israel.',
+      d: 'When a question goes beyond me, it reaches the RavenDB engineering team in Poland.',
     },
     {
       t: 'Brazilian companies in production',

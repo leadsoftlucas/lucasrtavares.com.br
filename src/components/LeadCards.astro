@@ -46,7 +46,7 @@ const cards = t.leads.map((l) => ({ ...l, href: whatsappLink(l.msg) }));
 
 <style>
   section {
-    background: #fff;
+    background: var(--band-cool);
     border-bottom: 1px solid var(--line);
   }
   .inner {
@@ -176,7 +176,7 @@ const cards = t.leads.map((l) => ({ ...l, href: whatsappLink(l.msg) }));
     margin: 20px 0 0;
     font-size: 13px;
     line-height: 1.6;
-    color: #6c7075;
+    color: var(--muted);
     text-wrap: pretty;
   }
   .mailnote a {

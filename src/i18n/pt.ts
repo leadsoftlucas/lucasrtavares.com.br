@@ -92,7 +92,7 @@ export const pt = {
     },
     {
       t: 'Linha direta com a engenharia',
-      d: 'Quando a questão passa do meu alcance, ela chega ao time de engenharia do RavenDB, em Israel.',
+      d: 'Quando a questão passa do meu alcance, ela chega ao time de engenharia do RavenDB, na Polônia.',
     },
     {
       t: 'Empresas brasileiras em produção',
