@@ -1,4 +1,4 @@
-// "The Raven Child", Avantasia: musica favorita do Lucas (ver Content/06 Site/10 Musica Favorita).
+// "The Raven Child", Avantasia: musica favorita do Lucas.
 export const music = {
   trackId: '76zg1a9DvGpEHVVQh7Yuv1',
 } as const;

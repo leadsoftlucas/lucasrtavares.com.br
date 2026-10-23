@@ -7,7 +7,6 @@ import { ossStats } from '../data/links';
 import { articles } from '../data/articles';
 
 // llms.txt (llmstxt.org) gerado a partir dos mesmos dados das paginas, para nao divergir do site.
-// Fonte do texto: Content/06 Site/06 SEO, LLM e Dados Estruturados.md (secao 6) + decisoes do Lucas de 24/10/2026.
 export const GET: APIRoute = () => {
   const abs = (path: string) => config.siteUrl + path;
   const pt = proof.pt;

@@ -1,6 +1,4 @@
-// JSON-LD da home (Content/06 Site/06 SEO, LLM e Dados Estruturados.md, secao 1).
-// Sem ProfessionalService e sem priceRange. O telefone do Person e o numero RavenDB-focado ja usado no site;
-// o numero pessoal nunca entra e o da LeadSoft nao entra em dados estruturados.
+// JSON-LD da home.
 import { config } from '../config';
 import { routes, type Lang } from '../i18n';
 

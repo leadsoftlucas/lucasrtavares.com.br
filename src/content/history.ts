@@ -1,5 +1,4 @@
-// Pagina /historia/ e /en/history/. Texto de Content/06 Site/03 Pagina Historia (PT e EN).md,
-// com as correcoes do Lucas de 24/10/2026. Sintaxe: [texto](url), **negrito**, *enfase*.
+// Pagina /historia/ e /en/history/. Sintaxe dos textos: [texto](url), **negrito**, *enfase*.
 // Cada capitulo e uma lista de blocos: paragrafo, citacao, numeros, imagem ou cartoes.
 import type { Lang } from '../i18n';
 
@@ -20,10 +19,10 @@ export interface Section {
   year: string;
   tone: Tone;
   blocks: Block[];
-  /** Trecho sujeito ao gate G1 (alinhamento com a RavenDB): so entra com PUBLIC_SHOW_G1=true. */
-  g1?: boolean;
-  /** Acrescentado ao ultimo paragrafo quando o G1 esta desligado. */
-  withoutG1Tail?: string;
+  /** Capitulo completo: aparece quando PUBLIC_SHOW_FULL_STORY nao e "false". */
+  extended?: boolean;
+  /** Acrescentado ao ultimo paragrafo quando o capitulo completo esta oculto. */
+  withoutExtendedTail?: string;
 }
 
 export interface HistoryContent {
@@ -124,7 +123,7 @@ export const history: Record<Lang, HistoryContent> = {
         h2: 'A ligação',
         year: '2024',
         tone: 'dark',
-        withoutG1Tail: 'Em 2025 encerrei a LeadSoft e, em agosto, entrei no time da RavenDB como Sales Engineer.',
+        withoutExtendedTail: 'Em 2025 encerrei a LeadSoft e, em agosto, entrei no time da RavenDB como Sales Engineer.',
         blocks: [
           {
             p: 'Em janeiro de 2024 recebi uma ligação internacional. Era o RavenDB, curioso para saber por que um desconhecido do Brasil tinha cadastro e usava o banco. Contei a história acima. Semanas depois eu estava em San Francisco, na **Developer Week**, conhecendo Oren Eini e David Baruc, num evento em um rooftop, antes da feira. Na volta para o hotel, no Uber, a ficha caiu:',
@@ -177,7 +176,7 @@ export const history: Record<Lang, HistoryContent> = {
         h2: 'A conversa que mudou tudo',
         year: '2025',
         tone: 'dark',
-        g1: true,
+        extended: true,
         blocks: [
           {
             p: 'Em maio de 2025, a RavenDB me chamou para uma conversa sobre a minha experiência como parceiro. Contei os casos e o que resolvi para os clientes. No fim, o David Baruc disse:',
@@ -322,7 +321,7 @@ export const history: Record<Lang, HistoryContent> = {
         h2: 'The call',
         year: '2024',
         tone: 'dark',
-        withoutG1Tail: 'In 2025 I closed LeadSoft and, in August, joined the RavenDB team as a Sales Engineer.',
+        withoutExtendedTail: 'In 2025 I closed LeadSoft and, in August, joined the RavenDB team as a Sales Engineer.',
         blocks: [
           {
             p: 'In January 2024 I got an international call. It was RavenDB, curious about why an unknown person in Brazil had an account and used the database. I told them the story above. Weeks later I was in San Francisco at **Developer Week**, meeting Oren Eini and David Baruc at a rooftop event before the expo. On the ride back to the hotel, in an Uber, it hit me:',
@@ -375,7 +374,7 @@ export const history: Record<Lang, HistoryContent> = {
         h2: 'The conversation that changed everything',
         year: '2025',
         tone: 'dark',
-        g1: true,
+        extended: true,
         blocks: [
           {
             p: 'In May 2025, RavenDB invited me to a conversation about my experience as a partner. I told them the cases and what I solved for clients. At the end, David Baruc said:',

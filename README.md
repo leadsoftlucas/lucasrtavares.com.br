@@ -1,78 +1,58 @@
-# 🌐 lucasrtavares.com.br
+# lucasrtavares.com.br
 
 Site pessoal de **Lucas Resende Tavares**, Sales Engineer e Arquiteto de Soluções na [RavenDB](https://ravendb.net). Este site é pessoal e **não** é um canal oficial da RavenDB.
 
-Construído com **[Astro](https://astro.build)**: HTML gerado no build (nada de conteúdo que só aparece depois do JavaScript), PT em `/` e EN em `/en/`, componentes, CSS com tokens e JavaScript só onde precisa.
+Feito com [Astro](https://astro.build): HTML gerado no build, português em `/` e inglês em `/en/`, componentes, CSS com tokens e JavaScript apenas onde é necessário.
 
-> **Estado:** branch `redesign/astro`. O site de produção continua sendo a `master` antiga (tag `site-legacy-2026-10-24`) até o dia do corte. Nada aqui publica sozinho.
+## Rodar localmente
 
-## ▶️ Rodar localmente
-
-Requer Node 22.23+ (testado no 24) e npm.
+Requer Node 22.23+ e npm.
 
 ```bash
 npm install
 npm run dev        # http://localhost:4321/
-npm run verify     # build + todos os checks
-npm run preview    # serve o build em http://localhost:4321/
+npm run verify     # build + checks
+npm run preview    # serve o build
 ```
 
-## 🗂️ Estrutura
+## Estrutura
 
 ```text
 src/
-  config.ts            variáveis PUBLIC_* e links de WhatsApp (nenhum segredo)
-  i18n/                textos da home e do layout, PT e EN (en.ts é tipado como pt.ts)
-  content/             páginas História, Provas e Imprensa, PT e EN
-  data/                pacotes NuGet, eventos, vídeos, artigos, clientes, depoimentos, JSON-LD, links
-  components/          Hero, LeadCards, Timeline, OpenSource, Videos, PageHero, CtaCards...
-  layouts/Base.astro   <head> (GTM, GA4, hreflang, Open Graph), cabeçalho, rodapé, banner LGPD
-  pages/               rotas (/, /en/, /historia/, /en/history/, ...) + robots.txt, sitemap.xml, llms.txt, 404
-  scripts/             módulos pequenos (idioma, cookies, vídeo, filtro de pacotes, progresso de leitura...)
-  styles/              tokens.css e global.css
-public/                assets, CNAME, .nojekyll
-design/                fontes de arte (ex.: cosmic-bg.svg, que gerou o cosmic-bg.webp)
-legacy/                o site antigo (index.html + runtime), só para consulta
-scripts/               checks do build (abaixo)
+  config.ts            variáveis PUBLIC_* e links de WhatsApp
+  i18n/                textos da home e do layout (PT e EN)
+  content/             páginas História, Provas e Imprensa (PT e EN)
+  data/                pacotes NuGet, eventos, vídeos, artigos, clientes, depoimentos, JSON-LD
+  components/          seções e blocos reutilizáveis
+  layouts/Base.astro   <head>, cabeçalho, rodapé e aviso de cookies
+  pages/               rotas, robots.txt, sitemap.xml, llms.txt e 404
+  scripts/             módulos pequenos de JavaScript
+  styles/              tokens e estilos globais
+public/                imagens, CNAME, .nojekyll
+design/                fontes de arte
+scripts/               verificações do build
 ```
 
-## 🔐 Variáveis de ambiente (públicas, não são segredos)
+## Variáveis de ambiente
 
-Copie `.env.example` para `.env`. No GitHub, use *Settings → Secrets and variables → Actions → Variables*.
+Públicas (vão para o HTML), não são segredos. Copie `.env.example` para `.env`; no GitHub, use *Settings → Secrets and variables → Actions → Variables*.
 
 | Variável | Para quê |
 |---|---|
 | `PUBLIC_SITE_URL` | domínio (canonical, sitemap, Open Graph) |
 | `PUBLIC_GTM_ID`, `PUBLIC_GA_ID` | Tag Manager e GA4 (só carregam no build de produção) |
-| `PUBLIC_WHATSAPP_RAVENDB` | número dos botões RavenDB |
-| `PUBLIC_WHATSAPP_LEADSOFT` | **só** a seção LeadSoft |
-| `PUBLIC_EMAIL_RAVENDB`, `PUBLIC_EMAIL_PERSONAL` | e-mails |
-| `PUBLIC_SHOW_G1` | `true` mostra o trecho "A conversa que mudou tudo" da página História. **Padrão: desligado** (só ligar depois do alinhamento com a RavenDB) |
+| `PUBLIC_WHATSAPP_RAVENDB`, `PUBLIC_WHATSAPP_LEADSOFT` | números dos botões de WhatsApp |
+| `PUBLIC_EMAIL_RAVENDB`, `PUBLIC_EMAIL_PERSONAL` | e-mails de contato |
+| `PUBLIC_SHOW_FULL_STORY` | capítulo completo da página História (padrão: ligado; `false` oculta) |
 
-O número pessoal do Lucas **nunca** entra neste repositório.
+## Verificações
 
-## ✅ Checks
+`npm run verify` faz o build e confere idiomas (PT e EN com as mesmas chaves), links internos, H1 único, `canonical`, JSON-LD, `robots.txt`, `sitemap.xml` e `llms.txt`. O Lighthouse CI (`lighthouserc.json`) mede as 8 páginas.
 
-`npm run verify` faz o build e roda:
+## Deploy
 
-| Comando | O que confere |
-|---|---|
-| `check:i18n` | PT e EN com as mesmas chaves, sem texto vazio, listas com o tamanho dos dados |
-| `check:links` | links e recursos internos existem, 1 H1, `lang`, `canonical`, JSON-LD válido, imagens com `alt` |
-| `check:brand` | todo "LeadSoft" no texto leva a https://leadsoft.inf.br |
-| `check:seo` | `robots.txt`, `sitemap.xml` (8 URLs com hreflang) e `llms.txt` coerentes com as páginas |
-| `check:placeholders` | lista os marcadores pendentes no código (`[adicionar]`, `[LINK a informar]`); **em produção eles são removidos do HTML** (`PUBLIC_SHOW_TODO=true` os mostra); `--strict` falha se houver |
+`.github/workflows/deploy.yml` constrói, verifica e roda o Lighthouse CI; em push na `master`, publica no GitHub Pages.
 
-**Lighthouse CI** (`npx @lhci/cli autorun`, configurado em `lighthouserc.json`): as 8 páginas, 3 execuções cada, mínimo de **0,98** em acessibilidade, boas práticas e SEO e de **0,90** em desempenho (o runner do GitHub é mais lento e mais ruidoso que uma máquina local, onde a home dá 99; subir o limite quando houver dados do CI).
-
-## 🚀 Deploy
-
-`.github/workflows/deploy.yml` constrói, roda os checks e o Lighthouse CI. **Só em push na `master`** ele publica no GitHub Pages. Isso passa a valer quando, no dia do corte, *Settings → Pages → Source* for trocado para **GitHub Actions**. Rollback: voltar a `master` para a tag `site-legacy-2026-10-24`.
-
-## 📝 Regras de conteúdo
-
-Os fatos e as decisões do Lucas estão no vault (`Content/99 Gestão/Fatos Novos e Decisões`). Em resumo: sem inventar fatos (usar `[adicionar]`), "demonstrações" em vez de "demos" em português, nunca "exclusivamente RavenDB", nenhuma foto de terceiros sem autorização, sem telefone pessoal.
-
-## 📄 Licença
+## Licença
 
 MIT. Ver [LICENSE](LICENSE).

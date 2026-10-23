@@ -1,7 +1,7 @@
 // Depoimentos de clientes da LeadSoft (2018-2025), transcritos dos cartoes de depoimento da propria LeadSoft
 // enviados pelo Lucas em 24/10/2026. O texto em portugues e LITERAL (nao corrigir nem resumir).
 // A traducao para o ingles e do site e aparece marcada como traducao; o original fica acessivel na pagina em ingles.
-// Fotos dos autores NAO sao usadas (sem autorizacao de imagem). Cargos: como impressos nos cartoes.
+// Cargos como impressos nos cartoes.
 import type { Lang } from '../i18n';
 
 export interface Testimonial {

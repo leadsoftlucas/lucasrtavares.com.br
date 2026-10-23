@@ -1,5 +1,4 @@
-// Pagina /imprensa/ e /en/press/. Texto de Content/06 Site/05 Pagina Imprensa e Bio Kit.md.
-// Sem telefone: o contato e o e-mail e os botoes de WhatsApp do site.
+// Pagina /imprensa/ e /en/press/. O contato e feito por e-mail e pelos botoes de WhatsApp do site.
 import type { Lang } from '../i18n';
 
 export interface PressContent {
@@ -15,7 +14,7 @@ export interface PressContent {
   copied: string;
   talksTitle: string;
   talksHead: [string, string, string];
-  talks: Array<{ title: string; summary: string; format: string; g1?: boolean }>;
+  talks: Array<{ title: string; summary: string; format: string; extended?: boolean }>;
   introTitle: string;
   intro: string;
   materialsTitle: string;
@@ -116,7 +115,7 @@ export const press: Record<Lang, PressContent> = {
         summary:
           'O que muda quando quem projeta passa a ajudar quem decide; lições de vender tecnologia sendo engenheiro.',
         format: 'Palestra curta, podcast',
-        g1: true,
+        extended: true,
       },
     ],
     introTitle: 'Como me apresentar',
@@ -214,7 +213,7 @@ export const press: Record<Lang, PressContent> = {
         summary:
           'What changes when the person who designs starts helping the person who decides; lessons from selling technology as an engineer.',
         format: 'Short talk, podcast',
-        g1: true,
+        extended: true,
       },
     ],
     introTitle: 'How to introduce me',

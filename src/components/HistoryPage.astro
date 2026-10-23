@@ -14,16 +14,14 @@ interface Props {
 }
 const { lang } = Astro.props;
 const c = history[lang];
-const showG1 = config.showG1;
-const sections = c.sections.filter((s) => showG1 || !s.g1);
-const gateOpen = '<!-- GATE-G1 -->';
-const gateClose = '<!-- /GATE-G1 -->';
+const showFullStory = config.showFullStory;
+const sections = c.sections.filter((s) => showFullStory || !s.extended);
 
-/** Aplica o trecho alternativo (G1 desligado) ao ultimo paragrafo do capitulo. */
+/** Quando o capitulo completo esta oculto, aplica o texto alternativo ao ultimo paragrafo. */
 function paragraphText(s: (typeof sections)[number], index: number) {
   const block = s.blocks[index] as { p: string };
   const lastP = s.blocks.map((b, i) => ('p' in b ? i : -1)).filter((i) => i >= 0).pop();
-  return !showG1 && s.withoutG1Tail && index === lastP ? `${block.p} ${s.withoutG1Tail}` : block.p;
+  return !showFullStory && s.withoutExtendedTail && index === lastP ? `${block.p} ${s.withoutExtendedTail}` : block.p;
 }
 ---
 <Base lang={lang} paths={routes.story} title={c.meta.title} description={c.meta.description} ogType="article" onHome={false}>
@@ -40,7 +38,6 @@ function paragraphText(s: (typeof sections)[number], index: number) {
             <span class="year">{s.year}</span>
           </div>
           <div class="content">
-            {s.g1 && <Fragment set:html={gateOpen} />}
             <h2 set:html={renderInline(s.h2)} />
             {s.blocks.map((b, bi) => {
               if ('p' in b) return <p class:list={{ first: bi === 0 }} set:html={renderInline(paragraphText(s, bi))} />;
@@ -94,7 +91,6 @@ function paragraphText(s: (typeof sections)[number], index: number) {
                 </ul>
               );
             })}
-            {s.g1 && <Fragment set:html={gateClose} />}
           </div>
         </div>
       </section>
