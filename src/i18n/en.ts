@@ -300,6 +300,12 @@ export const en: typeof pt = {
       role: 'Met David Baruc, Oren Eini and the RavenDB team in person — the turning point of my career.',
     },
     {
+      date: 'Mar 2024',
+      name: 'Castrol · Turbo Mode ON',
+      place: 'Brazil',
+      role: 'Pre-launch talk for the Castrol Trocador app (Android and iOS), for all Castrol distributors in Brazil.',
+    },
+    {
       date: 'Sep 2024',
       name: 'TDC São Paulo',
       place: 'São Paulo, Brazil',

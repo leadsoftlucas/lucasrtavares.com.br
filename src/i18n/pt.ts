@@ -298,6 +298,12 @@ export const pt = {
       role: 'Encontro com David Baruc, Oren Eini e o time RavenDB — o ponto de virada da minha carreira.',
     },
     {
+      date: 'Mar 2024',
+      name: 'Castrol · Turbo Mode ON',
+      place: 'Brasil',
+      role: 'Palestra de pré-lançamento do app do Trocador Castrol (Android e iOS), para todos os distribuidores da Castrol do Brasil.',
+    },
+    {
       date: 'Set 2024',
       name: 'TDC São Paulo',
       place: 'São Paulo, Brasil',

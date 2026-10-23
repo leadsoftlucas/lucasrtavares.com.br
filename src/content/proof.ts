@@ -52,7 +52,7 @@ export const proof: Record<Lang, ProofContent> = {
       { value: '17', label: 'pacotes .NET open source' },
       { value: '208 mil+', label: 'downloads no NuGet' },
       { value: '6', label: 'artigos sobre dados, arquitetura e IA' },
-      { value: '6', label: 'palcos e comunidades no Brasil e nos EUA (2024–2026)' },
+      { value: '7', label: 'palcos e comunidades no Brasil e nos EUA (2024–2026)' },
     ],
     casesTitle: 'Casos com número',
     cases: [
@@ -86,10 +86,11 @@ export const proof: Record<Lang, ProofContent> = {
         context: 'Liderei a transição de um time inteiro de Delphi para .NET e a integração com SAP.',
       },
       {
-        name: 'App para a Castrol Brasil',
-        period: '≈ 2023',
-        result: 'Novo patamar de clientes',
-        context: 'Contrato de aplicativo após a profissionalização da LeadSoft. [adicionar resultado, se autorizado]',
+        name: 'App do Trocador Castrol',
+        period: 'Castrol Brasil, 2024',
+        result: 'Android e iOS, anunciado a todos os distribuidores',
+        context:
+          'Contrato de aplicativo após a profissionalização da LeadSoft. Apresentei o pré-lançamento no evento Castrol Turbo Mode ON, em 26/03/2024, para todos os distribuidores da Castrol do Brasil.',
       },
     ],
     codeTitle: 'Código aberto e demonstrações',
@@ -126,6 +127,12 @@ export const proof: Record<Lang, ProofContent> = {
     eventsHead: ['Data', 'Evento', 'Local', 'Papel'],
     events: [
       { date: '02/2024', name: 'Developer Week', place: 'San Francisco, EUA', role: 'Encontro com o time RavenDB' },
+      {
+        date: '26/03/2024',
+        name: 'Castrol · Turbo Mode ON',
+        place: 'Brasil',
+        role: 'Pré-lançamento do app do Trocador Castrol para todos os distribuidores da Castrol do Brasil',
+      },
       { date: '09/2024', name: 'TDC São Paulo', place: 'São Paulo, Brasil', role: 'Palestra e workshop de NoSQL e modelagem' },
       {
         date: '07/10/2024',
@@ -157,7 +164,7 @@ export const proof: Record<Lang, ProofContent> = {
       { value: '17', label: 'open-source .NET packages' },
       { value: '208k+', label: 'NuGet downloads' },
       { value: '6', label: 'articles on data, architecture and AI' },
-      { value: '6', label: 'stages and communities in Brazil and the US (2024–2026)' },
+      { value: '7', label: 'stages and communities in Brazil and the US (2024–2026)' },
     ],
     casesTitle: 'Cases with numbers',
     cases: [
@@ -191,10 +198,11 @@ export const proof: Record<Lang, ProofContent> = {
         context: "Led an entire Delphi team's move to .NET and SAP integration.",
       },
       {
-        name: 'App for Castrol Brazil',
-        period: '≈ 2023',
-        result: 'A new tier of clients',
-        context: "App contract after LeadSoft's professionalization. [add result if authorized]",
+        name: 'Castrol Trocador app',
+        period: 'Castrol Brazil, 2024',
+        result: 'Android and iOS, announced to all distributors',
+        context:
+          "App contract after LeadSoft's professionalization. I presented the pre-launch at the Castrol Turbo Mode ON event on March 26, 2024, to all Castrol distributors in Brazil.",
       },
     ],
     codeTitle: 'Open source and demos',
@@ -231,6 +239,12 @@ export const proof: Record<Lang, ProofContent> = {
     eventsHead: ['Date', 'Event', 'Place', 'Role'],
     events: [
       { date: '2024-02', name: 'Developer Week', place: 'San Francisco, USA', role: 'Meeting the RavenDB team' },
+      {
+        date: '2024-03-26',
+        name: 'Castrol · Turbo Mode ON',
+        place: 'Brazil',
+        role: 'Pre-launch of the Castrol Trocador app, for all Castrol distributors in Brazil',
+      },
       { date: '2024-09', name: 'TDC São Paulo', place: 'São Paulo, Brazil', role: 'Talk and workshop on NoSQL and data modeling' },
       {
         date: '2024-10-07',
