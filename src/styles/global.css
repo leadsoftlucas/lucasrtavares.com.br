@@ -9,6 +9,12 @@ body {
   color: var(--ink);
   font-family: var(--font);
   overflow-x: clip;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
 }
 section[id] {
   scroll-margin-top: var(--header-h);
