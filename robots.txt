@@ -1,25 +1,29 @@
+# Arquivos tecnicos (placeholders do runtime de template): nao indexar.
+# Ver README, secao "Qualidade e Lighthouse".
+
 User-agent: *
 Allow: /
+Disallow: /*%7B%7B
+Disallow: /*{{
+Disallow: /.image-slots.state.json
 
+# Crawlers de IA: liberados explicitamente (cada grupo repete os Disallow,
+# pois um grupo especifico ignora as regras do grupo "*").
 User-agent: GPTBot
-Allow: /
-
 User-agent: ChatGPT-User
-Allow: /
-
+User-agent: OAI-SearchBot
 User-agent: Google-Extended
-Allow: /
-
 User-agent: ClaudeBot
-Allow: /
-
+User-agent: Claude-User
+User-agent: Claude-SearchBot
 User-agent: anthropic-ai
-Allow: /
-
 User-agent: PerplexityBot
-Allow: /
-
+User-agent: Perplexity-User
+User-agent: Applebot-Extended
 User-agent: CCBot
 Allow: /
+Disallow: /*%7B%7B
+Disallow: /*{{
+Disallow: /.image-slots.state.json
 
 Sitemap: https://lucasrtavares.com.br/sitemap.xml

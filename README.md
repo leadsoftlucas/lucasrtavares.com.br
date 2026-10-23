@@ -40,6 +40,7 @@ CNAME                   # domínio customizado do GitHub Pages
 robots.txt              # regras de rastreamento (inclui crawlers de IA)
 sitemap.xml             # mapa do site (URL única)
 llms.txt                # resumo em Markdown para LLMs/crawlers de IA (padrão llmstxt.org)
+{{ ... }}, .image-slots.state.json, .nojekyll   # arquivos-placeholder necessários (ver "Qualidade e Lighthouse")
 LICENSE                 # MIT
 ```
 
@@ -103,7 +104,17 @@ Rodamos o relatório do Google Lighthouse e corrigimos tudo o que saía abaixo d
 - **Landmark**: `<main>` único envolvendo o conteúdo entre `<header>` e `<footer>`.
 - **`_ds/`** (design system) removido do `<head>`/`<helmet>` — não é mais carregado em produção, eliminando a maior parte dos 404 que apareciam no console (o estilo da página já é 100% inline, então o bundle nunca foi necessário ali).
 
-**Limite conhecido:** alguns `<img>` de conteúdo repetido (bandeira do evento, miniatura de vídeo) usam `{{ placeholder }}` cru no `src`, resolvido em runtime pelo `support.js`; o navegador tenta buscar esse literal por uma fração de segundo antes do JS substituir, gerando 404 passageiros no console. O mesmo vale para o sidecar `.image-slots.state.json` do `image-slot.js`, usado para persistir imagens arrastadas dentro da ferramenta de design — fora dela, em produção, o 404 é esperado. Ambos vêm do runtime de autoria (`support.js`/`image-slot.js`, arquivos vendor com aviso explícito contra edição manual) e não afetam o conteúdo visível; corrigi-los exigiria reescrever essa engine de template.
+### Recurso técnico necessário: arquivos-placeholder na raiz
+
+Alguns `<img>`/`<image-slot>` de conteúdo repetido (bandeira do evento, miniatura de vídeo, foto de evento, capa de artigo, embed) trazem `{{ placeholder }}` cru no `src`, resolvido em runtime pelo `support.js`. O navegador busca esse literal por uma fração de segundo antes do JS substituir, e o `image-slot.js` busca o sidecar `.image-slots.state.json` (usado para persistir imagens arrastadas dentro da ferramenta de design). Ambos são arquivos vendor/gerados, sem edição manual possível, e sem tratamento davam 404 no console (Best Practices 96).
+
+Solução: existem arquivos com esses nomes literais na raiz, para as requisições retornarem 200:
+
+- `{{ ev.flag }}`, `{{ v.thumb }}`, `{{ ev.photo }}`, `{{ a.cover }}`, `{{ v.embed }}` — PNG transparente de 1×1 px.
+- `.image-slots.state.json` — `{}` (o `image-slot.js` trata como "nenhuma imagem arrastada").
+- `.nojekyll` — sem ele o GitHub Pages (Jekyll) ignora arquivos iniciados por ponto/underscore, e o `.image-slots.state.json` não seria servido.
+
+**Não apague nem renomeie.** Se um novo campo `{{ x.y }}` for usado em `src` no `index.html`, crie o arquivo `{{ x.y }}` correspondente. O `robots.txt` bloqueia esses caminhos para não serem indexados.
 
 ## 📬 Contato
 
@@ -122,4 +133,4 @@ MIT — ver [LICENSE](LICENSE).
 
 ## 🇺🇸 English
 
-Personal and institutional website of Lucas Resende Tavares, a Sales Engineer and Solutions Architect at RavenDB and founder of LeadSoft Soluções Web (2018–2025). Single-page, bilingual (pt-BR/en) static site, no backend and no build step — `index.html` is served as-is, generated from the source file `Lucas Tavares.dc.html`. All conversion happens through pre-filled WhatsApp links or `mailto:`, not forms. Images are resized/compressed close to their displayed size, with `srcset` on the hero photo, and `llms.txt` gives LLM crawlers a plain-Markdown summary. See the sections above for architecture decisions, Lighthouse fixes, and known SEO/console-noise gaps.
+Personal and institutional website of Lucas Resende Tavares, a Sales Engineer and Solutions Architect at RavenDB and founder of LeadSoft Soluções Web (2018–2025). Single-page, bilingual (pt-BR/en) static site, no backend and no build step — `index.html` is served as-is, generated from the source file `Lucas Tavares.dc.html`. All conversion happens through pre-filled WhatsApp links or `mailto:`, not forms. Images are resized/compressed close to their displayed size, with `srcset` on the hero photo, and `llms.txt` gives LLM crawlers a plain-Markdown summary. See the sections above for architecture decisions, Lighthouse fixes, and the placeholder files that keep the console clean.
