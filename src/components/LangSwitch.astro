@@ -1,0 +1,56 @@
+---
+import { homePath, dictionaries, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  /** Rotas equivalentes da pagina atual em cada idioma. */
+  paths?: Record<Lang, string>;
+}
+const { lang, paths = homePath } = Astro.props;
+const t = dictionaries[lang];
+---
+<div class="langs">
+  <a href={paths.pt} data-set-lang="pt" hreflang="pt-BR" lang="pt-BR" title={t.langPt} aria-label={t.langPt} class:list={['flag', { active: lang === 'pt' }]} aria-current={lang === 'pt' ? 'true' : undefined}>
+    <img src="/assets/flag-br.png" alt="" width="34" height="34" />
+  </a>
+  <a href={paths.en} data-set-lang="en" hreflang="en" lang="en" title={t.langEn} aria-label={t.langEn} class:list={['flag', { active: lang === 'en' }]} aria-current={lang === 'en' ? 'true' : undefined}>
+    <img src="/assets/flag-us.png" alt="" width="34" height="34" />
+  </a>
+</div>
+
+<script>
+  import '../scripts/lang-preference';
+</script>
+
+<style>
+  .langs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-left: 14px;
+    border-left: 1px solid rgba(255, 255, 255, 0.14);
+    flex: 0 0 auto;
+  }
+  .flag {
+    width: 34px;
+    height: 34px;
+    box-sizing: border-box;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    display: block;
+    border: 2px solid rgba(255, 255, 255, 0.18);
+    opacity: 0.55;
+    transition: opacity 200ms var(--ease), border-color 200ms var(--ease);
+  }
+  .flag.active {
+    border-color: var(--cyan);
+    opacity: 1;
+    box-shadow: 0 0 16px rgba(28, 200, 238, 0.45);
+  }
+  .flag img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+</style>

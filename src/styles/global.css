@@ -1,0 +1,41 @@
+@import './tokens.css';
+
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  background: var(--bg-light);
+  color: var(--ink);
+  font-family: var(--font);
+  overflow-x: clip;
+}
+section[id] {
+  scroll-margin-top: var(--header-h);
+}
+a {
+  color: var(--blue-link);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--cyan);
+}
+::selection {
+  background: var(--cyan);
+  color: var(--ink);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+@media print {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

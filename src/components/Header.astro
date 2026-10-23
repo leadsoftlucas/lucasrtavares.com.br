@@ -1,0 +1,98 @@
+---
+import { dictionaries, type Lang } from '../i18n';
+import LangSwitch from './LangSwitch.astro';
+
+interface Props {
+  lang: Lang;
+  paths?: Record<Lang, string>;
+}
+const { lang, paths } = Astro.props;
+const t = dictionaries[lang];
+const links = [
+  ['#falar', t.nav.talk],
+  ['#sobre', t.nav.about],
+  ['#trajetoria', t.nav.path],
+  ['#codigo', t.nav.code],
+  ['#palcos', t.nav.stages],
+  ['#artigos', t.nav.writing],
+  ['#contato', t.nav.contact],
+] as const;
+---
+<header>
+  <div class="bar">
+    <a href="#top" class="brand">
+      <img src="/assets/lambda.svg" alt={t.brandAlt} height="26" />
+      <span>Lucas R. Tavares</span>
+    </a>
+    <LangSwitch lang={lang} paths={paths} />
+    <nav>
+      {links.map(([href, label], i) => <a href={href} class:list={{ primary: i === 0 }}>{label}</a>)}
+    </nav>
+  </div>
+</header>
+
+<style>
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(15, 20, 37, 0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .bar {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 10px var(--gutter);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: nowrap;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    flex: 0 0 auto;
+  }
+  .brand img {
+    height: 26px;
+    width: auto;
+    display: block;
+  }
+  .brand span {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+    color: #fff;
+    white-space: nowrap;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: nowrap;
+    margin-left: auto;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 2px 0;
+  }
+  nav::-webkit-scrollbar {
+    display: none;
+  }
+  nav a {
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.78);
+  }
+  nav a.primary {
+    font-weight: 700;
+    color: var(--cyan-soft);
+  }
+  nav a:hover {
+    color: var(--cyan);
+  }
+</style>

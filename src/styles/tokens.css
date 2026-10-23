@@ -1,0 +1,29 @@
+/* Tokens do site. Cores e medidas portadas 1:1 do index.html legado. */
+:root {
+  --bg-dark: #0f1425;
+  --bg-darker: #06090f;
+  --bg-light: #f7f5fa;
+  --bg-card: #f9f9f9;
+  --white: #fff;
+  --blue: #0c2fa5;
+  --blue-link: #388ee9;
+  --cyan: #1cc8ee;
+  --cyan-soft: #9fe9fa;
+  --purple: #7b51ff;
+  --ink: #0f1425;
+  --ink-soft: #3a3d42;
+  --line: #e7e3ee;
+  --line-strong: #d9deea;
+
+  --font: Montserrat, sans-serif;
+  --maxw: 1120px;
+  --gutter: 20px;
+  --header-h: 68px;
+
+  --radius-sm: 9px;
+  --radius-md: 16px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
