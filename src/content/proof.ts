@@ -165,7 +165,7 @@ export const proof: Record<Lang, ProofContent> = {
         { v: '20–30', k: 'tabelas relacionadas para uma NF-e no modelo SQL anterior' },
       ],
       read: 'Ler o artigo',
-      video: 'Entrevista completa em vídeo: [LINK a informar]',
+      video: 'Entrevista completa em vídeo: [Caso de sucesso: como a Invent Software alcançou 80% de agilidade técnica com o RavenDB](https://www.youtube.com/watch?v=fOh9h4nFNOk).',
     },
     testimonialsTitle: 'O que clientes da LeadSoft disseram',
     testimonialsNote:
@@ -293,7 +293,7 @@ export const proof: Record<Lang, ProofContent> = {
         { v: '20–30', k: 'related tables for one NF-e (invoice) in the previous SQL model' },
       ],
       read: 'Read the article',
-      video: 'Full interview on video: [link to be provided]',
+      video: 'Full interview on video (in Portuguese): [Caso de sucesso: como a Invent Software alcançou 80% de agilidade técnica com o RavenDB](https://www.youtube.com/watch?v=fOh9h4nFNOk).',
     },
     testimonialsTitle: 'What LeadSoft clients said',
     testimonialsNote:
