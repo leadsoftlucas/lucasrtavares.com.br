@@ -21,7 +21,8 @@ export interface ProofContent {
   codeTitle: string;
   code: Array<{ name: string; url: string; text: string }>;
   videosTitle: string;
-  videosExtra: string;
+  interviewsTitle: string;
+  interviewsNote: string;
   videoWatch: string;
   articlesTitle: string;
   articleDates: string[];
@@ -115,7 +116,8 @@ export const proof: Record<Lang, ProofContent> = {
       },
     ],
     videosTitle: 'Vídeos e palestras',
-    videosExtra: 'Entrevistas do processo seletivo (vídeos no meu canal). [LINKS a informar]',
+    interviewsTitle: 'Entrevistas do processo seletivo',
+    interviewsNote: 'Gravadas e publicadas no meu canal. Os dois repositórios acima fazem parte do mesmo processo.',
     videoWatch: 'Assistir no YouTube →',
     articlesTitle: 'Artigos',
     articleDates: ['31/08/2026', '12/11/2025', '23/04/2026', '29/04/2026', '20/04/2026', '14/07/2025'],
@@ -213,7 +215,8 @@ export const proof: Record<Lang, ProofContent> = {
       },
     ],
     videosTitle: 'Videos and talks',
-    videosExtra: 'Selection-process interviews (videos on my channel). [links to be provided]',
+    interviewsTitle: 'Selection-process interviews',
+    interviewsNote: 'Recorded and published on my channel. The two repositories above are part of the same process.',
     videoWatch: 'Watch on YouTube →',
     articlesTitle: 'Articles',
     articleDates: ['2026-08-31', '2025-11-12', '2026-04-23', '2026-04-29', '2026-04-20', '2025-07-14'],

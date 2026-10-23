@@ -65,7 +65,7 @@ export const history: Record<Lang, HistoryContent> = {
         id: 'ligacao',
         h2: 'A ligação',
         paras: [
-          'Em janeiro de 2024 recebi uma ligação internacional. Era o RavenDB, curioso para saber por que um desconhecido do Brasil tinha cadastro e usava o banco. Contei a história acima. Semanas depois eu estava em San Francisco, na **Developer Week**, conhecendo Oren Eini e David Baruc. A LeadSoft se tornou **parceira oficial do RavenDB no Brasil**, e eu assumi a missão de apresentar o banco por aqui: **TDC São Paulo**, vídeos, artigos, bibliotecas abertas.',
+          'Em janeiro de 2024 recebi uma ligação internacional. Era o RavenDB, curioso para saber por que um desconhecido do Brasil tinha cadastro e usava o banco. Contei a história acima. Semanas depois eu estava em San Francisco, na **Developer Week**, conhecendo Oren Eini e David Baruc, num evento em um rooftop, antes da feira. Na volta para o hotel, no Uber, a ficha caiu: *"minha nossa, o RavenDB é o banco que perguntei para o Gilberto, que uso há tantos anos, e agora cá estou..."* A LeadSoft se tornou **parceira oficial do RavenDB no Brasil**, e eu assumi a missão de apresentar o banco por aqui: **TDC São Paulo**, vídeos, artigos, bibliotecas abertas.',
         ],
         withoutG1Tail: 'Em 2025 encerrei a LeadSoft e, em agosto, entrei no time da RavenDB como Sales Engineer.',
       },
@@ -74,7 +74,7 @@ export const history: Record<Lang, HistoryContent> = {
         h2: 'A conversa que mudou tudo',
         g1: true,
         paras: [
-          'Em maio de 2025, a RavenDB me chamou para uma conversa sobre a minha experiência como parceiro. Contei os casos e o que resolvi para os clientes. No fim, o David Baruc disse: *"um dia te trago para trabalhar com a gente."* Eu **recusei com um sorriso**: a LeadSoft ainda estava de pé e eu acreditava nela. Um mês depois, a empresa não se sustentou e decidi encerrá-la. Mandei uma mensagem ao David, como quem não quer nada. A resposta foi honesta: não havia vaga. Semanas depois, com a saída do então Head de DevRel, ele me chamou. O "teste" foram entrevistas gravadas, que viraram vídeos no meu canal, e duas demonstrações abertas no GitHub. Entrei no time em **agosto de 2025**. [LINKS a informar: vídeos]',
+          'Em maio de 2025, a RavenDB me chamou para uma conversa sobre a minha experiência como parceiro. Contei os casos e o que resolvi para os clientes. No fim, o David Baruc disse: *"um dia te trago para trabalhar com a gente."* Eu **recusei com um sorriso**: a LeadSoft ainda estava de pé e eu acreditava nela. Um mês depois, a empresa não se sustentou e decidi encerrá-la. Mandei uma mensagem ao David, como quem não quer nada. A resposta foi honesta: não havia vaga. Semanas depois, com a saída do então Head de DevRel, ele me chamou. O "teste" foram entrevistas gravadas, que viraram vídeos no meu canal, e duas demonstrações abertas no GitHub ([ravendb-demo](https://github.com/leadsoftlucas/ravendb-demo) e [ravendb-sales-assistant-demo](https://github.com/leadsoftlucas/ravendb-sales-assistant-demo)). Entrei no time em **agosto de 2025**. Veja as entrevistas: [parte 1](https://www.youtube.com/watch?v=ZsEvm4Dl1jI&t=4s), [parte 2](https://www.youtube.com/watch?v=Y8hXso9qCf4&t=3s), [parte 3](https://www.youtube.com/watch?v=hOlWLPmd1RU) e [5 motivos para usar o RavenDB](https://www.youtube.com/watch?v=u3ePP_5KBT8&t=30s).',
         ],
       },
       {
@@ -148,7 +148,7 @@ export const history: Record<Lang, HistoryContent> = {
         id: 'call',
         h2: 'The call',
         paras: [
-          'In January 2024 I got an international call. It was RavenDB, curious about why an unknown person in Brazil had an account and used the database. I told them the story above. Weeks later I was in San Francisco at **Developer Week**, meeting Oren Eini and David Baruc. LeadSoft became an **official RavenDB partner in Brazil**, and I took on the mission of introducing the database here: **TDC São Paulo**, videos, articles, open-source libraries.',
+          'In January 2024 I got an international call. It was RavenDB, curious about why an unknown person in Brazil had an account and used the database. I told them the story above. Weeks later I was in San Francisco at **Developer Week**, meeting Oren Eini and David Baruc at a rooftop event before the expo. On the ride back to the hotel, in an Uber, it hit me: *"oh my God, RavenDB is the database I asked Gilberto about, the one I have used for so many years, and now here I am..."* LeadSoft became an **official RavenDB partner in Brazil**, and I took on the mission of introducing the database here: **TDC São Paulo**, videos, articles, open-source libraries.',
         ],
         withoutG1Tail: 'In 2025 I closed LeadSoft and, in August, joined the RavenDB team as a Sales Engineer.',
       },
@@ -157,7 +157,7 @@ export const history: Record<Lang, HistoryContent> = {
         h2: 'The conversation that changed everything',
         g1: true,
         paras: [
-          'In May 2025, RavenDB invited me to a conversation about my experience as a partner. I told them the cases and what I solved for clients. At the end, David Baruc said: *"one day I\'ll bring you to work with us."* I **declined with a smile**: LeadSoft was still standing and I believed in it. A month later, the company couldn\'t sustain itself and I decided to close it. I sent David a message, casually. His answer was honest: there was no opening. Weeks later, when the then Head of DevRel left, he called me. The "test" was recorded interviews, which became videos on my channel, and two open demos on GitHub. I joined the team in **August 2025**. [links to be provided: videos]',
+          'In May 2025, RavenDB invited me to a conversation about my experience as a partner. I told them the cases and what I solved for clients. At the end, David Baruc said: *"one day I\'ll bring you to work with us."* I **declined with a smile**: LeadSoft was still standing and I believed in it. A month later, the company couldn\'t sustain itself and I decided to close it. I sent David a message, casually. His answer was honest: there was no opening. Weeks later, when the then Head of DevRel left, he called me. The "test" was recorded interviews, which became videos on my channel, and two open demos on GitHub ([ravendb-demo](https://github.com/leadsoftlucas/ravendb-demo) and [ravendb-sales-assistant-demo](https://github.com/leadsoftlucas/ravendb-sales-assistant-demo)). I joined the team in **August 2025**. Watch the interviews: [part 1](https://www.youtube.com/watch?v=ZsEvm4Dl1jI&t=4s), [part 2](https://www.youtube.com/watch?v=Y8hXso9qCf4&t=3s), [part 3](https://www.youtube.com/watch?v=hOlWLPmd1RU) and [5 reasons to use RavenDB](https://www.youtube.com/watch?v=u3ePP_5KBT8&t=30s).',
         ],
       },
       {
