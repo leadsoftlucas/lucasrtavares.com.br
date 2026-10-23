@@ -1,6 +1,7 @@
 ---
 import { dictionaries, type Lang } from '../i18n';
 import { config, whatsappLink } from '../config';
+import { renderInline } from '../lib/inline';
 import { links } from '../data/links';
 
 interface Props {
@@ -21,7 +22,7 @@ const t = dictionaries[Astro.props.lang];
       </div>
       <div>
         <p class="body">{t.leadsoft.body}</p>
-        <p class="clients">{t.leadsoft.clients}</p>
+        <p class="clients" set:html={renderInline(t.leadsoft.clients)} />
         <p class="svc">{t.leadsoft.services}</p>
         <a href={whatsappLink(t.leadsoft.waMsg, config.whatsappLeadsoft)} target="_blank" rel="noopener" class="wa">{t.leadsoft.waCta}</a>
         <div class="links">
@@ -88,6 +89,14 @@ const t = dictionaries[Astro.props.lang];
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.58);
     text-wrap: pretty;
+  }
+  .clients :global(a) {
+    color: rgba(255, 255, 255, 0.82);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .clients :global(a:hover) {
+    color: var(--cyan);
+    border-color: var(--cyan);
   }
   .svc {
     margin: 0 0 10px;

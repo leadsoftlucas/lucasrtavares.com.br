@@ -1,5 +1,6 @@
 ---
 import { dictionaries, type Lang } from '../i18n';
+import { renderInline } from '../lib/inline';
 
 interface Props {
   lang: Lang;
@@ -24,7 +25,7 @@ const facts = [
           </div>
           <div>
             <h3>{job.role}</h3>
-            <p class="d">{job.d}</p>
+            <p class="d" set:html={renderInline(job.d)} />
           </div>
         </div>
       ))}
@@ -99,6 +100,14 @@ const facts = [
     line-height: 1.65;
     color: var(--ink-soft);
     text-wrap: pretty;
+  }
+  .d :global(a) {
+    color: var(--blue);
+    border-bottom: 1px solid rgba(12, 47, 165, 0.3);
+  }
+  .d :global(a:hover) {
+    color: var(--cyan);
+    border-color: var(--cyan);
   }
   .facts {
     margin-top: 32px;

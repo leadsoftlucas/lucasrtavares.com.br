@@ -200,7 +200,7 @@ export const en: typeof pt = {
       period: '2018 — 2025',
       place: 'LeadSoft Soluções Web',
       role: 'Founder, CEO and .NET Backend Developer',
-      d: 'Founded and led a software house focused on custom software and high performance, official RavenDB partner in Brazil between 2024 and 2025. Ran teams, contracts and architecture for clients such as Castrol Brazil, ECX Pay, Inforlube and Ebbi Tecnologia.',
+      d: 'Founded and led a software house focused on custom software and high performance, official RavenDB partner in Brazil between 2024 and 2025. Ran teams, contracts and architecture for clients such as [Castrol Brazil](https://castrol.com.br), [ECX Pay](https://ecxpay.com.br/), [Inforlube](https://inforlube.com/) and [Ebbi Tecnologia](https://www.ebbi.com.br/).',
     },
     {
       period: '2015 — 2018',
@@ -237,7 +237,7 @@ export const en: typeof pt = {
     overline: 'Previous chapter',
     title: 'LeadSoft Soluções Web',
     body: 'Between 2018 and 2025 I founded and led LeadSoft, a software house in Curitiba and an official RavenDB partner in Brazil between 2024 and 2025. That\'s where theory became practice: contracts, teams, deadlines and the responsibility of sustaining what I architected myself. In 2025 I wound down the software house and took what I learned to the RavenDB team.',
-    clients: 'Clients such as Castrol Brazil, ECX Pay, Inforlube and Ebbi Tecnologia — plus open source libraries published to make patterns like Repository and Guids easier inside the Raven ecosystem.',
+    clients: 'Clients such as [Castrol Brazil](https://castrol.com.br), [ECX Pay](https://ecxpay.com.br/), [Inforlube](https://inforlube.com/) and [Ebbi Tecnologia](https://www.ebbi.com.br/) — plus open source libraries published to make patterns like Repository and Guids easier inside the Raven ecosystem.',
     nuget: 'NuGet packages',
     services: 'Software development (.NET) and technology and product consulting remain available on request.',
     waCta: 'Talk about development or consulting',

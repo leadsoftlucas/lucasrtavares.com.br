@@ -198,7 +198,7 @@ export const pt = {
       period: '2018 — 2025',
       place: 'LeadSoft Soluções Web',
       role: 'Fundador, CEO e Desenvolvedor Backend .NET',
-      d: 'Fundei e liderei uma software house especializada em software sob medida e alta performance, parceira oficial do RavenDB no Brasil entre 2024 e 2025. Conduzi times, contratos e arquitetura para clientes como Castrol Brasil, ECX Pay, Inforlube e Ebbi Tecnologia.',
+      d: 'Fundei e liderei uma software house especializada em software sob medida e alta performance, parceira oficial do RavenDB no Brasil entre 2024 e 2025. Conduzi times, contratos e arquitetura para clientes como [Castrol Brasil](https://castrol.com.br), [ECX Pay](https://ecxpay.com.br/), [Inforlube](https://inforlube.com/) e [Ebbi Tecnologia](https://www.ebbi.com.br/).',
     },
     {
       period: '2015 — 2018',
@@ -235,7 +235,7 @@ export const pt = {
     overline: 'Capítulo anterior',
     title: 'LeadSoft Soluções Web',
     body: 'Entre 2018 e 2025 fundei e liderei a LeadSoft, software house de Curitiba e parceira oficial do RavenDB no Brasil entre 2024 e 2025. Foi lá que a teoria virou prática: contratos, times, prazos e a responsabilidade de sustentar o que eu mesmo arquitetava. Em 2025 encerrei a operação da software house e levei o que aprendi para o time da RavenDB.',
-    clients: 'Clientes como Castrol Brasil, ECX Pay, Inforlube e Ebbi Tecnologia — e bibliotecas open source publicadas para facilitar padrões como Repository e Guids dentro do ecossistema Raven.',
+    clients: 'Clientes como [Castrol Brasil](https://castrol.com.br), [ECX Pay](https://ecxpay.com.br/), [Inforlube](https://inforlube.com/) e [Ebbi Tecnologia](https://www.ebbi.com.br/) — e bibliotecas open source publicadas para facilitar padrões como Repository e Guids dentro do ecossistema Raven.',
     nuget: 'Pacotes no NuGet',
     services: 'Desenvolvimento de software (.NET) e consultoria de tecnologia e de produto continuam disponíveis sob demanda.',
     waCta: 'Falar sobre desenvolvimento ou consultoria',
