@@ -35,7 +35,12 @@ const links = [
       {links.map(([href, label], i) => <a href={href} class:list={{ primary: i === (onHome ? 0 : 1) }}>{label}</a>)}
     </nav>
   </div>
+  <div class="progress" data-scroll-progress role="presentation" aria-hidden="true"><span></span></div>
 </header>
+
+<script>
+  import '../scripts/scroll-progress';
+</script>
 
 <style>
   header {
@@ -45,6 +50,22 @@ const links = [
     background: rgba(15, 20, 37, 0.88);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 3px;
+    pointer-events: none;
+  }
+  .progress span {
+    display: block;
+    height: 100%;
+    transform-origin: left center;
+    transform: scaleX(var(--p, 0));
+    background: linear-gradient(90deg, var(--cyan) 0%, #63ffa6 55%, var(--blue-link) 100%);
+    box-shadow: 0 0 10px rgba(28, 200, 238, 0.55);
   }
   .bar {
     max-width: var(--maxw);

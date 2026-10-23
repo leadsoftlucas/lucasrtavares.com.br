@@ -16,97 +16,419 @@ const { lang } = Astro.props;
 const c = history[lang];
 const showG1 = config.showG1;
 const sections = c.sections.filter((s) => showG1 || !s.g1);
-const paths = routes.story;
 const gateOpen = '<!-- GATE-G1 -->';
 const gateClose = '<!-- /GATE-G1 -->';
+
+/** Aplica o trecho alternativo (G1 desligado) ao ultimo paragrafo do capitulo. */
+function paragraphText(s: (typeof sections)[number], index: number) {
+  const block = s.blocks[index] as { p: string };
+  const lastP = s.blocks.map((b, i) => ('p' in b ? i : -1)).filter((i) => i >= 0).pop();
+  return !showG1 && s.withoutG1Tail && index === lastP ? `${block.p} ${s.withoutG1Tail}` : block.p;
+}
 ---
-<Base lang={lang} paths={{ pt: paths.pt, en: paths.en }} title={c.meta.title} description={c.meta.description} ogType="article" onHome={false}>
+<Base lang={lang} paths={routes.story} title={c.meta.title} description={c.meta.description} ogType="article" onHome={false}>
   <JsonLd slot="head" data={pageJsonLd('story', lang, c.meta.title)} />
-  <PageHero title={c.h1} lead={c.lead} />
+  <PageHero title={c.h1} lead={c.lead} portrait />
+
   <article class="story">
-    <div class="wrap inner">
-      {sections.map((s) => (
-        <section id={s.id} class="block">
-          {s.g1 && <Fragment set:html={gateOpen} />}
-          <h2 set:html={renderInline(s.h2)} />
-          {s.paras?.map((p, i) => {
-            const last = i === (s.paras?.length ?? 0) - 1;
-            const text = !showG1 && last && s.withoutG1Tail ? `${p} ${s.withoutG1Tail}` : p;
-            return <p set:html={renderInline(text)} />;
-          })}
-          {s.list && (
-            <ul>
-              {s.list.map((item) => <li set:html={renderInline(item)} />)}
-            </ul>
-          )}
-          {s.g1 && <Fragment set:html={gateClose} />}
-        </section>
-      ))}
-      <div class="more">
-        <a href={routes.proof[lang]} class="btn btn-grad">{c.proof}</a>
-        <a href={homePath[lang]} class="btn btn-line-dark">{c.back}</a>
+    {sections.map((s, i) => (
+      <section id={s.id} class:list={['chapter', s.tone]}>
+        {s.tone === 'dark' && <div class="bg-cosmic bg"></div>}
+        <div class="wrap grid">
+          <div class="rail">
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="year">{s.year}</span>
+          </div>
+          <div class="content">
+            {s.g1 && <Fragment set:html={gateOpen} />}
+            <h2 set:html={renderInline(s.h2)} />
+            {s.blocks.map((b, bi) => {
+              if ('p' in b) return <p class:list={{ first: bi === 0 }} set:html={renderInline(paragraphText(s, bi))} />;
+              if ('quote' in b)
+                return (
+                  <blockquote>
+                    <p>{b.quote}</p>
+                    {b.cite && <cite>{b.cite}</cite>}
+                  </blockquote>
+                );
+              if ('stats' in b)
+                return (
+                  <div class="stats">
+                    {b.stats.map((st, si) => (
+                      <>
+                        {si > 0 && <span class="arrow" aria-hidden="true">→</span>}
+                        <div class="stat">
+                          <span class="sv">{st.v}</span>
+                          <span class="sk">{st.k}</span>
+                        </div>
+                      </>
+                    ))}
+                  </div>
+                );
+              if ('image' in b)
+                return (
+                  <figure>
+                    <img src={b.image.src} alt={b.image.alt} loading="lazy" width="1200" height="800" />
+                    <figcaption>{b.image.caption}</figcaption>
+                  </figure>
+                );
+              return (
+                <ul class="beliefs">
+                  {b.beliefs.map((item, k) => (
+                    <li>
+                      <span class="bn">{String(k + 1).padStart(2, '0')}</span>
+                      <span set:html={renderInline(item)} />
+                    </li>
+                  ))}
+                </ul>
+              );
+            })}
+            {s.g1 && <Fragment set:html={gateClose} />}
+          </div>
+        </div>
+      </section>
+    ))}
+    <section class="chapter warm closing">
+      <div class="wrap">
+        <div class="more">
+          <a href={routes.proof[lang]} class="btn btn-grad">{c.proof}</a>
+          <a href={homePath[lang]} class="btn btn-line-dark">{c.back}</a>
+        </div>
       </div>
-    </div>
+    </section>
   </article>
+
   <CtaCards lang={lang} title={c.ctaTitle} />
 </Base>
 
 <style>
   .story {
+    position: relative;
+  }
+  .chapter {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  .chapter.cool {
     background: var(--band-cool);
   }
-  .inner {
-    padding-top: clamp(44px, 6vw, 80px);
-    padding-bottom: clamp(44px, 6vw, 80px);
+  .chapter.warm {
+    background: var(--band-warm);
+    background-image: url('/assets/dot-grid.svg');
+    background-size: 26px;
   }
-  .block {
-    max-width: 70ch;
-    margin: 0 auto clamp(30px, 4vw, 46px);
+  .chapter.dark {
+    background: var(--bg-dark);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+  }
+  .bg {
+    background-position: 50% 30%;
+    opacity: 0.85;
+  }
+  .grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding-top: clamp(44px, 6vw, 84px);
+    padding-bottom: clamp(44px, 6vw, 84px);
+  }
+  .rail {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .num {
+    font-size: clamp(44px, 6vw, 72px);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: #2a6fd0;
+  }
+  .dark .num {
+    color: var(--cyan);
+  }
+  .year {
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    background: rgba(12, 47, 165, 0.1);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--blue);
+    white-space: nowrap;
+  }
+  .dark .year {
+    background: rgba(28, 200, 238, 0.14);
+    color: var(--cyan-soft);
+  }
+  .content {
+    position: relative;
+    max-width: 68ch;
   }
   h2 {
-    margin: 0 0 14px;
-    font-size: clamp(22px, 2.6vw, 30px);
-    line-height: 1.15;
-    font-weight: 700;
+    margin: 0 0 18px;
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1.1;
+    font-weight: 800;
     letter-spacing: -0.03em;
     color: var(--ink);
     text-wrap: balance;
   }
-  .block :global(p),
-  .block :global(li) {
+  h2::after {
+    content: '';
+    display: block;
+    width: 64px;
+    height: 4px;
+    margin-top: 14px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #10d9e8 0%, #1458f5 100%);
+  }
+  .dark h2 {
+    color: #fff;
+  }
+  .content :global(p) {
+    margin: 0 0 18px;
     font-size: 17px;
     font-weight: 450;
-    line-height: 1.75;
+    line-height: 1.8;
     color: var(--ink-soft);
     text-wrap: pretty;
   }
-  .block :global(p) {
-    margin: 0 0 14px;
-  }
-  .block :global(strong) {
+  .content :global(p.first) {
+    font-size: 19px;
+    line-height: 1.7;
     color: var(--ink);
-    font-weight: 700;
   }
-  .block :global(a) {
+  .dark .content :global(p) {
+    color: rgba(255, 255, 255, 0.82);
+  }
+  .dark .content :global(p.first) {
+    color: #fff;
+  }
+  .content :global(strong) {
+    font-weight: 700;
+    color: var(--ink);
+    background: linear-gradient(transparent 62%, rgba(28, 200, 238, 0.28) 0);
+    padding: 0 2px;
+  }
+  .dark .content :global(strong) {
+    color: #fff;
+    background: linear-gradient(transparent 62%, rgba(28, 200, 238, 0.32) 0);
+  }
+  .content :global(a) {
     color: var(--blue);
     text-decoration: underline;
     text-underline-offset: 3px;
   }
-  .block :global(a:hover) {
+  .content :global(a:hover) {
     color: var(--ink);
   }
-  ul {
+  .dark .content :global(a) {
+    color: var(--cyan-soft);
+  }
+  .dark .content :global(a:hover) {
+    color: var(--cyan);
+  }
+
+  blockquote {
+    position: relative;
+    margin: 6px 0 24px;
+    padding: 22px 26px 22px 30px;
+    border-radius: var(--radius-md);
+    background: rgba(12, 47, 165, 0.07);
+    border-left: 4px solid var(--blue-link);
+  }
+  blockquote::before {
+    content: '“';
+    position: absolute;
+    left: 12px;
+    top: -14px;
+    font-size: 72px;
+    line-height: 1;
+    font-weight: 800;
+    color: var(--cyan);
+    opacity: 0.55;
+  }
+  .content blockquote :global(p) {
     margin: 0;
-    padding-left: 22px;
+    font-size: clamp(19px, 2.3vw, 24px);
+    line-height: 1.5;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  cite {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .dark blockquote {
+    background: rgba(255, 255, 255, 0.07);
+    border-left-color: var(--cyan);
+  }
+  .dark .content blockquote :global(p) {
+    color: #fff;
+  }
+  .dark cite {
+    color: var(--cyan-soft);
+  }
+
+  .stats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin: 6px 0 26px;
+  }
+  .stat {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
+    padding: 18px 22px;
+    border-radius: var(--radius-md);
+    background: #fff;
+    border: 1px solid var(--line);
+    min-width: 150px;
+  }
+  .dark .stat {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+  .sv {
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(90deg, var(--blue) 0%, var(--blue-link) 60%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .dark .sv {
+    background: linear-gradient(90deg, var(--cyan-soft) 0%, #63ffa6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  .sk {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .dark .sk {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .arrow {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--blue-link);
+  }
+  .dark .arrow {
+    color: var(--cyan);
+  }
+
+  figure {
+    margin: 8px 0 26px;
+  }
+  figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+  }
+  figcaption {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .beliefs {
+    list-style: none;
+    margin: 6px 0 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+  }
+  .beliefs li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 18px 20px;
+    border-radius: var(--radius-md);
+    background: #fff;
+    border: 1px solid var(--line);
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .bn {
+    flex: 0 0 auto;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--blue-link) 0%, var(--cyan) 100%);
+    font-size: 13px;
+    font-weight: 800;
+    color: #06121f;
+  }
+  .closing .wrap {
+    padding-top: 36px;
+    padding-bottom: 40px;
   }
   .more {
-    max-width: 70ch;
-    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+  }
+
+  @media (min-width: 900px) {
+    .grid {
+      grid-template-columns: 210px minmax(0, 1fr);
+      gap: 40px;
+    }
+    .rail {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      position: sticky;
+      top: 90px;
+      align-self: start;
+    }
+    .beliefs {
+      grid-template-columns: 1fr 1fr;
+    }
+    .content {
+      max-width: 72ch;
+    }
+    /* linha do tempo continua entre os capitulos */
+    .chapter:not(.closing)::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: calc(max(0px, (100% - var(--maxw)) / 2) + var(--gutter) + 8px);
+      width: 2px;
+      background: linear-gradient(180deg, rgba(56, 142, 233, 0.35), rgba(28, 200, 238, 0.12));
+    }
+    .chapter.dark::before {
+      background: linear-gradient(180deg, rgba(28, 200, 238, 0.5), rgba(28, 200, 238, 0.15)) !important;
+    }
   }
 </style>
