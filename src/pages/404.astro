@@ -65,8 +65,14 @@ const pages = [
 </script>
 
 <style>
+  /* a pagina e curta: o <main> vira coluna e o fundo escuro ocupa o espaco ate o rodape */
+  :global(main) {
+    display: flex;
+    flex-direction: column;
+  }
   .nf {
     position: relative;
+    flex: 1 0 auto;
     background: var(--bg-dark);
     overflow: hidden;
   }
