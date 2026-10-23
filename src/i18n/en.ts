@@ -228,7 +228,7 @@ export const en: typeof pt = {
     },
   ],
   eduTitle: 'Education',
-  edu: 'B.Sc. in Information Systems — Faculdade Cotemig (2010–2015) · IT Technician (vocational high school) — Colégio Cotemig (2007–2009)',
+  edu: 'B.Sc. in Information Systems — [Faculdade Cotemig](https://cotemig.com.br/ensino/faculdade-cotemig/) (2010–2015) · IT Technician (vocational high school) — Colégio Cotemig (2007–2009)',
   langTitle: 'Languages',
   langs: 'Portuguese (native) · English (fluent, technical and conversational)',
   baseTitle: 'Based in',

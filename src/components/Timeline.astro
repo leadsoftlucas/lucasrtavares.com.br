@@ -6,10 +6,11 @@ interface Props {
   lang: Lang;
 }
 const t = dictionaries[Astro.props.lang];
+const cotemigUrl = 'https://cotemig.com.br/ensino/faculdade-cotemig/';
 const facts = [
-  [t.eduTitle, t.edu],
-  [t.langTitle, t.langs],
-  [t.baseTitle, t.base],
+  { title: t.eduTitle, text: t.edu, edu: true },
+  { title: t.langTitle, text: t.langs, edu: false },
+  { title: t.baseTitle, text: t.base, edu: false },
 ];
 ---
 <section id="trajetoria">
@@ -31,10 +32,15 @@ const facts = [
       ))}
     </div>
     <div class="facts">
-      {facts.map(([title, text]) => (
-        <div class="fact">
-          <p class="ft">{title}</p>
-          <p class="fv">{text}</p>
+      {facts.map((fact) => (
+        <div class:list={['fact', { edu: fact.edu }]}>
+          <p class="ft">{fact.title}</p>
+          {fact.edu && (
+            <a href={cotemigUrl} target="_blank" rel="noopener" class="cotemig" aria-label="Cotemig">
+              <img src="/assets/cotemig-logo.svg" alt="Cotemig" width="72" height="40" loading="lazy" />
+            </a>
+          )}
+          <p class="fv" set:html={renderInline(fact.text)} />
         </div>
       ))}
     </div>
@@ -108,6 +114,35 @@ const facts = [
   .d :global(a:hover) {
     color: var(--cyan);
     border-color: var(--cyan);
+  }
+  .fact.edu {
+    background: linear-gradient(135deg, #071f72 0%, var(--bg-dark) 100%);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  .fact.edu .ft {
+    color: var(--cyan-soft);
+  }
+  .fact.edu .fv {
+    color: #fff;
+  }
+  .fact.edu .fv :global(a) {
+    color: var(--cyan-soft);
+    border-bottom: 1px solid rgba(159, 233, 250, 0.4);
+  }
+  .fact.edu .fv :global(a:hover) {
+    color: var(--cyan);
+  }
+  .cotemig {
+    display: inline-block;
+    margin: 0 0 12px;
+  }
+  .cotemig img {
+    display: block;
+    height: 40px;
+    width: auto;
+  }
+  .cotemig:hover {
+    opacity: 0.8;
   }
   .facts {
     margin-top: 32px;

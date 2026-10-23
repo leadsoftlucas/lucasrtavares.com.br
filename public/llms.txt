@@ -20,7 +20,7 @@ Este site é pessoal e **não** é um canal oficial da RavenDB. O foco é o Rave
 - PetraSync (2018–2019): o cliente queria 30 dias; ele pediu 45 e entregou em 45, com RavenDB.
 - Relatório de metas: de cerca de 4 horas para cerca de 30 segundos.
 - DaaS automotivo em RavenDB: de 1,8 min para 600 ms.
-- 17 pacotes NuGet; demos no GitHub: ravendb-demo e ravendb-sales-assistant-demo.
+- 17 pacotes NuGet; demonstrações no GitHub: ravendb-demo e ravendb-sales-assistant-demo.
 - Palestras: TDC São Paulo (2024), Developer Week (2024), Microsoft Ignite (2025), TechEx North America (2026).
 
 ## Páginas
