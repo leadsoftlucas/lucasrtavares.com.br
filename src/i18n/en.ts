@@ -106,7 +106,7 @@ export const en: typeof pt = {
   communityBody: 'TDC São Paulo, GDG Maringá, Developer Week in San Francisco, Microsoft Ignite. A talk, a workshop, a community meetup, a university class or a podcast episode — if people want to understand data modeling, vector search or AI over data, I show up.',
   communityCta: 'Invite me to an event',
   communityCta2: 'See what I am publishing',
-  metricsTitle: 'Numbers behind the conversation',
+  metricsTitle: 'What I have delivered, in numbers',
   metrics: [
     {
       v: '4–8 h → 40 s',

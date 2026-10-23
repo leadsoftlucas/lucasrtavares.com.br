@@ -104,7 +104,7 @@ export const pt = {
   communityBody: 'TDC São Paulo, GDG Maringá, Developer Week em San Francisco, Microsoft Ignite. Palestra, workshop, meetup de comunidade, aula em universidade ou episódio de podcast — se tem gente querendo entender modelagem de dados, busca vetorial ou IA sobre dados, eu vou.',
   communityCta: 'Convidar para um evento',
   communityCta2: 'Ver o que eu ando publicando',
-  metricsTitle: 'Resultados que sustentam a conversa',
+  metricsTitle: 'O que já entreguei, com número',
   metrics: [
     {
       v: '4–8 h → 40 s',

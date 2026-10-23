@@ -23,6 +23,7 @@ export const GET: APIRoute = () => {
       return `  <url>\n    <loc>${abs(p[lang])}</loc>\n    <lastmod>${lastmod}</lastmod>\n${alternates}\n  </url>`;
     }),
   );
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${entries.join('\n')}\n</urlset>\n`;
+  // A folha de estilo (public/sitemap.xsl) so deixa o arquivo legivel no navegador; os buscadores a ignoram.
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${entries.join('\n')}\n</urlset>\n`;
   return new Response(xml, { headers: { 'Content-Type': 'application/xml; charset=utf-8' } });
 };
