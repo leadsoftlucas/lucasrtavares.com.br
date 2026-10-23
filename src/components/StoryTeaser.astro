@@ -1,0 +1,66 @@
+---
+import { dictionaries, routes, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = dictionaries[lang];
+---
+<section id="historia">
+  <div class="wrap inner">
+    <div class="card">
+      <p class="overline">{t.storyOverline}</p>
+      <h2>{t.storyTitle}</h2>
+      <p class="body">{t.storyBody}</p>
+      <div class="ctas">
+        <a href={routes.story[lang]} class="btn btn-grad">{t.storyCta}</a>
+        <a href={routes.proof[lang]} class="btn btn-line-dark">{t.storyCta2}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background: var(--band-warm);
+    border-bottom: 1px solid var(--line);
+  }
+  .inner {
+    padding-top: clamp(40px, 6vw, 72px);
+    padding-bottom: clamp(40px, 6vw, 72px);
+  }
+  .card {
+    padding: clamp(26px, 4vw, 40px);
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 12px rgba(15, 20, 37, 0.05);
+  }
+  .overline {
+    color: var(--blue-link);
+  }
+  h2 {
+    margin: 0 0 14px;
+    font-size: clamp(24px, 3vw, 34px);
+    line-height: 1.12;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .body {
+    margin: 0 0 24px;
+    max-width: 62ch;
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 1.68;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+</style>

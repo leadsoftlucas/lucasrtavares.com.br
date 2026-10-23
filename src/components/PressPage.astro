@@ -1,0 +1,276 @@
+---
+import { config } from '../config';
+import { routes, type Lang } from '../i18n';
+import { press } from '../content/press';
+import { renderInline } from '../lib/inline';
+import { pageJsonLd } from '../data/jsonld';
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import CtaCards from './CtaCards.astro';
+import JsonLd from './JsonLd.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = press[lang];
+const talks = c.talks.filter((t) => config.showG1 || !t.g1);
+---
+<Base lang={lang} paths={routes.press} title={c.meta.title} description={c.meta.description} ogType="website" onHome={false}>
+  <JsonLd slot="head" data={pageJsonLd('press', lang, c.meta.title)} />
+  <PageHero title={c.h1} lead={c.lead} />
+
+  <section class="band cool">
+    <div class="wrap inner">
+      <h2 class="h2">{c.factsTitle}</h2>
+      <dl class="facts">
+        {c.facts.map((f) => (
+          <div>
+            <dt>{f.k}</dt>
+            <dd set:html={renderInline(f.v)} />
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="band warm" id="bios">
+    <div class="wrap inner">
+      <h2 class="h2">{c.biosTitle}</h2>
+      <div class="bios">
+        {c.bios.map((b) => (
+          <article class="bio" data-bio>
+            <div class="bhead">
+              <h3>{b.label}</h3>
+              <button type="button" class="copy" data-copy data-done={c.copied} data-label={c.copy}>{c.copy}</button>
+            </div>
+            <p data-bio-text set:html={renderInline(b.text)} />
+          </article>
+        ))}
+      </div>
+      <h3 class="sub">{c.introTitle}</h3>
+      <blockquote>{c.intro}</blockquote>
+    </div>
+  </section>
+
+  <section class="band cool" id="palestras">
+    <div class="wrap inner">
+      <h2 class="h2">{c.talksTitle}</h2>
+      <ul class="talks">
+        {talks.map((t) => (
+          <li>
+            <strong>{t.title}</strong>
+            <span class="sum">{t.summary}</span>
+            <span class="fmt">{t.format}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band warm" id="materiais">
+    <div class="wrap inner">
+      <h2 class="h2">{c.materialsTitle}</h2>
+      <ul class="files">
+        {c.materials.map((m) => (
+          <li><a href={m.url} download>{m.label}</a></li>
+        ))}
+      </ul>
+      {renderInline(c.materialsTodo) && <p class="note" set:html={renderInline(c.materialsTodo)} />}
+      <h3 class="sub">{c.rulesTitle}</h3>
+      <ul class="rules">
+        {c.rules.map((r) => <li set:html={renderInline(r)} />)}
+      </ul>
+    </div>
+  </section>
+
+  <CtaCards lang={lang} title={c.ctaTitle} cards={[5]} press mailNote={c.ctaNote} />
+</Base>
+
+<script>
+  import '../scripts/copy-bio';
+</script>
+
+<style>
+  .band {
+    border-bottom: 1px solid var(--line);
+  }
+  .cool {
+    background: var(--band-cool);
+  }
+  .warm {
+    background: var(--band-warm);
+  }
+  .inner {
+    padding-top: clamp(40px, 5vw, 68px);
+    padding-bottom: clamp(40px, 5vw, 68px);
+  }
+  .h2 {
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .facts {
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .facts div {
+    padding: 18px 20px;
+    border-radius: var(--radius-md);
+    background: #fff;
+    border: 1px solid var(--line);
+  }
+  dt {
+    margin: 0 0 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  dd {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  dd :global(a) {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .bios {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .bio {
+    padding: 22px 24px;
+    border-radius: var(--radius-md);
+    background: #fff;
+    border: 1px solid var(--line);
+  }
+  .bhead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  h3 {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--purple);
+  }
+  .bio p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .copy {
+    padding: 7px 16px;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--line-strong);
+    background: #fff;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue);
+    cursor: pointer;
+  }
+  .copy:hover {
+    border-color: var(--blue-link);
+  }
+  .sub {
+    margin: 32px 0 12px;
+    color: var(--blue);
+  }
+  blockquote {
+    margin: 0;
+    padding: 22px 26px;
+    border-radius: var(--radius-md);
+    background: #fff;
+    border-left: 4px solid var(--blue-link);
+    font-size: 17px;
+    line-height: 1.65;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .talks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .talks li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 24px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line-strong);
+  }
+  .talks strong {
+    flex: 1 1 100%;
+    font-size: 17px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .sum {
+    flex: 2 1 340px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .fmt {
+    flex: 1 1 200px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+  .files {
+    list-style: none;
+    margin: 0 0 14px;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .files a {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: var(--radius-pill);
+    background: #fff;
+    border: 1px solid var(--line-strong);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .files a:hover {
+    border-color: var(--blue-link);
+    color: var(--blue);
+  }
+  .note {
+    margin: 0;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .rules {
+    margin: 0;
+    padding-left: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+</style>

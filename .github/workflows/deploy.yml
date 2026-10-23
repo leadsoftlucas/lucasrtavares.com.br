@@ -1,0 +1,66 @@
+# Build, verificacao, Lighthouse CI e deploy no GitHub Pages.
+#
+# - Em pull_request e em push na redesign/astro: so constroi e verifica (NAO publica).
+# - Em push na master: constroi, verifica e PUBLICA no GitHub Pages.
+#   Isso so passa a valer no dia do corte (M7), quando Settings > Pages > Source for trocado
+#   para "GitHub Actions". Ate la o site de producao continua servido pela master antiga.
+name: Build, test and deploy
+
+on:
+  push:
+    branches: [master, redesign/astro]
+  pull_request:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PUBLIC_SITE_URL: ${{ vars.PUBLIC_SITE_URL }}
+      PUBLIC_GTM_ID: ${{ vars.PUBLIC_GTM_ID }}
+      PUBLIC_GA_ID: ${{ vars.PUBLIC_GA_ID }}
+      PUBLIC_WHATSAPP_RAVENDB: ${{ vars.PUBLIC_WHATSAPP_RAVENDB }}
+      PUBLIC_WHATSAPP_LEADSOFT: ${{ vars.PUBLIC_WHATSAPP_LEADSOFT }}
+      PUBLIC_EMAIL_RAVENDB: ${{ vars.PUBLIC_EMAIL_RAVENDB }}
+      PUBLIC_EMAIL_PERSONAL: ${{ vars.PUBLIC_EMAIL_PERSONAL }}
+      # Gate G1 da pagina Historia: desligado, a menos que a variavel do repositorio diga o contrario.
+      PUBLIC_SHOW_G1: ${{ vars.PUBLIC_SHOW_G1 }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Checks (idiomas, links, LeadSoft, SEO)
+        run: npm run check
+      - name: Marcadores pendentes (informativo)
+        run: npm run check:placeholders
+      - name: Lighthouse CI
+        run: npx --yes @lhci/cli@0.14.x autorun
+      - uses: actions/configure-pages@v5
+        if: github.ref == 'refs/heads/master'
+      - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/master'
+        with:
+          path: dist
+
+  deploy:
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

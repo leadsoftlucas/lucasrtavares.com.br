@@ -1,0 +1,125 @@
+---
+import { dictionaries, routes, homePath, type Lang } from '../i18n';
+import LangSwitch from './LangSwitch.astro';
+
+interface Props {
+  lang: Lang;
+  paths?: Record<Lang, string>;
+  /** false nas paginas internas: as ancoras apontam para a home. */
+  onHome?: boolean;
+}
+const { lang, paths, onHome = true } = Astro.props;
+const base = onHome ? '' : homePath[lang];
+const t = dictionaries[lang];
+const links = [
+  ...(onHome ? [] : ([[homePath[lang], t.nav.home]] as const)),
+  [base + '#falar', t.nav.talk],
+  [base + '#sobre', t.nav.about],
+  [routes.story[lang], t.nav.story],
+  [routes.proof[lang], t.nav.proof],
+  [base + '#trajetoria', t.nav.path],
+  [base + '#codigo', t.nav.code],
+  [base + '#palcos', t.nav.stages],
+  [base + '#artigos', t.nav.writing],
+  [base + '#contato', t.nav.contact],
+] as const;
+---
+<header>
+  <div class="bar">
+    <a href={onHome ? '#top' : homePath[lang]} class="brand">
+      <img src="/assets/lambda.svg" alt={t.brandAlt} height="26" />
+      <span>Lucas R. Tavares</span>
+    </a>
+    <LangSwitch lang={lang} paths={paths} />
+    <nav>
+      {links.map(([href, label], i) => <a href={href} class:list={{ primary: i === (onHome ? 0 : 1) }}>{label}</a>)}
+    </nav>
+  </div>
+  <div class="progress" data-scroll-progress role="presentation" aria-hidden="true"><span></span></div>
+</header>
+
+<script>
+  import '../scripts/scroll-progress';
+</script>
+
+<style>
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgba(15, 20, 37, 0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 3px;
+    pointer-events: none;
+  }
+  .progress span {
+    display: block;
+    height: 100%;
+    transform-origin: left center;
+    transform: scaleX(var(--p, 0));
+    background: linear-gradient(90deg, var(--cyan) 0%, #63ffa6 55%, var(--blue-link) 100%);
+    box-shadow: 0 0 10px rgba(28, 200, 238, 0.55);
+  }
+  .bar {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 10px var(--gutter);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: nowrap;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #fff;
+    flex: 0 0 auto;
+  }
+  .brand img {
+    height: 26px;
+    width: auto;
+    display: block;
+  }
+  .brand span {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: -0.02em;
+    color: #fff;
+    white-space: nowrap;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: nowrap;
+    margin-left: auto;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 2px 0;
+  }
+  nav::-webkit-scrollbar {
+    display: none;
+  }
+  nav a {
+    font-size: 13px;
+    font-weight: 500;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.78);
+  }
+  nav a.primary {
+    font-weight: 700;
+    color: var(--cyan-soft);
+  }
+  nav a:hover {
+    color: var(--cyan);
+  }
+</style>

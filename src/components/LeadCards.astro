@@ -1,0 +1,190 @@
+---
+import { dictionaries, type Lang } from '../i18n';
+import { config, whatsappLink } from '../config';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = dictionaries[lang];
+const cards = t.leads.map((l) => ({ ...l, href: whatsappLink(l.msg) }));
+---
+<section id="falar">
+  <div class="wrap inner">
+    <p class="overline">{t.leadOverline}</p>
+    <h2>{t.leadTitle}</h2>
+    <p class="lead">{t.leadLead}</p>
+    <div class="cards">
+      {cards.map((l) => (
+        <a href={l.href} target="_blank" rel="noopener" data-lead-group={l.group} data-lead-title={l.t} class="card">
+          <span class="group">{l.group}</span>
+          <h3>{l.t}</h3>
+          <p>{l.d}</p>
+          <span class="open">
+            <svg class="wa-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.96L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm5.8 14.06c-.24.68-1.42 1.31-1.96 1.36-.54.05-1.05.24-3.53-.74-2.98-1.17-4.84-4.26-4.99-4.46-.14-.2-1.18-1.57-1.18-3 0-1.43.75-2.13 1.02-2.42.27-.29.58-.36.78-.36.2 0 .4.002.57.01.19.008.44-.07.68.52.24.59.83 2.03.9 2.18.07.15.12.32.02.51-.1.2-.15.32-.29.5-.15.17-.31.39-.44.52-.15.15-.3.31-.13.6.17.29.76 1.25 1.63 2.03 1.12 1 2.06 1.31 2.35 1.46.29.15.46.12.63-.07.17-.2.73-.85.93-1.14.2-.29.39-.24.66-.15.27.1 1.71.81 2 .95.29.15.49.22.56.34.07.13.07.73-.17 1.41Z"></path></svg>
+            <span>{t.leadCta}</span>
+          </span>
+        </a>
+      ))}
+    </div>
+    <div class="trust">
+      {t.trust.map((tr) => (
+        <div class="item">
+          <span class="check">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0C2FA5" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7.5"></path></svg>
+          </span>
+          <div>
+            <p class="tt">{tr.t}</p>
+            <p class="td">{tr.d}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <p class="mailnote">{t.leadMailNote} <a href={`mailto:${config.emailRavendb}`}>{config.emailRavendb}</a></p>
+  </div>
+</section>
+
+<style>
+  section {
+    background: var(--band-cool);
+    border-bottom: 1px solid var(--line);
+  }
+  .inner {
+    padding-top: clamp(52px, 7vw, 88px);
+    padding-bottom: clamp(52px, 7vw, 88px);
+  }
+  .overline {
+    color: var(--blue);
+  }
+  h2 {
+    margin: 0 0 14px;
+    max-width: 30ch;
+    font-size: clamp(26px, 3.4vw, 40px);
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  .lead {
+    margin: 0 0 34px;
+    max-width: 66ch;
+    line-height: 1.68;
+    color: var(--ink-soft);
+  }
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(258px, 1fr));
+    gap: 14px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    padding: 22px;
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    color: inherit;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .card:hover {
+    border-color: var(--blue-link);
+    background: #fff;
+    box-shadow: 0 16px 36px rgba(15, 20, 37, 0.1);
+    transform: translateY(-2px);
+    color: inherit;
+  }
+  .group {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--purple);
+  }
+  h3 {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.35;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-wrap: pretty;
+  }
+  .card p {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 450;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    flex: 1;
+    text-wrap: pretty;
+  }
+  .open {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue);
+  }
+  .trust {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    padding: 26px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(56, 142, 233, 0.09) 0%, rgba(28, 200, 238, 0.07) 100%);
+    border: 1px solid rgba(56, 142, 233, 0.24);
+  }
+  .item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .check {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-sm);
+    background: rgba(12, 47, 165, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .item div {
+    min-width: 0;
+  }
+  .tt {
+    margin: 0 0 3px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .td {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 450;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .mailnote {
+    margin: 20px 0 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--muted);
+    text-wrap: pretty;
+  }
+  .mailnote a {
+    color: var(--ink-soft);
+    border-bottom: 1px solid #d2d2d2;
+  }
+  .mailnote a:hover {
+    color: var(--blue);
+    border-color: var(--blue);
+  }
+</style>

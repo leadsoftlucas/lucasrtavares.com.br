@@ -1,136 +1,78 @@
 # 🌐 lucasrtavares.com.br
 
-Site pessoal e institucional de **Lucas Resende Tavares**, publicado em [lucasrtavares.com.br](https://lucasrtavares.com.br).
+Site pessoal de **Lucas Resende Tavares**, Sales Engineer e Arquiteto de Soluções na [RavenDB](https://ravendb.net). Este site é pessoal e **não** é um canal oficial da RavenDB.
 
-Landing page única, bilíngue (português/inglês), 100% estática — sem backend, sem build, sem dependências. Abre direto no navegador.
+Construído com **[Astro](https://astro.build)**: HTML gerado no build (nada de conteúdo que só aparece depois do JavaScript), PT em `/` e EN em `/en/`, componentes, CSS com tokens e JavaScript só onde precisa.
 
-## 👤 Sobre
-
-Quase duas décadas escrevendo software em .NET e modelando dados — dos cursores em Delphi à busca vetorial sobre documentos. Lucas é Sales Engineer e Arquiteto de Soluções na [RavenDB](https://ravendb.net) (Hibernating Rhinos Ltd.) e, antes disso, fundou e liderou a **LeadSoft Soluções Web** (2018–2025), software house de Curitiba e parceira oficial do RavenDB no Brasil.
-
-Este repositório **não é um portfólio estático**. É o código-fonte de um canal de captação de leads, com três funções, nesta ordem de prioridade:
-
-1. **Ponte brasileira do RavenDB** — ponto de contato técnico em português para quem avalia, adota ou escala o produto no Brasil, encaminhando o que for comercial ao time de Account Executives do RavenDB.
-2. **Posição de advocate** — presença brasileira reconhecida do RavenDB: artigos, vídeos, palestras e comunidade.
-3. **Consultoria independente** — arquitetura, produto de software e backend .NET, fora do escopo RavenDB.
-
-Meta secundária: ser bem indexado no Google **e** facilmente lido por LLMs, para que assistentes de IA recomendem Lucas nas quatro especialidades acima — com atendimento global.
-
-## 🛠️ Stack técnica
-
-- **HTML único, estático**, renderizado via runtime próprio (`support.js`); estilo inline em toda a página (sem folhas de classes), para pintar imediatamente durante o streaming.
-- **Zero dependência de build.** Sem npm, sem bundler, sem framework de site, sem etapa de compilação.
-- **Sem backend.** Nenhum formulário, nenhum banco, nenhuma chamada de servidor. Toda conversão sai por `wa.me` (WhatsApp) ou `mailto:`.
-- **i18n em estado de cliente.** Dois dicionários completos (PT/EN) no próprio arquivo; a troca de bandeira reescreve a página inteira em uma única URL — por isso não há `hreflang` (apontar para uma rota `/en/` inexistente geraria erro no Search Console).
-- **`<image-slot>`** (`image-slot.js`) — componente de imagem com arrastar-e-soltar, usado nas capas de artigo e fotos de evento.
-- **Analytics**: Google Tag Manager (`GTM-59KJ4PPC`) + Google Analytics 4 (`G-16LSSW03WS`). Cada um dos 8 cartões de lead carrega `data-lead-group`/`data-lead-title`, usados pelo GTM para disparar o evento `clique_whatsapp` por clique — sem esses atributos não dá para saber qual caminho de lead converte.
-- **Aviso de cookies (LGPD)**: faixa fixa no rodapé (bilíngue, segue o idioma escolhido), com preferência salva em `localStorage`.
-
-> `_ds/` (design system RavenDB) continua no repositório como referência de tokens, mas não é mais carregado em produção — ver [Qualidade e Lighthouse](#-qualidade-e-lighthouse).
-
-## 📁 Estrutura de arquivos
-
-```
-index.html              # versão publicada
-support.js              # runtime de renderização
-image-slot.js           # componente de imagem arrastável
-assets/                 # logotipos, bandeiras, fundos vetoriais, capas de artigo, fotos de evento, avatar, capa social
-_ds/                    # design system RavenDB (tokens de referência; não publicado em produção)
-CNAME                   # domínio customizado do GitHub Pages
-robots.txt              # regras de rastreamento (inclui crawlers de IA)
-sitemap.xml             # mapa do site (URL única)
-llms.txt                # resumo em Markdown para LLMs/crawlers de IA (padrão llmstxt.org)
-{{ ... }}, .image-slots.state.json, .nojekyll   # arquivos-placeholder necessários (ver "Qualidade e Lighthouse")
-LICENSE                 # MIT
-```
+> **Estado:** branch `redesign/astro`. O site de produção continua sendo a `master` antiga (tag `site-legacy-2026-10-24`) até o dia do corte. Nada aqui publica sozinho.
 
 ## ▶️ Rodar localmente
 
-Não há build nem servidor de aplicação. Basta abrir o arquivo diretamente:
+Requer Node 22.23+ (testado no 24) e npm.
 
 ```bash
-start index.html   # Windows
+npm install
+npm run dev        # http://localhost:4321/
+npm run verify     # build + todos os checks
+npm run preview    # serve o build em http://localhost:4321/
 ```
 
-Ou servir a pasta com qualquer servidor estático (opcional, útil para testar caminhos relativos):
+## 🗂️ Estrutura
 
-```bash
-npx serve .
+```text
+src/
+  config.ts            variáveis PUBLIC_* e links de WhatsApp (nenhum segredo)
+  i18n/                textos da home e do layout, PT e EN (en.ts é tipado como pt.ts)
+  content/             páginas História, Provas e Imprensa, PT e EN
+  data/                pacotes NuGet, eventos, vídeos, artigos, clientes, depoimentos, JSON-LD, links
+  components/          Hero, LeadCards, Timeline, OpenSource, Videos, PageHero, CtaCards...
+  layouts/Base.astro   <head> (GTM, GA4, hreflang, Open Graph), cabeçalho, rodapé, banner LGPD
+  pages/               rotas (/, /en/, /historia/, /en/history/, ...) + robots.txt, sitemap.xml, llms.txt, 404
+  scripts/             módulos pequenos (idioma, cookies, vídeo, filtro de pacotes, progresso de leitura...)
+  styles/              tokens.css e global.css
+public/                assets, CNAME, .nojekyll
+design/                fontes de arte (ex.: cosmic-bg.svg, que gerou o cosmic-bg.webp)
+legacy/                o site antigo (index.html + runtime), só para consulta
+scripts/               checks do build (abaixo)
 ```
 
-## 🚀 Publicar
+## 🔐 Variáveis de ambiente (públicas, não são segredos)
 
-Hospedagem estática qualquer serve. Como está configurado para GitHub Pages:
+Copie `.env.example` para `.env`. No GitHub, use *Settings → Secrets and variables → Actions → Variables*.
 
-1. Subir `index.html`, `support.js`, `image-slot.js`, `assets/`, `CNAME`, `robots.txt`, `sitemap.xml` e `llms.txt` na branch de publicação do repositório (`_ds/` não é necessário — ver [Qualidade e Lighthouse](#-qualidade-e-lighthouse)).
-2. Ativar GitHub Pages nas configurações do repositório, apontando para essa branch.
-3. DNS do domínio customizado configurado conforme o `CNAME`.
-
-Após publicar, rodar o validador de compartilhamento do LinkedIn e do WhatsApp para atualizar o cache da capa social (`og-cover.jpg`).
-
-## 🧩 Decisões de arquitetura
-
-| Decisão | Racional |
+| Variável | Para quê |
 |---|---|
-| Posicionamento alternado por idioma | Em PT o H1 é "Sua ponte com o RavenDB no Brasil" (intenção local de busca); em EN o H1 é o nome próprio, mantendo o posicionamento global de Sales Engineer. |
-| Captação por roteador de WhatsApp, não por formulário | Site estático, sem backend. Oito cartões de intenção abrem o WhatsApp com mensagem já redigida e qualificada, reduzindo o atrito a zero. |
-| Oito caminhos de lead separados | Avaliação · Comercial/licenciamento (ponte com o AE) · Suporte técnico · POC · Migração · Convite para palestra · Treinamento · Consultoria independente — cada um segmenta o lead na origem. |
-| Prova antes de promessa | Métricas reais de projeto abrem a página, antes de qualquer texto institucional. |
-| Vídeos embarcados, não redirecionados | Click-to-play: miniatura estática que só cria o iframe (`youtube-nocookie`) ao clique — sem cookies de terceiros no carregamento. |
-| Sem newsletter | Decisão explícita: só contato direto. |
+| `PUBLIC_SITE_URL` | domínio (canonical, sitemap, Open Graph) |
+| `PUBLIC_GTM_ID`, `PUBLIC_GA_ID` | Tag Manager e GA4 (só carregam no build de produção) |
+| `PUBLIC_WHATSAPP_RAVENDB` | número dos botões RavenDB |
+| `PUBLIC_WHATSAPP_LEADSOFT` | **só** a seção LeadSoft |
+| `PUBLIC_EMAIL_RAVENDB`, `PUBLIC_EMAIL_PERSONAL` | e-mails |
+| `PUBLIC_SHOW_G1` | `true` mostra o trecho "A conversa que mudou tudo" da página História. **Padrão: desligado** (só ligar depois do alinhamento com a RavenDB) |
 
-## 🔍 SEO e legibilidade por IA
+O número pessoal do Lucas **nunca** entra neste repositório.
 
-- **JSON-LD (schema.org)** com três entidades: `Person` (cargo, empregador, idiomas, `knowsAbout`, `sameAs`), `makesOffer` (as quatro consultorias, cada uma com `serviceType` e `areaServed: Worldwide`) e `ProfilePage`/`ProfessionalService`.
-- Meta tags completas (title, description, keywords, `robots`, canonical, `geo.region`/`geo.placename`).
-- Open Graph e Twitter Card com URLs absolutas e capa social 1200×630 dedicada.
-- Um único `H1`, hierarquia de `H2`/`H3` por seção, `alt` descritivo em toda imagem.
-- `og:locale` `pt_BR` com `og:locale:alternate` `en_US`.
-- **`llms.txt`** (padrão [llmstxt.org](https://llmstxt.org)) com resumo em Markdown de quem é Lucas, os quatro serviços e os contatos — para LLMs e assistentes de IA que não renderizam o HTML completo.
-- `robots.txt` libera explicitamente os crawlers de IA (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, anthropic-ai).
+## ✅ Checks
 
-**Pendências conhecidas:**
+`npm run verify` faz o build e roda:
 
-- A versão em inglês não tem URL própria — se um dia for servida em `/en/`, os três `hreflang` (`pt-BR`, `en`, `x-default`) devem ser adicionados.
-- O evento `clique_whatsapp` ainda não está marcado como conversão no GA4 (Configurar → Eventos → marcar como conversão).
+| Comando | O que confere |
+|---|---|
+| `check:i18n` | PT e EN com as mesmas chaves, sem texto vazio, listas com o tamanho dos dados |
+| `check:links` | links e recursos internos existem, 1 H1, `lang`, `canonical`, JSON-LD válido, imagens com `alt` |
+| `check:brand` | todo "LeadSoft" no texto leva a https://leadsoft.inf.br |
+| `check:seo` | `robots.txt`, `sitemap.xml` (8 URLs com hreflang) e `llms.txt` coerentes com as páginas |
+| `check:placeholders` | lista os marcadores pendentes no código (`[adicionar]`, `[LINK a informar]`); **em produção eles são removidos do HTML** (`PUBLIC_SHOW_TODO=true` os mostra); `--strict` falha se houver |
 
-## ✅ Qualidade e Lighthouse
+**Lighthouse CI** (`npx @lhci/cli autorun`, configurado em `lighthouserc.json`): as 8 páginas, 3 execuções cada, mínimo de **0,98** em acessibilidade, boas práticas e SEO e de **0,90** em desempenho (o runner do GitHub é mais lento e mais ruidoso que uma máquina local, onde a home dá 99; subir o limite quando houver dados do CI).
 
-Rodamos o relatório do Google Lighthouse e corrigimos tudo o que saía abaixo de 100 em performance, acessibilidade e boas práticas (SEO já estava em 100):
+## 🚀 Deploy
 
-- **Imagens**: todas as fotos e capas de artigo foram redimensionadas para ~2× o tamanho exibido e recomprimidas (as capas, de PNG fotográfico para JPEG) — de ~13MB para ~1MB no total. A foto do hero (`lucas-tavares.png`) tem `srcset`/`sizes` com uma variante menor (620×840) para mobile e telas normais, reservando a grande (1238×1680) só para alta densidade (retina).
-- **LCP**: `<link rel="preload" fetchpriority="high">` no background do hero, somado à redução geral de peso de imagem.
-- **Contraste (WCAG AA)**: corrigido em 4 pontos que ficavam abaixo de 4,5:1 — eyebrow da seção "Falar comigo", texto legal e link de e-mail do rodapé, botão do aviso de cookies. Ao mudar cores no inline-style, confira o contraste antes de publicar.
-- **Landmark**: `<main>` único envolvendo o conteúdo entre `<header>` e `<footer>`.
-- **`_ds/`** (design system) removido do `<head>`/`<helmet>` — não é mais carregado em produção, eliminando a maior parte dos 404 que apareciam no console (o estilo da página já é 100% inline, então o bundle nunca foi necessário ali).
+`.github/workflows/deploy.yml` constrói, roda os checks e o Lighthouse CI. **Só em push na `master`** ele publica no GitHub Pages. Isso passa a valer quando, no dia do corte, *Settings → Pages → Source* for trocado para **GitHub Actions**. Rollback: voltar a `master` para a tag `site-legacy-2026-10-24`.
 
-### Recurso técnico necessário: arquivos-placeholder na raiz
+## 📝 Regras de conteúdo
 
-Alguns `<img>`/`<image-slot>` de conteúdo repetido (bandeira do evento, miniatura de vídeo, foto de evento, capa de artigo, embed) trazem `{{ placeholder }}` cru no `src`, resolvido em runtime pelo `support.js`. O navegador busca esse literal por uma fração de segundo antes do JS substituir, e o `image-slot.js` busca o sidecar `.image-slots.state.json` (usado para persistir imagens arrastadas dentro da ferramenta de design). Ambos são arquivos vendor/gerados, sem edição manual possível, e sem tratamento davam 404 no console (Best Practices 96).
-
-Solução: existem arquivos com esses nomes literais na raiz, para as requisições retornarem 200:
-
-- `{{ ev.flag }}`, `{{ v.thumb }}`, `{{ ev.photo }}`, `{{ a.cover }}`, `{{ v.embed }}` — PNG transparente de 1×1 px.
-- `.image-slots.state.json` — `{}` (o `image-slot.js` trata como "nenhuma imagem arrastada").
-- `.nojekyll` — sem ele o GitHub Pages (Jekyll) ignora arquivos iniciados por ponto/underscore, e o `.image-slots.state.json` não seria servido.
-
-**Não apague nem renomeie.** Se um novo campo `{{ x.y }}` for usado em `src` no `index.html`, crie o arquivo `{{ x.y }}` correspondente. O `robots.txt` bloqueia esses caminhos para não serem indexados.
-
-## 📬 Contato
-
-- RavenDB (oficial): lucas.tavares@ravendb.net
-- Pessoal: eu@lucasrtavares.com.br
-- LinkedIn: [/in/lucasrtavares](https://linkedin.com/in/lucasrtavares)
-- GitHub: [@leadsoftlucas](https://github.com/leadsoftlucas)
-- NuGet: [/profiles/lucastavares](https://www.nuget.org/profiles/lucastavares)
-- YouTube: [@LucasResendeTavares](https://www.youtube.com/@LucasResendeTavares)
+Os fatos e as decisões do Lucas estão no vault (`Content/99 Gestão/Fatos Novos e Decisões`). Em resumo: sem inventar fatos (usar `[adicionar]`), "demonstrações" em vez de "demos" em português, nunca "exclusivamente RavenDB", nenhuma foto de terceiros sem autorização, sem telefone pessoal.
 
 ## 📄 Licença
 
-MIT — ver [LICENSE](LICENSE).
-
----
-
-## 🇺🇸 English
-
-Personal and institutional website of Lucas Resende Tavares, a Sales Engineer and Solutions Architect at RavenDB and founder of LeadSoft Soluções Web (2018–2025). Single-page, bilingual (pt-BR/en) static site, no backend and no build step — `index.html` is served as-is, generated from the source file `Lucas Tavares.dc.html`. All conversion happens through pre-filled WhatsApp links or `mailto:`, not forms. Images are resized/compressed close to their displayed size, with `srcset` on the hero photo, and `llms.txt` gives LLM crawlers a plain-Markdown summary. See the sections above for architecture decisions, Lighthouse fixes, and the placeholder files that keep the console clean.
+MIT. Ver [LICENSE](LICENSE).

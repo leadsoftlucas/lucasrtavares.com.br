@@ -1,0 +1,192 @@
+---
+import { dictionaries, type Lang } from '../i18n';
+import { videos, youtubeWatchUrl, youtubeThumbUrl, youtubeEmbedUrl } from '../data/videos';
+import { links } from '../data/links';
+
+interface Props {
+  lang: Lang;
+}
+const t = dictionaries[Astro.props.lang];
+---
+<section id="videos">
+  <div class="wrap inner">
+    <p class="overline blue">{t.videoOverline}</p>
+    <h2 class="h2">{t.videoTitle}</h2>
+    <p class="lead">{t.videoLead}</p>
+    <div class="grid">
+      {t.videos.map((v, i) => (
+        <div class="card">
+          <div class="frame" data-video-frame>
+            <button
+              type="button"
+              class="play"
+              data-embed={youtubeEmbedUrl(videos[i].id)}
+              data-title={v.title}
+              aria-label={`${t.videoPlay}: ${v.title}`}
+            >
+              <img src={youtubeThumbUrl(videos[i].id)} alt={`${v.title} — Lucas Resende Tavares`} loading="lazy" width="480" height="360" />
+              <span class="badge">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+              </span>
+            </button>
+          </div>
+          <div class="body">
+            <span class="channel">{v.channel}</span>
+            <h3>{v.title}</h3>
+            <p class="d">{v.d}</p>
+            <a href={youtubeWatchUrl(videos[i].id)} target="_blank" rel="noopener" class="watch">{t.videoWatch}</a>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="ctas">
+      <a href={links.youtubePlaylist} target="_blank" rel="noopener" class="btn btn-dark">
+        <img src="/assets/youtube.png" alt="" width="22" height="22" class="yt" />
+        <span>{t.videoCtaPlaylist}</span>
+      </a>
+      <a href={links.youtubeChannel} target="_blank" rel="noopener" class="btn btn-line-dark" style="--btn-px: 20px;">
+        <span>{t.videoCtaMine}</span>
+      </a>
+      <a href={links.youtubeRavendb} target="_blank" rel="noopener" class="btn btn-line-dark" style="--btn-px: 20px;">
+        <img src="/assets/ravendb-r-mark.png" alt="" width="20" height="20" class="rv" />
+        <span>{t.videoCtaRaven}</span>
+      </a>
+      <a href={links.tdcWorkshopRepo} target="_blank" rel="noopener" class="btn btn-line-dark" style="--btn-px: 20px;">{t.videoCtaRepo}</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  import '../scripts/video-click-to-play';
+</script>
+
+<style>
+  section {
+    background: var(--band-cool);
+  }
+  .inner {
+    padding-top: clamp(56px, 8vw, 96px);
+    padding-bottom: clamp(56px, 8vw, 96px);
+  }
+  .blue {
+    color: var(--blue-link);
+  }
+  .h2 {
+    color: var(--ink);
+  }
+  .lead {
+    margin: 0 0 36px;
+    color: var(--ink-soft);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+  }
+  .card:hover {
+    border-color: var(--blue-link);
+    box-shadow: 0 18px 40px rgba(15, 20, 37, 0.12);
+  }
+  .frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    background: var(--bg-dark);
+  }
+  .play {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    display: block;
+  }
+  .play:hover {
+    opacity: 0.92;
+  }
+  .play img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .badge {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 62px;
+    height: 44px;
+    border-radius: 11px;
+    background: rgba(15, 20, 37, 0.82);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+  .channel {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--purple);
+  }
+  h3 {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.35;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-wrap: pretty;
+  }
+  .d {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 450;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    flex: 1;
+    text-wrap: pretty;
+  }
+  .watch {
+    margin-top: auto;
+    align-self: flex-start;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue);
+  }
+  .watch:hover {
+    color: var(--cyan);
+  }
+  .ctas {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .yt {
+    border-radius: 5px;
+  }
+  .rv {
+    object-fit: contain;
+  }
+</style>

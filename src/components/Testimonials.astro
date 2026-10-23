@@ -1,0 +1,136 @@
+---
+import { type Lang } from '../i18n';
+import { testimonials } from '../data/testimonials';
+import { renderInline } from '../lib/inline';
+
+interface Props {
+  lang: Lang;
+  title: string;
+  note: string;
+  translatedLabel: string;
+  originalLabel: string;
+}
+const { lang, title, note, translatedLabel, originalLabel } = Astro.props;
+---
+<div class="testimonials">
+  <h3 set:html={renderInline(title)} />
+  <p class="note" set:html={renderInline(note)} />
+  <div class="grid">
+    {testimonials.map((t) => (
+      <figure class="card">
+        <blockquote lang={lang === 'pt' ? 'pt-BR' : 'en'}>
+          <p set:html={renderInline(lang === 'pt' ? t.quote : t.quoteEn)} />
+        </blockquote>
+        {lang === 'en' && (
+          <details>
+            <summary>{originalLabel}</summary>
+            <p lang="pt-BR" set:html={renderInline(t.quote)} />
+          </details>
+        )}
+        <figcaption>
+          <strong>{t.name}</strong>
+          <span set:html={renderInline(t.role[lang])} />
+          {lang === 'en' && <em>{translatedLabel}</em>}
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+</div>
+
+<style>
+  .testimonials {
+    margin-top: 40px;
+  }
+  h3 {
+    margin: 0 0 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--blue);
+  }
+  .note {
+    margin: 0 0 20px;
+    max-width: 70ch;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    position: relative;
+    margin: 0;
+    padding: 26px 26px 22px;
+    border-radius: var(--radius-lg);
+    background: #fff;
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .card::before {
+    content: '“';
+    position: absolute;
+    top: 6px;
+    left: 16px;
+    font-size: 64px;
+    line-height: 1;
+    font-weight: 800;
+    color: var(--cyan);
+    opacity: 0.5;
+  }
+  blockquote {
+    margin: 14px 0 0;
+    padding: 0;
+  }
+  blockquote p {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.7;
+    font-style: italic;
+    color: var(--ink);
+    text-wrap: pretty;
+  }
+  details {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--blue);
+  }
+  details p {
+    margin: 8px 0 0;
+    line-height: 1.6;
+  }
+  figcaption {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+  }
+  figcaption strong {
+    font-size: 15px;
+    color: var(--ink);
+  }
+  figcaption span :global(a) {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+  figcaption span {
+    font-size: 13px;
+    color: var(--ink-soft);
+  }
+  figcaption em {
+    font-size: 11px;
+    color: var(--muted);
+  }
+</style>

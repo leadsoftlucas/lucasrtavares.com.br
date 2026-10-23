@@ -1,0 +1,427 @@
+---
+import { dictionaries, routes, type Lang } from '../i18n';
+import { proof } from '../content/proof';
+import { renderInline } from '../lib/inline';
+import { videos, youtubeWatchUrl, youtubeThumbUrl, interviewVideos, interviewUrl } from '../data/videos';
+import { articles } from '../data/articles';
+import { clients } from '../data/clients';
+import { links } from '../data/links';
+import { pageJsonLd } from '../data/jsonld';
+import Base from '../layouts/Base.astro';
+import PageHero from './PageHero.astro';
+import CtaCards from './CtaCards.astro';
+import JsonLd from './JsonLd.astro';
+import Testimonials from './Testimonials.astro';
+import RavenClient from './RavenClient.astro';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const c = proof[lang];
+const t = dictionaries[lang];
+---
+<Base lang={lang} paths={routes.proof} title={c.meta.title} description={c.meta.description} ogType="website" onHome={false}>
+  <JsonLd slot="head" data={pageJsonLd('proof', lang, c.meta.title)} />
+  <PageHero title={c.h1} lead={c.lead} />
+
+  <section class="band cool">
+    <div class="wrap inner">
+      <h2 class="h2 sr-only">{c.statsTitle}</h2>
+      <div class="stats">
+        {c.stats.map((s) => (
+          <div class="stat">
+            <p class="sv">{s.value}</p>
+            <p class="sk">{s.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band warm" id="casos">
+    <div class="wrap inner">
+      <h2 class="h2">{c.casesTitle}</h2>
+      <div class="cases">
+        {c.cases.map((k) => (
+          <article class="case">
+            <p class="cname">{k.name}{k.period && <span> · {k.period}</span>}</p>
+            <p class="cresult">{k.result}</p>
+            <p class="cctx" set:html={renderInline(k.context)} />
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="band cool" id="codigo">
+    <div class="wrap inner">
+      <h2 class="h2">{c.codeTitle}</h2>
+      <ul class="rows">
+        {c.code.map((r) => (
+          <li>
+            <a href={r.url} target="_blank" rel="noopener" class="rname">{r.name}</a>
+            <span class="rtext" set:html={renderInline(r.text)} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="band warm" id="videos">
+    <div class="wrap inner">
+      <h2 class="h2">{c.videosTitle}</h2>
+      <div class="vids two">
+        {t.videos.map((v, i) => (
+          <a href={youtubeWatchUrl(videos[i].id)} target="_blank" rel="noopener" class="vid">
+            <img src={youtubeThumbUrl(videos[i].id)} alt="" loading="lazy" width="480" height="360" />
+            <span class="vch">{v.channel}</span>
+            <strong>{v.title}</strong>
+            <span class="vgo">{c.videoWatch}</span>
+          </a>
+        ))}
+      </div>
+      <h3 class="sub">{c.interviewsTitle}</h3>
+      <div class="vids three">
+        {interviewVideos.slice(0, 3).map((iv) => (
+          <a href={interviewUrl(iv)} target="_blank" rel="noopener" class="vid">
+            <img src={youtubeThumbUrl(iv.id)} alt="" loading="lazy" width="480" height="360" />
+            <strong>{iv.label[lang]}</strong>
+            <span class="vgo">{c.videoWatch}</span>
+          </a>
+        ))}
+      </div>
+      <p class="extra">{c.interviewsNote}</p>
+    </div>
+  </section>
+
+  <section class="band cool" id="artigos">
+    <div class="wrap inner">
+      <h2 class="h2">{c.articlesTitle}</h2>
+      <ul class="rows">
+        {t.articles.map((a, i) => (
+          <li>
+            <span class="rdate">{c.articleDates[i]}</span>
+            <a href={articles[i].url} target="_blank" rel="noopener" class="rname">{a.title}</a>
+            <span class="rtext">{a.tag}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="extra">{c.articlesNote} <a href={links.linkedinArticles} target="_blank" rel="noopener">LinkedIn</a></p>
+    </div>
+  </section>
+
+  <section class="band warm" id="palcos">
+    <div class="wrap inner">
+      <h2 class="h2">{c.eventsTitle}</h2>
+      <table>
+        <thead>
+          <tr>{c.eventsHead.map((h) => <th>{h}</th>)}</tr>
+        </thead>
+        <tbody>
+          {c.events.map((e) => (
+            <tr>
+              <td data-label={c.eventsHead[0]}>{e.date}</td>
+              <td data-label={c.eventsHead[1]}><strong>{e.name}</strong></td>
+              <td data-label={c.eventsHead[2]}>{e.place}</td>
+              <td data-label={c.eventsHead[3]} set:html={renderInline(e.role)} />
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="band cool" id="clientes">
+    <div class="wrap inner">
+      <h2 class="h2">{c.clientsTitle}</h2>
+      <ul class="chips">
+        {clients.map((cl) => (
+          <li><a href={cl.url} target="_blank" rel="noopener">{cl.name}</a></li>
+        ))}
+      </ul>
+      <RavenClient title={c.ravenClient.title} intro={c.ravenClient.intro} stats={c.ravenClient.stats} readLabel={c.ravenClient.read} articleUrl={articles[2].url} video={c.ravenClient.video} videoId="fOh9h4nFNOk" videoAlt={lang === 'pt' ? 'Caso de sucesso: como a Invent Software alcançou 80% de agilidade técnica com o RavenDB (vídeo)' : 'Success story: how Invent Software achieved 80% technical agility with RavenDB (video, in Portuguese)'} />
+      <Testimonials lang={lang} title={c.testimonialsTitle} note={c.testimonialsNote} translatedLabel={c.translated} originalLabel={c.original} />
+    </div>
+  </section>
+
+  <CtaCards lang={lang} title={c.ctaTitle} mailNote={c.ctaNote} />
+</Base>
+
+<style>
+  .band {
+    border-bottom: 1px solid var(--line);
+  }
+  .cool {
+    background: var(--band-cool);
+  }
+  .warm {
+    background: var(--band-warm);
+  }
+  .inner {
+    padding-top: clamp(40px, 5vw, 68px);
+    padding-bottom: clamp(40px, 5vw, 68px);
+  }
+  .h2 {
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 18px;
+  }
+  .stat {
+    padding: 24px;
+    border-radius: 20px;
+    background: linear-gradient(120deg, var(--bg-dark) 0%, #071f72 62%, var(--blue) 100%);
+  }
+  .sv {
+    margin: 0;
+    font-size: clamp(30px, 3.6vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+  .sk {
+    margin: 8px 0 0;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.5;
+    color: var(--cyan-soft);
+  }
+  .cases {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 16px;
+  }
+  .case {
+    padding: 24px;
+    border-radius: var(--radius-lg);
+    background: #fff;
+    border: 1px solid var(--line);
+  }
+  .cname {
+    margin: 0 0 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--purple);
+  }
+  .cname span {
+    color: var(--muted);
+  }
+  .cresult {
+    margin: 0 0 10px;
+    font-size: clamp(20px, 2.2vw, 24px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--blue);
+  }
+  .cctx {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .rows {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .rows li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 18px;
+    padding: 16px 0;
+    border-top: 1px solid var(--line-strong);
+  }
+  .rname {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--blue);
+  }
+  .rname:hover {
+    color: var(--cyan);
+  }
+  .rtext {
+    flex: 1 1 320px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .rdate {
+    flex: 0 0 96px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .vids {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 640px) {
+    .vids.two {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .vids.three {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 960px) {
+    .vids.three {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .vid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px;
+    border-radius: var(--radius-md);
+    background: #fff;
+    border: 1px solid var(--line);
+    color: inherit;
+  }
+  .vid:hover {
+    border-color: var(--blue-link);
+    color: inherit;
+  }
+  .vid img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px;
+    display: block;
+  }
+  .vch {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--purple);
+  }
+  .vid strong {
+    font-size: 15px;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  .vgo {
+    margin-top: auto;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue);
+  }
+  .sub {
+    margin: 36px 0 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--blue);
+  }
+  .extra {
+    margin: 20px 0 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .extra a {
+    color: var(--blue);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th {
+    text-align: left;
+    padding: 0 12px 10px 0;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  td {
+    padding: 14px 12px 14px 0;
+    border-top: 1px solid var(--line-strong);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    vertical-align: top;
+  }
+  td strong {
+    color: var(--ink);
+  }
+  .chips {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .chips a,
+  .chips span {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: var(--radius-pill);
+    background: #fff;
+    border: 1px solid var(--line-strong);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .chips a:hover {
+    border-color: var(--blue-link);
+    color: var(--blue);
+  }
+  @media (max-width: 640px) {
+    thead {
+      display: none;
+    }
+    table,
+    tbody,
+    tr,
+    td {
+      display: block;
+    }
+    tr {
+      padding: 14px 0;
+      border-top: 1px solid var(--line-strong);
+    }
+    td {
+      border: 0;
+      padding: 2px 0;
+    }
+    td::before {
+      content: attr(data-label) ': ';
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+  }
+</style>

@@ -1,0 +1,92 @@
+---
+import '../styles/global.css';
+import { config } from '../config';
+import { dictionaries, htmlLang, homePath, type Lang } from '../i18n';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieBanner from '../components/CookieBanner.astro';
+
+interface Props {
+  lang: Lang;
+  /** Rota desta pagina em cada idioma (para hreflang e para o seletor de idioma). */
+  paths?: Record<Lang, string>;
+  title?: string;
+  description?: string;
+  keywords?: string;
+  ogDescription?: string;
+  twitterDescription?: string;
+  /** Pre-carrega o fundo do hero (so a home). */
+  preloadHero?: boolean;
+  /** false nas paginas internas. */
+  onHome?: boolean;
+  /** Pagina fora do indice (ex.: 404). */
+  noindex?: boolean;
+  /** og:type (profile na home, article/website nas demais). */
+  ogType?: string;
+}
+const { lang, paths = homePath, onHome = true, ogType = 'profile' } = Astro.props;
+const t = dictionaries[lang];
+const title = Astro.props.title ?? t.meta.title;
+const description = Astro.props.description ?? t.meta.description;
+const abs = (path: string) => config.siteUrl + path;
+const canonical = abs(paths[lang]);
+const ogImage = abs('/assets/og-cover-v2.jpg');
+const gtm = config.analytics && config.gtmId;
+const ga = config.analytics && config.gaId;
+const gtmScript = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${config.gtmId}');`;
+const gtagScript = `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${config.gaId}');`;
+---
+<!doctype html>
+<html lang={htmlLang[lang]}>
+  <head>
+    {gtm && <script is:inline set:html={gtmScript} />}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {Astro.props.preloadHero && <link rel="preload" href="/assets/cosmic-bg.webp" as="image" type="image/webp" fetchpriority="high" />}
+    {ga && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${config.gaId}`}></script>}
+    {ga && <script is:inline set:html={gtagScript} />}
+    <title>{title}</title>
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Lucas Resende Tavares" />
+    <meta name="robots" content={Astro.props.noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
+    <meta name="keywords" content={Astro.props.keywords ?? t.meta.keywords} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="pt-BR" href={abs(paths.pt)} />
+    <link rel="alternate" hreflang="en" href={abs(paths.en)} />
+    <link rel="alternate" hreflang="x-default" href={abs(paths.pt)} />
+    <meta name="geo.region" content="BR-PR" />
+    <meta name="geo.placename" content="Curitiba, Paraná, Brasil" />
+    <slot name="head" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Lucas Resende Tavares" />
+    <meta property="og:locale" content={t.meta.ogLocale} />
+    <meta property="og:locale:alternate" content={dictionaries[lang === 'pt' ? 'en' : 'pt'].meta.ogLocale} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={Astro.props.ogDescription ?? t.meta.ogDescription} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={t.meta.ogImageAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={Astro.props.twitterDescription ?? t.meta.twitterDescription} />
+    <meta name="twitter:image" content={ogImage} />
+  </head>
+  <body>
+    {gtm && (
+      <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${config.gtmId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    )}
+    <Header lang={lang} paths={paths} onHome={onHome} />
+    <main>
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <CookieBanner lang={lang} />
+  </body>
+</html>

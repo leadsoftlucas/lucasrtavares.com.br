@@ -1,0 +1,10 @@
+---
+import Base from '../layouts/Base.astro';
+import Home from '../components/Home.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { homeJsonLd } from '../data/jsonld';
+---
+<Base lang="pt" preloadHero>
+  <JsonLd slot="head" data={homeJsonLd('pt')} />
+  <Home lang="pt" />
+</Base>

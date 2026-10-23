@@ -1,0 +1,231 @@
+---
+import { dictionaries, type Lang } from '../i18n';
+import { renderInline } from '../lib/inline';
+
+interface Props {
+  lang: Lang;
+}
+const t = dictionaries[Astro.props.lang];
+const cotemigUrl = 'https://cotemig.com.br/ensino/faculdade-cotemig/';
+const facts = [
+  { kind: 'edu', title: t.eduTitle, text: t.edu },
+  { kind: 'lang', title: t.langTitle, text: t.langs },
+  { kind: 'base', title: t.baseTitle, text: t.base, extra: t.baseFocus },
+];
+---
+<section id="trajetoria">
+  <div class="wrap inner">
+    <h2>{t.pathTitle}</h2>
+    <p class="lead">{t.pathLead}</p>
+    <div class="jobs">
+      {t.timeline.map((job) => (
+        <div class="job">
+          <div>
+            <p class="period">{job.period}</p>
+            <p class="place" set:html={renderInline(job.place)} />
+          </div>
+          <div>
+            <h3>{job.role}</h3>
+            <p class="d" set:html={renderInline(job.d)} />
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="facts">
+      {facts.map((fact) => (
+        <div class:list={['fact', fact.kind, { dark: fact.kind !== 'edu' }]}>
+          {fact.kind === 'lang' && <img class="art" src="/assets/flags-blend.svg" alt="" aria-hidden="true" loading="lazy" />}
+          {fact.kind === 'base' && <img class="art" src="/assets/world-dots.svg" alt="" aria-hidden="true" loading="lazy" />}
+          {fact.kind !== 'edu' && <span class="veil"></span>}
+          <p class="ft">{fact.title}</p>
+          {fact.kind === 'edu' && (
+            <a href={cotemigUrl} target="_blank" rel="noopener" class="cotemig" aria-label="Cotemig">
+              <img src="/assets/cotemig-logo.svg" alt="Cotemig" width="72" height="40" loading="lazy" />
+            </a>
+          )}
+          <p class="fv" set:html={renderInline(fact.text)} />
+          {fact.extra && <p class="focus">{fact.extra}</p>}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background: var(--band-cool);
+  }
+  .inner {
+    padding-top: clamp(56px, 8vw, 104px);
+    padding-bottom: clamp(56px, 8vw, 104px);
+  }
+  h2 {
+    margin: 0 0 12px;
+    font-size: clamp(26px, 3.2vw, 38px);
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+  }
+  .lead {
+    margin: 0 0 44px;
+    color: var(--ink-soft);
+  }
+  .jobs {
+    display: flex;
+    flex-direction: column;
+  }
+  .job {
+    display: grid;
+    grid-template-columns: minmax(0, 150px) minmax(0, 1fr);
+    gap: clamp(14px, 3vw, 36px);
+    padding: 24px 0;
+    border-top: 1px solid var(--line);
+  }
+  .period {
+    margin: 0 0 6px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--blue-link);
+  }
+  .place {
+    margin: 0;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h3 {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .d {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .d :global(a) {
+    color: var(--blue);
+    border-bottom: 1px solid rgba(12, 47, 165, 0.3);
+  }
+  .d :global(a:hover) {
+    color: var(--cyan);
+    border-color: var(--cyan);
+  }
+  .fact {
+    position: relative;
+    overflow: hidden;
+  }
+  .fact > :not(.art):not(.veil) {
+    position: relative;
+  }
+  .art {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .veil {
+    position: absolute;
+    inset: 0;
+  }
+  .fact.lang {
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+  .fact.lang .veil {
+    background: linear-gradient(135deg, rgba(15, 20, 37, 0.84) 0%, rgba(15, 20, 37, 0.6) 100%);
+  }
+  .fact.base {
+    background: linear-gradient(160deg, #071f72 0%, var(--bg-dark) 100%);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  .fact.base {
+    padding-bottom: calc(38.9% + 14px);
+  }
+  .fact.base .art {
+    inset: auto 0 0 0;
+    height: auto;
+    object-fit: contain;
+  }
+  .fact.base .veil {
+    background: linear-gradient(180deg, rgba(15, 20, 37, 0.35) 0%, rgba(15, 20, 37, 0) 45%);
+  }
+  .fact.dark .ft {
+    color: var(--cyan-soft);
+  }
+  .fact.dark .fv {
+    color: #fff;
+  }
+  .focus {
+    margin: 10px 0 0;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #63ffa6;
+  }
+  .fact.edu {
+    background: linear-gradient(135deg, #071f72 0%, var(--bg-dark) 100%);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  .fact.edu .ft {
+    color: var(--cyan-soft);
+  }
+  .fact.edu .fv {
+    color: #fff;
+  }
+  .fact.edu .fv :global(a) {
+    color: var(--cyan-soft);
+    border-bottom: 1px solid rgba(159, 233, 250, 0.4);
+  }
+  .fact.edu .fv :global(a:hover) {
+    color: var(--cyan);
+  }
+  .cotemig {
+    display: inline-block;
+    margin: 0 0 12px;
+  }
+  .cotemig img {
+    display: block;
+    height: 40px;
+    width: auto;
+  }
+  .cotemig:hover {
+    opacity: 0.8;
+  }
+  .facts {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
+  .fact {
+    padding: 22px 24px;
+    border-radius: var(--radius-md);
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+  }
+  .ft {
+    margin: 0 0 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .fv {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--ink);
+    font-weight: 600;
+  }
+</style>

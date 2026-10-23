@@ -1,0 +1,136 @@
+---
+import { dictionaries, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+const t = dictionaries[Astro.props.lang];
+---
+<section>
+  <div class="bg"></div>
+  <div class="wrap inner">
+    <h2>{t.servicesTitle}</h2>
+    <p class="lead">{t.servicesLead}</p>
+    <div class="grid">
+      {t.services.map((s) => (
+        <div class="card">
+          <p class="n">{s.n}</p>
+          <h3>{s.t}</h3>
+          <p class="d">{s.d}</p>
+        </div>
+      ))}
+    </div>
+    <p class="global">{t.servicesGlobal}</p>
+    <div class="stack">
+      <p class="stack-title">{t.stackTitle}</p>
+      <div class="chips">
+        {t.stack.map((chip) => <span>{chip}</span>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background: var(--bg-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('/assets/deep-blue-bg.svg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.85;
+  }
+  .inner {
+    position: relative;
+    padding-top: clamp(56px, 8vw, 96px);
+    padding-bottom: clamp(56px, 8vw, 96px);
+  }
+  h2 {
+    margin: 0 0 12px;
+    font-size: clamp(26px, 3.2vw, 38px);
+    line-height: 1.15;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: #fff;
+    text-wrap: balance;
+  }
+  .lead {
+    margin: 0 0 40px;
+    max-width: 62ch;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    padding: 26px;
+    border-radius: var(--radius-lg);
+    background: rgba(255, 255, 255, 0.055);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .card:hover {
+    border-color: rgba(28, 200, 238, 0.55);
+  }
+  .n {
+    margin: 0 0 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: #63ffa6;
+  }
+  h3 {
+    margin: 0 0 10px;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .d {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.68);
+    text-wrap: pretty;
+  }
+  .global {
+    margin: 26px 0 0;
+    max-width: 74ch;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.62);
+    text-wrap: pretty;
+  }
+  .stack {
+    margin-top: 44px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+  .stack-title {
+    margin: 0 0 16px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .chips span {
+    padding: 7px 14px;
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.88);
+  }
+</style>

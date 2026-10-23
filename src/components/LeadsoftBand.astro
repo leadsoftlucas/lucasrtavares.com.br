@@ -1,0 +1,188 @@
+---
+import { dictionaries, type Lang } from '../i18n';
+import { config, whatsappLink } from '../config';
+import { renderInline } from '../lib/inline';
+import { featuredQuote } from '../data/testimonials';
+import { links } from '../data/links';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = dictionaries[lang];
+---
+<section>
+  <div class="wrap inner">
+    <div class="grid">
+      <div class="brand">
+        <img src="/assets/lambda.svg" alt={t.leadsoftLogoAlt} height="140" />
+        <div class="divider"></div>
+        <div>
+          <p class="overline">{t.leadsoft.overline}</p>
+          <p class="name" set:html={renderInline(t.leadsoft.title)} />
+        </div>
+      </div>
+      <div>
+        <p class="body" set:html={renderInline(t.leadsoft.body)} />
+        <p class="clients" set:html={renderInline(t.leadsoft.clients)} />
+        <blockquote class="quote">
+          <p lang="pt-BR" set:html={renderInline(featuredQuote.pt)} />
+          {lang === 'en' && <p class="tr" set:html={renderInline(featuredQuote.en)} />}
+          <cite>{featuredQuote.name}, {featuredQuote.role[lang]}{lang === 'en' ? ' (translated from Portuguese)' : ''}</cite>
+        </blockquote>
+        <p class="svc">{t.leadsoft.services}</p>
+        <a href={whatsappLink(t.leadsoft.waMsg, config.whatsappLeadsoft)} target="_blank" rel="noopener" class="wa">{t.leadsoft.waCta}</a>
+        <div class="links">
+          <a href={links.leadsoft} target="_blank" rel="noopener" class="l1">leadsoft.inf.br</a>
+          <a href={links.nugetProfile} target="_blank" rel="noopener" class="l2">{t.leadsoft.nuget}</a>
+        </div>
+        <a href={links.googleReview} target="_blank" rel="noopener" class="review">{t.leadsoft.reviewCta}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background: linear-gradient(135deg, #071f72 0%, var(--bg-dark) 100%);
+  }
+  .inner {
+    padding-top: clamp(48px, 7vw, 88px);
+    padding-bottom: clamp(48px, 7vw, 88px);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(28px, 5vw, 56px);
+    align-items: center;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  .brand img {
+    height: clamp(90px, 12vw, 140px);
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 0 30px rgba(28, 200, 238, 0.45));
+  }
+  .divider {
+    width: 1px;
+    align-self: stretch;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.28) 50%, rgba(255, 255, 255, 0) 100%);
+  }
+  .overline {
+    margin: 0 0 6px;
+    color: #63ffa6;
+  }
+  .name {
+    margin: 0;
+    font-size: clamp(20px, 2.6vw, 28px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .body {
+    margin: 0 0 16px;
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
+    text-wrap: pretty;
+  }
+  .clients {
+    margin: 0 0 22px;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.58);
+    text-wrap: pretty;
+  }
+  .clients :global(a) {
+    color: rgba(255, 255, 255, 0.82);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .clients :global(a:hover) {
+    color: var(--cyan);
+    border-color: var(--cyan);
+  }
+  .quote {
+    margin: 0 0 22px;
+    padding: 4px 0 4px 16px;
+    border-left: 3px solid var(--cyan);
+  }
+  .quote p {
+    margin: 0 0 6px;
+    font-size: 15px;
+    line-height: 1.6;
+    font-style: italic;
+    color: #fff;
+  }
+  .quote .tr {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.78);
+  }
+  .quote cite {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--cyan-soft);
+  }
+  .svc {
+    margin: 0 0 10px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.5);
+    text-wrap: pretty;
+  }
+  .wa {
+    display: inline-block;
+    margin: 0 0 22px;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .wa:hover {
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .review {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.28);
+    text-underline-offset: 3px;
+  }
+  .review:hover {
+    color: var(--cyan);
+  }
+  .links a {
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .l1 {
+    color: var(--cyan);
+    border-bottom: 1px solid rgba(28, 200, 238, 0.4);
+  }
+  .l1:hover {
+    color: #63ffa6;
+  }
+  .l2 {
+    color: rgba(255, 255, 255, 0.72);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  }
+  .l2:hover {
+    color: var(--cyan);
+  }
+</style>

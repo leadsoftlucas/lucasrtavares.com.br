@@ -1,0 +1,125 @@
+---
+import { dictionaries, type Lang } from '../i18n';
+import { renderInline } from '../lib/inline';
+import { spotifyEmbedUrl, spotifyTrackUrl } from '../data/music';
+
+interface Props {
+  lang: Lang;
+}
+const t = dictionaries[Astro.props.lang].music;
+---
+<div class="music">
+  <p class="text" set:html={renderInline(t.text)} />
+  <div class="player" data-spotify-frame>
+    <a href={spotifyTrackUrl} target="_blank" rel="noopener" class="cover" data-spotify-src={spotifyEmbedUrl} data-title={t.title}>
+      <div class="bg-cosmic bg"></div>
+      <img src="/assets/lambda.svg" alt="" width="64" height="64" loading="lazy" class="mark" />
+      <div class="info">
+        <span class="caption">{t.caption}</span>
+        <strong>The Raven Child</strong>
+        <span class="artist">Avantasia</span>
+      </div>
+      <span class="btn btn-grad play" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+        {t.play}
+      </span>
+    </a>
+  </div>
+  <a href={spotifyTrackUrl} target="_blank" rel="noopener" class="alt">{t.listen}</a>
+</div>
+
+<script>
+  import '../scripts/spotify-click-to-load';
+</script>
+
+<style>
+  .music {
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px clamp(20px, 3vw, 40px);
+    align-items: center;
+  }
+  .text {
+    flex: 1 1 290px;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 450;
+    line-height: 1.72;
+    color: var(--ink-soft);
+    text-wrap: pretty;
+  }
+  .player {
+    flex: 1 1 340px;
+    max-width: 480px;
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 152px;
+    background: var(--bg-dark);
+  }
+  .cover,
+  .cover:hover {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: 152px;
+    padding: 0 22px;
+    box-sizing: border-box;
+    color: #fff;
+    overflow: hidden;
+  }
+  .cover:hover .play {
+    opacity: 0.88;
+  }
+  .bg {
+    opacity: 0.7;
+    background-position: 40% 50%;
+  }
+  .mark {
+    position: relative;
+    height: 64px;
+    width: auto;
+    filter: drop-shadow(0 0 20px rgba(28, 200, 238, 0.45));
+  }
+  .info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    flex: 1;
+  }
+  .caption {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--cyan-soft);
+  }
+  strong {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  .artist {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  .play {
+    position: relative;
+    --btn-h: 40px;
+    --btn-px: 16px;
+    gap: 8px;
+  }
+  .alt {
+    flex: 0 0 100%;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--blue);
+  }
+  :global(.player iframe) {
+    display: block;
+    border: 0;
+  }
+</style>

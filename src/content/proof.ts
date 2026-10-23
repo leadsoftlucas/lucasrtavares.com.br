@@ -1,0 +1,307 @@
+// Pagina /provas/ e /en/proof/. Estrutura e dados de Content/06 Site/04 Pagina Provas.md.
+// Regra: so numeros que o Lucas pode sustentar; o que falta fica como [adicionar] / [LINK a informar].
+import type { Lang } from '../i18n';
+import { links } from '../data/links';
+
+export interface ProofCase {
+  name: string;
+  period?: string;
+  result: string;
+  context: string;
+}
+
+export interface ProofContent {
+  meta: { title: string; description: string };
+  h1: string;
+  lead: string;
+  statsTitle: string;
+  stats: Array<{ value: string; label: string }>;
+  casesTitle: string;
+  cases: ProofCase[];
+  codeTitle: string;
+  code: Array<{ name: string; url: string; text: string }>;
+  videosTitle: string;
+  interviewsTitle: string;
+  interviewsNote: string;
+  videoWatch: string;
+  articlesTitle: string;
+  articleDates: string[];
+  articlesNote: string;
+  eventsTitle: string;
+  eventsHead: [string, string, string, string];
+  events: Array<{ date: string; name: string; place: string; role: string }>;
+  clientsTitle: string;
+  ravenClient: {
+    title: string;
+    intro: string;
+    stats: Array<{ v: string; k: string }>;
+    read: string;
+    video: string;
+  };
+  testimonialsTitle: string;
+  testimonialsNote: string;
+  translated: string;
+  original: string;
+  ctaTitle: string;
+  ctaNote: string;
+  nuget: string;
+}
+
+export const proof: Record<Lang, ProofContent> = {
+  pt: {
+    meta: {
+      title: 'Provas: casos, código e palestras · Lucas Resende Tavares',
+      description:
+        'Casos com números, 17 pacotes .NET open source, demonstrações de RavenDB com IA, vídeos, artigos e palestras de Lucas Resende Tavares.',
+    },
+    h1: 'Provas: casos, código e palestras',
+    lead: '*Não peça para acreditar: confira.* Cada item tem data, resultado e link.',
+    statsTitle: 'Resumo em números',
+    stats: [
+      { value: '17', label: 'pacotes .NET open source' },
+      { value: '208 mil+', label: 'downloads no NuGet' },
+      { value: '6', label: 'artigos sobre dados, arquitetura e IA' },
+      { value: '7', label: 'palcos e comunidades no Brasil e nos EUA (2024–2026)' },
+    ],
+    casesTitle: 'Casos com número',
+    cases: [
+      {
+        name: 'PetraSync',
+        period: '2018–2019',
+        result: 'Prazo: 30 dias → 45, entregue em 45',
+        context:
+          'Sistema crítico para um cliente nos EUA, com RavenDB como requisito. Pedi 45 dias, refiz a arquitetura em documentos e entreguei.',
+      },
+      {
+        name: 'Relatório de previsão de metas',
+        period: 'Mastertech',
+        result: '≈ 4 h → ≈ 30 s',
+        context: 'Repensei a estratégia de consulta e o relatório que ficava para o dia seguinte passou a rodar em segundos.',
+      },
+      {
+        name: 'Procedures críticas',
+        result: '4–8 h → 40 s',
+        context: 'Reestruturação lógica com *table functions* e eliminação de cursores, sem mudar a modelagem nem criar índices.',
+      },
+      {
+        name: 'DaaS no setor automotivo',
+        result: '1,8 min → 600 ms',
+        context: 'Recomendação técnica remodelada em RavenDB com Full-Text Search (o tempo inclui a autenticação).',
+      },
+      {
+        name: 'Delphi → .NET',
+        period: 'Agrotis, 2018',
+        result: 'Equipe treinada em ≈ 6 meses',
+        context: 'Liderei a transição de um time inteiro de Delphi para .NET e a integração com SAP.',
+      },
+      {
+        name: 'App do Trocador Castrol',
+        period: 'Castrol Brasil, 2024',
+        result: 'Android e iOS, anunciado a todos os distribuidores',
+        context:
+          'Contrato de aplicativo após a profissionalização da LeadSoft. Apresentei o pré-lançamento no evento Castrol Turbo Mode ON, em 26/03/2024, para todos os distribuidores da Castrol do Brasil.',
+      },
+    ],
+    codeTitle: 'Código aberto e demonstrações',
+    code: [
+      {
+        name: '17 pacotes NuGet',
+        url: links.nugetProfile,
+        text: 'Bibliotecas comuns, acesso a dados, adaptadores (BrasilAPI, ViaCEP, IBGE, e-mail, AWS, Azure Entra ID, Google, RavenDB Identity).',
+      },
+      {
+        name: 'ravendb-demo',
+        url: 'https://github.com/leadsoftlucas/ravendb-demo',
+        text: 'Demonstração prática de RavenDB (fase 1 do processo seletivo).',
+      },
+      {
+        name: 'ravendb-sales-assistant-demo',
+        url: 'https://github.com/leadsoftlucas/ravendb-sales-assistant-demo',
+        text: 'API que integra a OpenAI (ChatGPT) e guarda o histórico da conversa no RavenDB, feita para demonstrar a integração rapidamente (fase 2). Eu não sabia que o RavenDB estava prestes a lançar o AI Agents e construí algo parecido por conta própria.',
+      },
+      {
+        name: 'Workshop TDC 2024',
+        url: links.tdcWorkshopRepo,
+        text: 'Código do workshop de modelagem.',
+      },
+    ],
+    videosTitle: 'Vídeos e palestras',
+    interviewsTitle: 'Entrevistas do processo seletivo',
+    interviewsNote: 'Gravadas e publicadas no meu canal. Os dois repositórios acima fazem parte do mesmo processo.',
+    videoWatch: 'Assistir no YouTube →',
+    articlesTitle: 'Artigos',
+    articleDates: ['31/08/2026', '12/11/2025', '23/04/2026', '29/04/2026', '20/04/2026', '14/07/2025'],
+    articlesNote: 'Publicados no LinkedIn.',
+    eventsTitle: 'Onde estive',
+    eventsHead: ['Data', 'Evento', 'Local', 'Papel'],
+    events: [
+      { date: '02/2024', name: 'Developer Week', place: 'San Francisco, EUA', role: 'Encontro com o time RavenDB' },
+      {
+        date: '26/03/2024',
+        name: 'Castrol · Turbo Mode ON',
+        place: 'Mogi das Cruzes, Brasil',
+        role: 'Pré-lançamento do app do Trocador Castrol para todos os distribuidores da Castrol do Brasil',
+      },
+      { date: '09/2024', name: 'TDC São Paulo', place: 'São Paulo, Brasil', role: 'Palestra e workshop de NoSQL e modelagem' },
+      {
+        date: '07/10/2024',
+        name: 'FAE · Semana do Empreendedor',
+        place: 'Curitiba, Brasil',
+        role: 'Palestra *O efeito borboleta no empreender*, para estudantes',
+      },
+      { date: '11/2025', name: 'Microsoft Ignite', place: 'San Francisco, EUA', role: 'Primeira feira no time RavenDB' },
+      { date: '05/2026', name: 'TechEx North America', place: 'San Jose, EUA', role: 'Demonstrações ao vivo no estande' },
+      { date: '—', name: 'GDG Maringá', place: 'Maringá, Brasil', role: '*The Power of RavenDB* (vídeo)' },
+    ],
+    clientsTitle: 'Quem já confiou',
+    ravenClient: {
+      title: 'Cliente RavenDB: Invent Software',
+      intro:
+        'Conversei com Fábio Nascimento, CTO da Invent Software, cujos clientes incluem Ambev e grandes clubes de futebol, sobre como a empresa redesenhou a estratégia de dados com o RavenDB. Números relatados por ele na entrevista e publicados no meu artigo de 23/04/2026, sobre uma operação que, segundo o artigo, movimenta 4% do PIB brasileiro.',
+      stats: [
+        { v: '80%', k: 'de ganho no tempo de desenvolvimento e manutenção' },
+        { v: '38 mi', k: 'de registros em uma carga retroativa do REINF, em 10 horas (RavenDB com Kafka)' },
+        { v: '15–20%', k: 'de uso de CPU durante essa carga' },
+        { v: '20–30', k: 'tabelas relacionadas para uma NF-e no modelo SQL anterior' },
+      ],
+      read: 'Ler o artigo',
+      video: 'Entrevista completa em vídeo: [Caso de sucesso: como a Invent Software alcançou 80% de agilidade técnica com o RavenDB](https://www.youtube.com/watch?v=fOh9h4nFNOk).',
+    },
+    testimonialsTitle: 'O que clientes da LeadSoft disseram',
+    testimonialsNote:
+      'Depoimentos recebidos pela LeadSoft entre 2018 e 2025, nas palavras de quem contratou. Mostram entrega, prazo e parceria; a LeadSoft foi a empresa que fundei e liderei antes de entrar na RavenDB.',
+    translated: '',
+    original: '',
+    ctaTitle: 'Quer conversar sobre o seu caso com RavenDB?',
+    ctaNote: 'Prefere e-mail? Escreva para',
+    nuget: 'Ver todos os pacotes no NuGet',
+  },
+  en: {
+    meta: {
+      title: 'Proof: cases, code and talks · Lucas Resende Tavares',
+      description:
+        'Cases with numbers, 17 open-source .NET packages, RavenDB demos with AI, videos, articles and talks by Lucas Resende Tavares.',
+    },
+    h1: 'Proof: cases, code and talks',
+    lead: "*Don't take my word for it: check it.* Every item has a date, a result and a link.",
+    statsTitle: 'Summary in numbers',
+    stats: [
+      { value: '17', label: 'open-source .NET packages' },
+      { value: '208k+', label: 'NuGet downloads' },
+      { value: '6', label: 'articles on data, architecture and AI' },
+      { value: '7', label: 'stages and communities in Brazil and the US (2024–2026)' },
+    ],
+    casesTitle: 'Cases with numbers',
+    cases: [
+      {
+        name: 'PetraSync',
+        period: '2018–2019',
+        result: 'Deadline: 30 days → 45, delivered in 45',
+        context:
+          'Critical system for a US client with RavenDB as a requirement. I asked for 45 days, rebuilt the architecture as documents and delivered.',
+      },
+      {
+        name: 'Goals-forecast report',
+        period: 'Mastertech',
+        result: '≈ 4 h → ≈ 30 s',
+        context: 'Rethinking the query strategy turned an overnight report into one that runs in seconds.',
+      },
+      {
+        name: 'Critical stored procedures',
+        result: '4–8 h → 40 s',
+        context: 'Logical restructuring with table functions and cursor elimination, without changing the model or adding indexes.',
+      },
+      {
+        name: 'DaaS in the automotive sector',
+        result: '1.8 min → 600 ms',
+        context: 'Technical recommendation remodeled on RavenDB with Full-Text Search (timing includes authentication).',
+      },
+      {
+        name: 'Delphi → .NET',
+        period: 'Agrotis, 2018',
+        result: 'Team trained in ≈ 6 months',
+        context: "Led an entire Delphi team's move to .NET and SAP integration.",
+      },
+      {
+        name: 'Castrol Trocador app',
+        period: 'Castrol Brazil, 2024',
+        result: 'Android and iOS, announced to all distributors',
+        context:
+          "App contract after LeadSoft's professionalization. I presented the pre-launch at the Castrol Turbo Mode ON event on March 26, 2024, to all Castrol distributors in Brazil.",
+      },
+    ],
+    codeTitle: 'Open source and demos',
+    code: [
+      {
+        name: '17 NuGet packages',
+        url: links.nugetProfile,
+        text: 'Common libraries, data access, adapters (BrasilAPI, ViaCEP, IBGE, e-mail, AWS, Azure Entra ID, Google, RavenDB Identity).',
+      },
+      {
+        name: 'ravendb-demo',
+        url: 'https://github.com/leadsoftlucas/ravendb-demo',
+        text: 'Hands-on RavenDB demo (phase 1 of the selection process).',
+      },
+      {
+        name: 'ravendb-sales-assistant-demo',
+        url: 'https://github.com/leadsoftlucas/ravendb-sales-assistant-demo',
+        text: 'API that integrates OpenAI (ChatGPT) and stores the conversation history in RavenDB, built to demonstrate the integration quickly (phase 2). I had no idea RavenDB was about to launch AI Agents, and built something similar on my own.',
+      },
+      {
+        name: 'TDC 2024 workshop',
+        url: links.tdcWorkshopRepo,
+        text: 'Code from the data modeling workshop.',
+      },
+    ],
+    videosTitle: 'Videos and talks',
+    interviewsTitle: 'Selection-process interviews',
+    interviewsNote: 'Recorded and published on my channel. The two repositories above are part of the same process.',
+    videoWatch: 'Watch on YouTube →',
+    articlesTitle: 'Articles',
+    articleDates: ['2026-08-31', '2025-11-12', '2026-04-23', '2026-04-29', '2026-04-20', '2025-07-14'],
+    articlesNote: 'Published on LinkedIn (in Portuguese).',
+    eventsTitle: 'Where I have been',
+    eventsHead: ['Date', 'Event', 'Place', 'Role'],
+    events: [
+      { date: '2024-02', name: 'Developer Week', place: 'San Francisco, USA', role: 'Meeting the RavenDB team' },
+      {
+        date: '2024-03-26',
+        name: 'Castrol · Turbo Mode ON',
+        place: 'Mogi das Cruzes, Brazil',
+        role: 'Pre-launch of the Castrol Trocador app, for all Castrol distributors in Brazil',
+      },
+      { date: '2024-09', name: 'TDC São Paulo', place: 'São Paulo, Brazil', role: 'Talk and workshop on NoSQL and data modeling' },
+      {
+        date: '2024-10-07',
+        name: 'FAE · Entrepreneur Week',
+        place: 'Curitiba, Brazil',
+        role: 'Talk *O efeito borboleta no empreender* (the butterfly effect in entrepreneurship), for students',
+      },
+      { date: '2025-11', name: 'Microsoft Ignite', place: 'San Francisco, USA', role: 'First trade show on the RavenDB team' },
+      { date: '2026-05', name: 'TechEx North America', place: 'San Jose, USA', role: 'Live demos at the booth' },
+      { date: '—', name: 'GDG Maringá', place: 'Maringá, Brazil', role: '*The Power of RavenDB* (video)' },
+    ],
+    clientsTitle: 'Who has trusted me',
+    ravenClient: {
+      title: 'RavenDB client: Invent Software',
+      intro:
+        'I talked to Fábio Nascimento, CTO of Invent Software, whose clients include Ambev and major football clubs, about how the company redesigned its data strategy with RavenDB. Numbers reported by him in the interview and published in my April 23, 2026 article (in Portuguese), about an operation that, according to the article, moves 4% of Brazil\'s GDP.',
+      stats: [
+        { v: '80%', k: 'gain in development and maintenance time' },
+        { v: '38 mi', k: 'records in a retroactive REINF load, in 10 hours (RavenDB with Kafka)' },
+        { v: '15–20%', k: 'CPU usage during that load' },
+        { v: '20–30', k: 'related tables for one NF-e (invoice) in the previous SQL model' },
+      ],
+      read: 'Read the article',
+      video: 'Full interview on video (in Portuguese): [Caso de sucesso: como a Invent Software alcançou 80% de agilidade técnica com o RavenDB](https://www.youtube.com/watch?v=fOh9h4nFNOk).',
+    },
+    testimonialsTitle: 'What LeadSoft clients said',
+    testimonialsNote:
+      'Testimonials received by LeadSoft between 2018 and 2025, in the words of the people who hired us. They show delivery, deadlines and partnership; LeadSoft is the company I founded and led before joining RavenDB. Translated from Portuguese; the original is one click away.',
+    translated: 'Translated from Portuguese',
+    original: 'Original in Portuguese',
+    ctaTitle: 'Want to talk about your RavenDB case?',
+    ctaNote: 'Prefer e-mail? Write to',
+    nuget: 'See all packages on NuGet',
+  },
+};
