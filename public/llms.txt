@@ -21,7 +21,7 @@ Este site é pessoal e **não** é um canal oficial da RavenDB. O foco é o Rave
 - Relatório de metas: de cerca de 4 horas para cerca de 30 segundos.
 - DaaS automotivo em RavenDB: de 1,8 min para 600 ms.
 - 17 pacotes NuGet; demonstrações no GitHub: ravendb-demo e ravendb-sales-assistant-demo.
-- Palestras: TDC São Paulo (2024), Developer Week (2024), Microsoft Ignite (2025), TechEx North America (2026).
+- Palestras: TDC São Paulo (2024), FAE, Semana do Empreendedorismo (07/10/2024), Developer Week (2024), Microsoft Ignite (2025), TechEx North America (2026).
 
 ## Páginas
 - [Início](https://lucasrtavares.com.br/)

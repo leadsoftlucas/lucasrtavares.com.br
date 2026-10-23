@@ -52,7 +52,7 @@ export const proof: Record<Lang, ProofContent> = {
       { value: '17', label: 'pacotes .NET open source' },
       { value: '208 mil+', label: 'downloads no NuGet' },
       { value: '6', label: 'artigos sobre dados, arquitetura e IA' },
-      { value: '5', label: 'palcos e comunidades no Brasil e nos EUA (2024–2026)' },
+      { value: '6', label: 'palcos e comunidades no Brasil e nos EUA (2024–2026)' },
     ],
     casesTitle: 'Casos com número',
     cases: [
@@ -127,6 +127,12 @@ export const proof: Record<Lang, ProofContent> = {
     events: [
       { date: '02/2024', name: 'Developer Week', place: 'San Francisco, EUA', role: 'Encontro com o time RavenDB' },
       { date: '09/2024', name: 'TDC São Paulo', place: 'São Paulo, Brasil', role: 'Palestra e workshop de NoSQL e modelagem' },
+      {
+        date: '07/10/2024',
+        name: 'FAE · Semana do Empreendedorismo',
+        place: 'Brasil',
+        role: 'Palestra *LeadSoft: o efeito borboleta no empreender*, para estudantes',
+      },
       { date: '11/2025', name: 'Microsoft Ignite', place: 'San Francisco, EUA', role: 'Primeira feira no time RavenDB' },
       { date: '05/2026', name: 'TechEx North America', place: 'San Jose, EUA', role: 'Demonstrações ao vivo no estande' },
       { date: '—', name: 'GDG Maringá', place: 'Maringá, Brasil', role: '*The Power of RavenDB* (vídeo)' },
@@ -151,7 +157,7 @@ export const proof: Record<Lang, ProofContent> = {
       { value: '17', label: 'open-source .NET packages' },
       { value: '208k+', label: 'NuGet downloads' },
       { value: '6', label: 'articles on data, architecture and AI' },
-      { value: '5', label: 'stages and communities in Brazil and the US (2024–2026)' },
+      { value: '6', label: 'stages and communities in Brazil and the US (2024–2026)' },
     ],
     casesTitle: 'Cases with numbers',
     cases: [
@@ -226,6 +232,12 @@ export const proof: Record<Lang, ProofContent> = {
     events: [
       { date: '2024-02', name: 'Developer Week', place: 'San Francisco, USA', role: 'Meeting the RavenDB team' },
       { date: '2024-09', name: 'TDC São Paulo', place: 'São Paulo, Brazil', role: 'Talk and workshop on NoSQL and data modeling' },
+      {
+        date: '2024-10-07',
+        name: 'FAE · Entrepreneurship Week',
+        place: 'Brazil',
+        role: 'Talk *LeadSoft: o efeito borboleta no empreender* (the butterfly effect in entrepreneurship), for students',
+      },
       { date: '2025-11', name: 'Microsoft Ignite', place: 'San Francisco, USA', role: 'First trade show on the RavenDB team' },
       { date: '2026-05', name: 'TechEx North America', place: 'San Jose, USA', role: 'Live demos at the booth' },
       { date: '—', name: 'GDG Maringá', place: 'Maringá, Brazil', role: '*The Power of RavenDB* (video)' },

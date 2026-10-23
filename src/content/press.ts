@@ -76,7 +76,7 @@ export const press: Record<Lang, PressContent> = {
       {
         id: 'longa',
         label: 'Longa (≈ 900 caracteres)',
-        text: 'Lucas Resende Tavares nasceu em Belo Horizonte, em 1991, e vive em Curitiba desde 2015. Programa desde 2007 e profissionalmente desde 2009; seu primeiro grande projeto foi um ERP completo, em Delphi, para uma indústria. Em 2018, aprendeu RavenDB em poucas semanas para entregar um sistema a um cliente nos EUA e, desde então, projeta software com esse banco sempre que a escolha é dele (outros bancos só por restrição clara de infraestrutura do cliente). Fundou e liderou a LeadSoft (2018–2025), software house de Curitiba e parceira oficial do RavenDB no Brasil. Em 2025 entrou para o time da RavenDB como Sales Engineer e Arquiteto de Soluções. É autor de 17 pacotes .NET open source (mais de 208 mil downloads), palestrou no TDC São Paulo, na Developer Week, no Microsoft Ignite e no TechEx, e escreve sobre dados, arquitetura e IA. Fora do código, escala, faz trilhas e escreve ficção científica.',
+        text: 'Lucas Resende Tavares nasceu em Belo Horizonte, em 1991, e vive em Curitiba desde 2015. Programa desde 2007 e profissionalmente desde 2009; seu primeiro grande projeto foi um ERP completo, em Delphi, para uma indústria. Em 2018, aprendeu RavenDB em poucas semanas para entregar um sistema a um cliente nos EUA e, desde então, projeta software com esse banco sempre que a escolha é dele (outros bancos só por restrição clara de infraestrutura do cliente). Fundou e liderou a LeadSoft (2018–2025), software house de Curitiba e parceira oficial do RavenDB no Brasil. Em 2025 entrou para o time da RavenDB como Sales Engineer e Arquiteto de Soluções. É autor de 17 pacotes .NET open source (mais de 208 mil downloads), palestrou no TDC São Paulo, na FAE, na Developer Week, no Microsoft Ignite e no TechEx, e escreve sobre dados, arquitetura e IA. Fora do código, escala, faz trilhas e escreve ficção científica.',
       },
     ],
     copy: 'Copiar',
@@ -104,6 +104,12 @@ export const press: Record<Lang, PressContent> = {
         title: 'Busca, vetores e IA na mesma camada de dados',
         summary: 'Full-Text, busca vetorial e IA aplicadas ao conjunto inteiro dos dados com RavenDB.',
         format: 'Palestra, workshop',
+      },
+      {
+        title: 'O efeito borboleta no empreender',
+        summary:
+          'A história da pergunta que fiz a um professor na faculdade e do que ela virou, para inspirar estudantes a prestarem atenção nas sutilezas do que acontece na graduação. Já apresentada na Semana do Empreendedorismo da FAE (07/10/2024).',
+        format: 'Palestra para estudantes e eventos de empreendedorismo',
       },
       {
         title: 'De arquiteto a Sales Engineer',
@@ -168,7 +174,7 @@ export const press: Record<Lang, PressContent> = {
       {
         id: 'long',
         label: 'Long (≈ 900 characters)',
-        text: 'Lucas Resende Tavares was born in Belo Horizonte, Brazil, in 1991 and has lived in Curitiba since 2015. He has been programming since 2007 and professionally since 2009; his first big project was a complete ERP in Delphi for a manufacturer. In 2018 he learned RavenDB in a few weeks to deliver a system to a US client and has since designed software with it whenever the choice was his (other databases only when a client had a clear infrastructure constraint). He founded and led LeadSoft (2018–2025), a Curitiba software house and official RavenDB partner in Brazil. In 2025 he joined the RavenDB team as Sales Engineer and Solutions Architect. He authored 17 open-source .NET packages (200,000+ downloads), has spoken at TDC São Paulo, Developer Week, Microsoft Ignite and TechEx, and writes about data, architecture and AI. Off the keyboard, he climbs, hikes and writes science fiction.',
+        text: 'Lucas Resende Tavares was born in Belo Horizonte, Brazil, in 1991 and has lived in Curitiba since 2015. He has been programming since 2007 and professionally since 2009; his first big project was a complete ERP in Delphi for a manufacturer. In 2018 he learned RavenDB in a few weeks to deliver a system to a US client and has since designed software with it whenever the choice was his (other databases only when a client had a clear infrastructure constraint). He founded and led LeadSoft (2018–2025), a Curitiba software house and official RavenDB partner in Brazil. In 2025 he joined the RavenDB team as Sales Engineer and Solutions Architect. He authored 17 open-source .NET packages (200,000+ downloads), has spoken at TDC São Paulo, FAE, Developer Week, Microsoft Ignite and TechEx, and writes about data, architecture and AI. Off the keyboard, he climbs, hikes and writes science fiction.',
       },
     ],
     copy: 'Copy',
@@ -196,6 +202,12 @@ export const press: Record<Lang, PressContent> = {
         title: 'Search, vectors and AI in the same data layer',
         summary: 'Full-text search, vector search and AI applied to the whole dataset with RavenDB.',
         format: 'Talk, workshop',
+      },
+      {
+        title: 'The butterfly effect in entrepreneurship (O efeito borboleta no empreender)',
+        summary:
+          'The story of a question I asked a professor in college and what it became, to inspire students to pay attention to the subtleties of what happens at university. Already given at FAE\'s Entrepreneurship Week (Oct 7, 2024).',
+        format: 'Talk for students and entrepreneurship events',
       },
       {
         title: 'From architect to Sales Engineer',

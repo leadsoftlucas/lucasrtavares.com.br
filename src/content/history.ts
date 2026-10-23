@@ -144,10 +144,24 @@ export const history: Record<Lang, HistoryContent> = {
         ],
       },
       {
+        id: 'efeito-borboleta',
+        h2: 'O efeito borboleta',
+        year: '7 out 2024',
+        tone: 'cool',
+        blocks: [
+          {
+            p: 'Essa história virou palestra. Em **7 de outubro de 2024**, na Semana do Empreendedorismo da **FAE**, contei tudo isso aos estudantes em *LeadSoft: o efeito borboleta no empreender*: uma pergunta feita a um professor, um banco que eu só conheceria anos depois e o que aconteceu a partir daí.',
+          },
+          {
+            p: 'O objetivo era inspirar os estudantes a prestarem atenção nas sutilezas do que acontece na faculdade e em como isso pode ter resultados inesperados no futuro.',
+          },
+        ],
+      },
+      {
         id: 'conversa',
         h2: 'A conversa que mudou tudo',
         year: '2025',
-        tone: 'warm',
+        tone: 'dark',
         g1: true,
         blocks: [
           {
@@ -166,7 +180,7 @@ export const history: Record<Lang, HistoryContent> = {
         id: 'hoje',
         h2: 'Hoje',
         year: 'Hoje',
-        tone: 'cool',
+        tone: 'warm',
         blocks: [
           {
             p: 'Sou **Sales Engineer e Arquiteto de Soluções na RavenDB**. Meu trabalho: **avaliar o seu caso com você**, **provar em código** se o banco resolve (e, quando não resolve, eu digo) e, quando faz sentido, **conectar você ao time comercial**. Em português ou em inglês, no seu fuso, em qualquer continente, com linha direta com a engenharia.',
@@ -177,7 +191,7 @@ export const history: Record<Lang, HistoryContent> = {
         id: 'acredito',
         h2: 'No que eu acredito',
         year: 'Valores',
-        tone: 'warm',
+        tone: 'cool',
         blocks: [
           {
             beliefs: [
@@ -194,7 +208,7 @@ export const history: Record<Lang, HistoryContent> = {
         id: 'fora-do-codigo',
         h2: 'Fora do código',
         year: 'Fora do código',
-        tone: 'cool',
+        tone: 'warm',
         blocks: [
           {
             p: 'Escalo e faço trilhas (já subi o Vulcão Láscar, no Chile), ouço rock e metal, e tenho uma Belina 1984 que virou beer truck: a [Choppellina](https://choppellina.com.br). Também escrevo ficção científica: *Lambda X* será o meu primeiro livro.',
@@ -314,10 +328,24 @@ export const history: Record<Lang, HistoryContent> = {
         ],
       },
       {
+        id: 'butterfly-effect',
+        h2: 'The butterfly effect',
+        year: 'Oct 7, 2024',
+        tone: 'cool',
+        blocks: [
+          {
+            p: 'That story became a talk. On **October 7, 2024**, during the Entrepreneurship Week at **FAE**, I told students all of this in *LeadSoft: o efeito borboleta no empreender* ("the butterfly effect in entrepreneurship"): a question asked to a professor, a database I would only get to know years later and everything that followed.',
+          },
+          {
+            p: 'The goal was to inspire students to pay attention to the subtleties of what happens in college and to how they can lead to unexpected results in the future.',
+          },
+        ],
+      },
+      {
         id: 'conversation',
         h2: 'The conversation that changed everything',
         year: '2025',
-        tone: 'warm',
+        tone: 'dark',
         g1: true,
         blocks: [
           {
@@ -336,7 +364,7 @@ export const history: Record<Lang, HistoryContent> = {
         id: 'today',
         h2: 'Today',
         year: 'Today',
-        tone: 'cool',
+        tone: 'warm',
         blocks: [
           {
             p: 'I\'m a **Sales Engineer and Solutions Architect at RavenDB**. My job: **evaluate your case with you**, **prove in code** whether the database solves it (and when it doesn\'t, I say so) and, when it makes sense, **connect you with the sales team**. In Portuguese or English, in your time zone, on any continent, with a direct line to engineering.',
@@ -347,7 +375,7 @@ export const history: Record<Lang, HistoryContent> = {
         id: 'beliefs',
         h2: 'What I believe',
         year: 'Values',
-        tone: 'warm',
+        tone: 'cool',
         blocks: [
           {
             beliefs: [
@@ -364,7 +392,7 @@ export const history: Record<Lang, HistoryContent> = {
         id: 'off-keyboard',
         h2: 'Off the keyboard',
         year: 'Off the keyboard',
-        tone: 'cool',
+        tone: 'warm',
         blocks: [
           {
             p: 'I climb and hike (I\'ve climbed the Láscar Volcano in Chile), listen to rock and metal, and run a 1984 Belina turned beer truck: [Choppellina](https://choppellina.com.br). I also write science fiction: *Lambda X* will be my first book.',
