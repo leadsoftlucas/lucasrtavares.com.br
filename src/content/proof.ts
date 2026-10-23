@@ -1,4 +1,4 @@
-// Pagina /provas/ e /en/proof/. Estrutura e dados de Content/06 Site/04 Pagina Provas.md.
+// Pagina /provas/ e /en/proof/.
 // Regra: so numeros que o Lucas pode sustentar; o que falta fica como [adicionar] / [LINK a informar].
 import type { Lang } from '../i18n';
 import { links } from '../data/links';

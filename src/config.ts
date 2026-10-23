@@ -10,8 +10,8 @@ export const config = {
   whatsappLeadsoft: env.PUBLIC_WHATSAPP_LEADSOFT || '5541991777488',
   emailRavendb: env.PUBLIC_EMAIL_RAVENDB || 'lucas.tavares@ravendb.net',
   emailPersonal: env.PUBLIC_EMAIL_PERSONAL || 'eu@lucasrtavares.com.br',
-  /** Gate G1: so publica o trecho da entrada na RavenDB (pagina Historia) com PUBLIC_SHOW_G1=true. Padrao: desligado. */
-  showG1: env.PUBLIC_SHOW_G1 === 'true',
+  /** Mostra o capitulo completo da pagina Historia e o tema de palestra extra. Padrao: ligado; PUBLIC_SHOW_FULL_STORY=false oculta. */
+  showFullStory: env.PUBLIC_SHOW_FULL_STORY !== 'false',
   /** GTM/GA4 so carregam no build de producao (nunca no `npm run dev`). */
   analytics: import.meta.env.PROD,
 } as const;

@@ -1,5 +1,4 @@
-// Textos em inglês, portados 1:1 de `const EN` do index.html legado (legacy/index.html).
-// Campos estruturais (imagens, URLs, ids) ficam em src/data/*.ts, na mesma ordem das listas daqui.
+// Textos do site. Campos estruturais (imagens, URLs, ids) ficam em src/data/*.ts, na mesma ordem das listas daqui.
 import type { pt } from './pt';
 
 export const en: typeof pt = {

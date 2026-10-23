@@ -1,15 +1,14 @@
 # Build, verificacao, Lighthouse CI e deploy no GitHub Pages.
 #
-# - Em pull_request e em push na redesign/astro: so constroi e verifica (NAO publica).
-# - Em push na master: constroi, verifica e PUBLICA no GitHub Pages.
-#   Isso so passa a valer no dia do corte (M7), quando Settings > Pages > Source for trocado
-#   para "GitHub Actions". Ate la o site de producao continua servido pela master antiga.
+# - Em pull_request e em push em outras branches: so constroi e verifica.
+# - Em push na master: constroi, verifica e publica.
 name: Build, test and deploy
 
 on:
   push:
     branches: [master, redesign/astro]
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -31,8 +30,7 @@ jobs:
       PUBLIC_WHATSAPP_LEADSOFT: ${{ vars.PUBLIC_WHATSAPP_LEADSOFT }}
       PUBLIC_EMAIL_RAVENDB: ${{ vars.PUBLIC_EMAIL_RAVENDB }}
       PUBLIC_EMAIL_PERSONAL: ${{ vars.PUBLIC_EMAIL_PERSONAL }}
-      # Gate G1 da pagina Historia: desligado, a menos que a variavel do repositorio diga o contrario.
-      PUBLIC_SHOW_G1: ${{ vars.PUBLIC_SHOW_G1 }}
+      PUBLIC_SHOW_FULL_STORY: ${{ vars.PUBLIC_SHOW_FULL_STORY }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -55,7 +53,7 @@ jobs:
           path: dist
 
   deploy:
-    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+    if: github.ref == 'refs/heads/master' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
     environment:

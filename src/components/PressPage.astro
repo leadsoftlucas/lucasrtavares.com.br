@@ -14,7 +14,7 @@ interface Props {
 }
 const { lang } = Astro.props;
 const c = press[lang];
-const talks = c.talks.filter((t) => config.showG1 || !t.g1);
+const talks = c.talks.filter((t) => config.showFullStory || !t.extended);
 ---
 <Base lang={lang} paths={routes.press} title={c.meta.title} description={c.meta.description} ogType="website" onHome={false}>
   <JsonLd slot="head" data={pageJsonLd('press', lang, c.meta.title)} />

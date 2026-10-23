@@ -1,5 +1,4 @@
-// Textos em português, portados 1:1 de `const PT` do index.html legado (legacy/index.html).
-// Campos estruturais (imagens, URLs, ids) ficam em src/data/*.ts, na mesma ordem das listas daqui.
+// Textos do site. Campos estruturais (imagens, URLs, ids) ficam em src/data/*.ts, na mesma ordem das listas daqui.
 export const pt = {
   meta: {
     title: 'Lucas Resende Tavares — Sales Engineer · RavenDB Brasil',
