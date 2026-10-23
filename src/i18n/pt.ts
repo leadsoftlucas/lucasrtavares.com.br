@@ -136,7 +136,7 @@ export const pt = {
   storyBody: 'Um incômodo de faculdade, um sistema que ninguém queria encarar em 30 dias e uma ligação internacional. Conto aqui como cheguei ao RavenDB e como virei a ponte dele no Brasil.',
   storyCta: 'Ler a história',
   storyCta2: 'Ver as provas',
-  outside: 'Fora do código: escalo e faço trilhas, ouço rock e metal, e tenho uma Belina 1984 transformada em beer truck, a [Choppellina](https://choppellina.com.br). Também escrevo ficção científica: *Lambda X* é o meu primeiro livro.',
+  outside: 'Fora do código: escalo e faço trilhas, ouço rock e metal, e tenho uma Belina 1984 transformada em beer truck, a [Choppellina](https://choppellina.com.br). Também escrevo ficção científica: *Lambda X* será o meu primeiro livro.',
   music: {
     text: 'Minha música favorita se chama *The Raven Child*, do Avantasia. Sim, tem um corvo no nome. Foi coincidência, mas eu adotei.',
     caption: 'Minha trilha favorita',

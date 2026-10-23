@@ -138,7 +138,7 @@ export const en: typeof pt = {
   storyBody: 'A college itch, a system nobody wanted to tackle in 30 days and an international phone call. Here\'s how I got to RavenDB and became its bridge to Brazil.',
   storyCta: 'Read the story',
   storyCta2: 'See the proof',
-  outside: 'Off the keyboard: I climb and hike, listen to rock and metal, and run a 1984 Belina turned beer truck, [Choppellina](https://choppellina.com.br). I also write science fiction: *Lambda X* is my first book.',
+  outside: 'Off the keyboard: I climb and hike, listen to rock and metal, and run a 1984 Belina turned beer truck, [Choppellina](https://choppellina.com.br). I also write science fiction: *Lambda X* will be my first book.',
   music: {
     text: 'My favorite song is called *The Raven Child*, by Avantasia. Yes, there\'s a raven in the name. A coincidence, but I adopted it.',
     caption: 'My favorite track',
