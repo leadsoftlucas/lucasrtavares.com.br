@@ -1,10 +1,13 @@
 ---
 import { dictionaries, type Lang } from '../i18n';
+import { renderInline } from '../lib/inline';
+import SpotifyEmbed from './SpotifyEmbed.astro';
 
 interface Props {
   lang: Lang;
 }
-const t = dictionaries[Astro.props.lang];
+const { lang } = Astro.props;
+const t = dictionaries[lang];
 ---
 <section id="sobre">
   <div class="wrap inner">
@@ -32,6 +35,8 @@ const t = dictionaries[Astro.props.lang];
         <p>{t.mission2}</p>
       </div>
     </div>
+    <p class="outside" set:html={renderInline(t.outside)} />
+    <SpotifyEmbed lang={lang} />
   </div>
 </section>
 
@@ -83,6 +88,7 @@ const t = dictionaries[Astro.props.lang];
   }
   .col > p,
   .mcols > p,
+  .outside,
   .quote {
     margin: 0;
     font-size: 16px;
@@ -111,6 +117,10 @@ const t = dictionaries[Astro.props.lang];
     border-radius: 20px;
     background: linear-gradient(135deg, rgba(56, 142, 233, 0.1) 0%, rgba(123, 81, 255, 0.08) 100%);
     border: 1px solid rgba(56, 142, 233, 0.28);
+  }
+  .outside {
+    margin-top: clamp(30px, 4vw, 48px);
+    max-width: 78ch;
   }
   h3 {
     margin: 0 0 18px;

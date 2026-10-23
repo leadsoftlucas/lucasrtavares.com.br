@@ -1,30 +1,41 @@
 # Lucas Resende Tavares
 
-> Sales Engineer e Arquiteto de Soluções na RavenDB (Hibernating Rhinos Ltd.), com quase duas décadas em .NET e modelagem de dados. Ponte técnica brasileira do RavenDB, advocate da ferramenta e consultor independente em arquitetura, produto de software e backend .NET. Atende remotamente do Brasil para o mundo, em português e inglês.
+> Sales Engineer e Arquiteto de Soluções na RavenDB (Hibernating Rhinos Ltd.) e a ponte do RavenDB no Brasil. Programa desde 2007 e projeta software com RavenDB desde 2018. Autor de 17 pacotes .NET open source (mais de 208 mil downloads no NuGet) e palestrante no Brasil e nos EUA. Atende em português e inglês, a partir de Curitiba.
 
-Site institucional de uma página, bilíngue (pt-BR/en). A conversão acontece via WhatsApp (links pré-preenchidos por assunto) ou e-mail — não há formulário nem backend.
+Este site é pessoal e **não** é um canal oficial da RavenDB. O foco é o RavenDB. Desenvolvimento de software (.NET) e consultoria de tecnologia e de produto estão disponíveis sob demanda, sem destaque, na seção LeadSoft. A conversão acontece por WhatsApp (mensagens pré-preenchidas por assunto) ou e-mail.
+
+## O que ele faz
+- Avalia casos de uso e faz **prova de conceito** com RavenDB, com benchmark contra o caminho atual.
+- Ajuda em **modelagem de documentos, índices e performance** em produção.
+- **Migração de legado** (relacional ou outro NoSQL), com **CDC e ETL**.
+- **Busca textual e vetorial e IA** sobre os dados.
+- Faz a **ponte com o time comercial da RavenDB** quando faz sentido.
 
 ## Quem é
+- Sales Engineer e Arquiteto de Soluções na RavenDB desde agosto de 2025.
+- Fundou e liderou a LeadSoft Soluções Web (2018–2025), software house de Curitiba; parceira oficial do RavenDB no Brasil entre 2024 e 2025.
+- Bacharel em Sistemas de Informação (Faculdade Cotemig, 2010–2015); técnico em Informática (Colégio Cotemig, 2007–2009).
 
-Fundador e ex-CEO da LeadSoft Soluções Web (2018–2025), software house de Curitiba e parceira oficial do RavenDB no Brasil, antes de entrar para o time global da RavenDB Ltd. em 2025. Autor de 17 pacotes .NET open source com mais de 208 mil downloads no NuGet.
-
-## Serviços
-
-- **Consultoria RavenDB**: avaliação, adoção e escala — modelagem orientada a documentos, índices, projeções, Full-Text Search, busca vetorial e IA sobre os dados do cliente. Prova de conceito com benchmark e revisão de clusters em produção.
-- **Consultoria de tecnologia e arquitetura**: diagnóstico do modelo atual, gargalos de consulta e custo operacional, com plano de simplificação executável pelo time.
-- **Consultoria de produto de software**: apoio a fundadores e times de produto na definição técnica, viabilidade e priorização, do MVP à escala.
-- **Desenvolvimento e backend .NET**: APIs e serviços em .NET/C#, integrações, mensageria, camada de dados, CDC e ETL para sistemas legados que precisam continuar no ar.
+## Provas
+- PetraSync (2018–2019): o cliente queria 30 dias; ele pediu 45 e entregou em 45, com RavenDB.
+- Relatório de metas: de cerca de 4 horas para cerca de 30 segundos.
+- DaaS automotivo em RavenDB: de 1,8 min para 600 ms.
+- 17 pacotes NuGet; demos no GitHub: ravendb-demo e ravendb-sales-assistant-demo.
+- Palestras: TDC São Paulo (2024), Developer Week (2024), Microsoft Ignite (2025), TechEx North America (2026).
 
 ## Páginas
+- [Início](https://lucasrtavares.com.br/)
+- [História](https://lucasrtavares.com.br/historia/)
+- [Provas](https://lucasrtavares.com.br/provas/)
+- [Imprensa e bio kit](https://lucasrtavares.com.br/imprensa/)
 
-- [Site completo](https://lucasrtavares.com.br/): sobre, trajetória profissional, pacotes open source, palestras e eventos, vídeos, artigos e contato.
-
-## Contato
-
-- WhatsApp e e-mail: ver [lucasrtavares.com.br](https://lucasrtavares.com.br/) (seção "Falar comigo")
+## Contato e perfis
 - RavenDB (oficial): lucas.tavares@ravendb.net
 - Pessoal: eu@lucasrtavares.com.br
 - LinkedIn: https://linkedin.com/in/lucasrtavares
 - GitHub: https://github.com/leadsoftlucas
 - NuGet: https://www.nuget.org/profiles/lucastavares
 - YouTube: https://www.youtube.com/@LucasResendeTavares
+
+## English summary
+Lucas Resende Tavares is a Sales Engineer and Solutions Architect at RavenDB and its bridge to Brazil. He has been programming since 2007 and has designed software exclusively on RavenDB since 2018. He authored 17 open-source .NET packages (200,000+ NuGet downloads) and speaks in Brazil and the US. This is a personal site, not an official RavenDB channel.

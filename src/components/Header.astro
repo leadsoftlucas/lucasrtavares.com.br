@@ -1,5 +1,5 @@
 ---
-import { dictionaries, type Lang } from '../i18n';
+import { dictionaries, routes, type Lang } from '../i18n';
 import LangSwitch from './LangSwitch.astro';
 
 interface Props {
@@ -11,6 +11,8 @@ const t = dictionaries[lang];
 const links = [
   ['#falar', t.nav.talk],
   ['#sobre', t.nav.about],
+  [routes.story[lang], t.nav.story],
+  [routes.proof[lang], t.nav.proof],
   ['#trajetoria', t.nav.path],
   ['#codigo', t.nav.code],
   ['#palcos', t.nav.stages],
