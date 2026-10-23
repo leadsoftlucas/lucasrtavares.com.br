@@ -29,6 +29,7 @@ const t = dictionaries[Astro.props.lang];
           <a href={links.leadsoft} target="_blank" rel="noopener" class="l1">leadsoft.inf.br</a>
           <a href={links.nugetProfile} target="_blank" rel="noopener" class="l2">{t.leadsoft.nuget}</a>
         </div>
+        <a href={links.googleReview} target="_blank" rel="noopener" class="review">{t.leadsoft.reviewCta}</a>
       </div>
     </div>
   </div>
@@ -123,6 +124,18 @@ const t = dictionaries[Astro.props.lang];
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+  }
+  .review {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.28);
+    text-underline-offset: 3px;
+  }
+  .review:hover {
+    color: var(--cyan);
   }
   .links a {
     font-size: 13px;

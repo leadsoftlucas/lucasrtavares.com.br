@@ -10,6 +10,8 @@ export const links = {
   youtubePlaylist: 'https://www.youtube.com/watch?v=fOh9h4nFNOk&list=PLIGNkjr48KTrQrGuyZD_tD2o3QSGInkkj',
   youtubeChannel: 'https://www.youtube.com/@LucasResendeTavares',
   youtubeRavendb: 'https://www.youtube.com/@ravendb_net',
+  /** Link para ESCREVER uma avaliacao no Google Meu Negocio (Lucas R Tavares Tech), informado em 24/10/2026. */
+  googleReview: 'https://g.page/r/CQkrT9IhO805EAI/review',
   tdcWorkshopRepo: 'https://github.com/LeadSoft-Solucoes-Web/leadsoft-tdcsp2024-ravendb-datamodel',
 } as const;
 

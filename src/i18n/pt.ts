@@ -241,6 +241,7 @@ export const pt = {
     nuget: 'Pacotes no NuGet',
     services: 'Desenvolvimento de software (.NET) e consultoria de tecnologia e de produto continuam disponíveis sob demanda.',
     waCta: 'Falar sobre desenvolvimento ou consultoria',
+    reviewCta: 'Já foi cliente? Deixe sua avaliação no Google',
     waMsg: 'Olá! Vim pelo site do Lucas e quero conversar sobre desenvolvimento ou consultoria.',
   },
   articlesTitle: 'Escrevo sobre dados, arquitetura e o custo real da complexidade',

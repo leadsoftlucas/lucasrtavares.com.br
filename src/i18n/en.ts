@@ -243,6 +243,7 @@ export const en: typeof pt = {
     nuget: 'NuGet packages',
     services: 'Software development (.NET) and technology and product consulting remain available on request.',
     waCta: 'Talk about development or consulting',
+    reviewCta: 'Past client? Leave a review on Google',
     waMsg: 'Hi! I found you through Lucas\'s site and would like to talk about development or consulting.',
   },
   articlesTitle: 'I write about data, architecture and the real cost of complexity',
