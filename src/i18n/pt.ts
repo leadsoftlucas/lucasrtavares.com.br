@@ -290,6 +290,7 @@ export const pt = {
   eventsOverline: 'Palcos e feiras',
   eventsTitle: 'Eventos por onde passei',
   eventsLead: 'Conferências e feiras de tecnologia no Brasil e nos Estados Unidos. Subo no palco e converso com quem opera dados no dia a dia.',
+  eventsPress: 'Quer me convidar? Bio, fotos e materiais na página de imprensa.',
   events: [
     {
       date: 'Fev 2024',

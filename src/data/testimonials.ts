@@ -27,7 +27,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 'ricardo-braidotte',
     name: 'Ricardo Braidotte',
-    role: { pt: 'Cofundador da R3 Engenharia', en: 'Co-founder, R3 Engenharia' },
+    role: { pt: 'Cofundador da R3 Engenharia e gerente de projetos na Inforlube', en: 'Co-founder, R3 Engenharia, and Project Manager at Inforlube' },
     quote:
       'Nós buscávamos parceiros que nos fornecesse agilidade, conhecimento técnico e comercial para nossos softwares e nossos clientes e, encontramos no time LeadSoft® muito mais! Juntos, superamos nossas metas de aperfeiçoamento dentro do prazos planejados, graças a alta disponibilidade e dedicação desprendida no projeto. Hoje, a parceria nos garantiu a alta satisfação dos nossos clientes mais significativos, elevando cada dia mais a nossa marca. Obrigado time Lead!',
     quoteEn:

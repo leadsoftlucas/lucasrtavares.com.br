@@ -292,6 +292,7 @@ export const en: typeof pt = {
   eventsOverline: 'Stages and expos',
   eventsTitle: 'Events I have been to',
   eventsLead: 'Technology conferences and expos in Brazil and the United States. I get on stage and talk to people who run data every day.',
+  eventsPress: 'Want to invite me? Bio, photos and materials are on the press page.',
   events: [
     {
       date: 'Feb 2024',

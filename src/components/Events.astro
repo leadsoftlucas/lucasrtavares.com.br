@@ -1,6 +1,7 @@
 ---
 import { dictionaries, type Lang } from '../i18n';
 import { events } from '../data/events';
+import { routes } from '../i18n';
 
 interface Props {
   lang: Lang;
@@ -13,6 +14,7 @@ const t = dictionaries[Astro.props.lang];
     <p class="overline green">{t.eventsOverline}</p>
     <h2 class="h2">{t.eventsTitle}</h2>
     <p class="lead">{t.eventsLead}</p>
+    <p class="press"><a href={routes.press[Astro.props.lang]}>{t.eventsPress}</a></p>
     <div class="grid">
       {t.events.map((ev, i) => (
         <div class="card">
@@ -56,8 +58,16 @@ const t = dictionaries[Astro.props.lang];
     color: #fff;
   }
   .lead {
-    margin: 0 0 40px;
+    margin: 0 0 12px;
     color: rgba(255, 255, 255, 0.74);
+  }
+  .press {
+    margin: 0 0 40px;
+  }
+  .press a {
+    color: #63ffa6;
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
   .grid {
     display: grid;
