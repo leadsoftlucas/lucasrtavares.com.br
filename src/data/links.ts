@@ -10,8 +10,10 @@ export const links = {
   youtubePlaylist: 'https://www.youtube.com/watch?v=fOh9h4nFNOk&list=PLIGNkjr48KTrQrGuyZD_tD2o3QSGInkkj',
   youtubeChannel: 'https://www.youtube.com/@LucasResendeTavares',
   youtubeRavendb: 'https://www.youtube.com/@ravendb_net',
-  /** Link para ESCREVER uma avaliacao no Google Meu Negocio (Lucas R Tavares Tech), informado em 24/10/2026. */
-  googleReview: 'https://g.page/r/CQkrT9IhO805EAI/review',
+  /** Avaliacao da LeadSoft no Google (passado, empresa encerrada). Usado so na faixa "Capitulo anterior". */
+  leadsoftReview: 'https://g.page/r/CQkrT9IhO805EAI/review',
+  /** Avaliacao da Lucas R Tavares Tech (empresa atual, lucasrtavares.com.br) no Google. */
+  googleReview: 'https://g.page/r/CYdwl3DrZ0DFEAE/review',
   tdcWorkshopRepo: 'https://github.com/LeadSoft-Solucoes-Web/leadsoft-tdcsp2024-ravendb-datamodel',
 } as const;
 

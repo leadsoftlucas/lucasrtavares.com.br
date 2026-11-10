@@ -366,6 +366,11 @@ export const pt = {
   followTitle: 'Acompanhe o RavenDB',
   followSite: 'Site oficial: ravendb.net',
   followLinkedin: 'RavenDB no LinkedIn',
+  review: {
+    title: 'Trabalhamos juntos? Conte como foi.',
+    body: 'Se você já conversou comigo, assistiu a uma palestra, fez uma prova de conceito ou trabalhou comigo, sua avaliação no Google ajuda outras pessoas a decidir. Leva um minuto.',
+    cta: 'Avaliar Lucas R Tavares Tech no Google',
+  },
   contactTitle: 'Vamos conversar',
   contactLead: 'Se você lida com dados, arquitetura ou decide orçamento de tecnologia, provavelmente temos o que conversar. Escolha o canal.',
   contactLinkedin: 'Trajetória completa, artigos e o que estou publicando agora.',

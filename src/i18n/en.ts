@@ -367,6 +367,11 @@ export const en: typeof pt = {
   followTitle: 'Keep up with RavenDB',
   followSite: 'Official site: ravendb.net',
   followLinkedin: 'RavenDB on LinkedIn',
+  review: {
+    title: 'Worked together? Tell us how it went.',
+    body: 'If we have talked, you attended a talk, ran a proof of concept or worked with me, a Google review helps others decide. It takes a minute.',
+    cta: 'Review Lucas R Tavares Tech on Google',
+  },
   contactTitle: 'Let’s talk',
   contactLead: 'If you deal with data, architecture or technology budgets, we probably have something to talk about. Pick a channel.',
   contactLinkedin: 'Full career history, articles and whatever I am publishing right now.',

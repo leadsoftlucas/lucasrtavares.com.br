@@ -1,0 +1,47 @@
+---
+import { dictionaries, type Lang } from '../i18n';
+import { links } from '../data/links';
+
+interface Props {
+  lang: Lang;
+}
+const t = dictionaries[Astro.props.lang];
+---
+<section id="avaliar">
+  <div class="wrap inner">
+    <div>
+      <h2>{t.review.title}</h2>
+      <p class="body">{t.review.body}</p>
+    </div>
+    <a href={links.googleReview} target="_blank" rel="noopener" class="btn btn-grad">{t.review.cta}</a>
+  </div>
+</section>
+
+<style>
+  section {
+    background: var(--bg-darker);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .inner {
+    padding-top: clamp(32px, 4vw, 48px);
+    padding-bottom: clamp(32px, 4vw, 48px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px 40px;
+  }
+  h2 {
+    margin: 0 0 8px;
+    font-size: clamp(20px, 2.4vw, 26px);
+    color: #fff;
+  }
+  .body {
+    margin: 0;
+    max-width: 640px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.72);
+    text-wrap: pretty;
+  }
+</style>
